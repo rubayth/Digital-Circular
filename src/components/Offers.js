@@ -1,36 +1,10 @@
 import React, {Component} from 'react';
-import {omsUrl} from './getOmsOfferData';
 import { Badge, Row, Col } from 'reactstrap';
 
 class OfferList extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        offers: []
-      }
-    }
-    
-    componentDidMount() {
-      let url = `${omsUrl}`;
-      
-      fetch(url)
-      .then(data => data.json())
-      .then(data => {
-        this.setState({
-          offers: data.Table
-        })
-      })
-      .catch(err => {
-        console.log('======failure=======');
-        console.log(err);
-      });
-      
-        
-    }
-    
       render() {
         
-        let offerData = this.state.offers.map((offer, index) => {
+        let offersData = this.props.offerData.map((offer, index) => {
           return(
             <Col xs="6" sm="4" className="offer text-center" key={offer.pKey}>
               <img src={offer.FPMain1_URL_PNG} alt={offer.Alt_Text} style={{width: '250px', height: '250px'}}/>
@@ -47,7 +21,7 @@ class OfferList extends Component {
     
         return (
           <Row className="content">
-            {offerData}
+            {offersData}
           </Row>
         );
       }
