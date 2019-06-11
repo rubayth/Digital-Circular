@@ -23,7 +23,7 @@ const Header = () => (
                 <DropdownToggle className="font-weight-bold" nav caret>
                 <img src={LOGO} alt="avatar" className="img-fluid rounded-circle" style={{ width: 36 }} />
                 </DropdownToggle>
-                <DropdownMenu left>
+                <DropdownMenu>
                   <DropdownItem className="font-weight-bold text-secondary text-uppercase" header disabled>My Profile</DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>Dashboard</DropdownItem>

@@ -3,8 +3,11 @@ import {omsUrl} from './getOmsOfferData';
 import { Badge, Row, Col } from 'reactstrap';
 
 class OfferList extends Component {
-    state = {
-      offers: []
+    constructor(props) {
+      super(props);
+      this.state = {
+        offers: []
+      }
     }
     
     componentDidMount() {
