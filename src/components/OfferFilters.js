@@ -33,7 +33,7 @@ class OfferFilters extends Component {
         //Build my filters now
         const filterData = categoryUnique.map((filter, index) => {
             return (
-                <Form key={index}>
+                <Form key={index} className="form-check-inline">
                     <FormGroup check>
                         <Label check>
                             <Input type="checkbox" />{' '}

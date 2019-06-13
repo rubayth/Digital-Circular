@@ -36,7 +36,7 @@ class App extends Component {
 
     return (
       <Container className="my-5 py-5">
-        <Header />
+        <Header offerData={this.state.offers} />
         <FilterContainer offerData={this.state.offers} />
         <OfferList offerData={this.state.offers} />
       </Container>
