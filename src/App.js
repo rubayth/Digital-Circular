@@ -9,8 +9,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      offers: []
+      offers: [],
+      allOffers: []
     }
+
+    this.searchOffers = this.searchOffers.bind(this);
   }
 // Below method checks if we got OMS Data before continuing on
   componentDidMount(){
@@ -20,8 +23,8 @@ class App extends Component {
     .then(data => data.json())
     .then(data => {
       this.setState({
-        offers: data.Table
-        
+        offers: data.Table,
+        allOffers: data.Table
       })
     })
     .catch(err => {
@@ -30,13 +33,25 @@ class App extends Component {
     });
   }
     
-  
+  searchOffers(query){
+
+    let offerFilter = this.state.allOffers.filter((offer) => {
+      // change current item to lowercase
+      const lc = offer.Category.toLowerCase();
+      
+      // check to see if the current list item includes the search term
+      // If it does, it will be added to newList. Using lowercase eliminates
+      // issues with capitalization in search terms and search content
+      return lc.includes(query);
+    });
+    this.setState({offers: offerFilter})
+  }
 
   render() {
 
     return (
       <Container className="my-5 py-5">
-        <Header offerData={this.state.offers} />
+        <Header searchOffers={this.searchOffers} />
         <FilterContainer offerData={this.state.offers} />
         <OfferList offerData={this.state.offers} />
       </Container>

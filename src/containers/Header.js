@@ -52,7 +52,7 @@ class Header extends Component {
                   </NavbarBrand>
                 </Col>
                 
-                <SearchOffers offerData={this.props.offerData} />
+                <SearchOffers searchOffers={this.props.searchOffers} />
                 
               </Row>
             </Container>
