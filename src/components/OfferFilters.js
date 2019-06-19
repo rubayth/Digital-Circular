@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Form, FormGroup, Label, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import {Form, FormGroup, Label, Input } from 'reactstrap';
 
 
 class OfferFilters extends Component {
@@ -10,6 +10,7 @@ class OfferFilters extends Component {
         this.state = {
           dropdownOpen: false
         };
+
       }
     
       toggle() {
@@ -31,12 +32,12 @@ class OfferFilters extends Component {
         });
 
         //Build my filters now
-        const filterData = categoryUnique.map((filter, index) => {
-            return (
+            return categoryUnique.map((filter, index) => { 
+              return(
                 <Form key={index} className="form-check-inline">
-                    <FormGroup check>
-                        <Label check>
-                            <Input type="checkbox" />{' '}
+                    <FormGroup>
+                        <Label key={index}>
+                            <Input type="checkbox" name={filter} onChange={this.props.updateOffers} />
                                 {filter}
                         </Label>
                     </FormGroup>
@@ -44,20 +45,6 @@ class OfferFilters extends Component {
 
             )
         })
-
-        return (
-            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                <DropdownToggle className="font-weight-bold">
-                Filter Options
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem>
-                      {filterData}
-                  </DropdownItem>
-                </DropdownMenu>
-            </Dropdown>
-          );
-
     }
 }  
 

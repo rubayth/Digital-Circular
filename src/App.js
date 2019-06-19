@@ -10,10 +10,11 @@ class App extends Component {
     super(props);
     this.state = {
       offers: [],
-      allOffers: []
+      allOffers: [],
     }
 
     this.searchOffers = this.searchOffers.bind(this);
+    this.updateOffers = this.updateOffers.bind(this);
   }
 // Below method checks if we got OMS Data before continuing on
   componentDidMount(){
@@ -47,12 +48,27 @@ class App extends Component {
     this.setState({offers: offerFilter})
   }
 
+  updateOffers(e) {
+    if (e.target.checked) {
+      const currState = this.state.offers;
+      const newState = currState.filter(offers => offers.Category.includes(e.target.name));
+        this.setState({
+            offers: newState
+        });
+        console.log(newState);
+    }
+    else {
+      console.log('Not checked');
+    }
+  }
+
+
   render() {
 
     return (
       <Container className="my-5 py-5">
         <Header searchOffers={this.searchOffers} />
-        <FilterContainer offerData={this.state.offers} />
+        <FilterContainer offerData={this.state.offers} updateOffers={this.updateOffers} />
         <OfferList offerData={this.state.offers} />
       </Container>
     );
