@@ -9,7 +9,7 @@ class FilterContainer extends Component {
 
     return (
       <Row className="py-3">
-          <OfferFilters offerData={this.props.offerData} updateOffers={this.props.updateOffers} />
+          <OfferFilters offerCategories={this.props.offerCategories} updateOffers={this.props.updateOffers} />
       </Row>
     );
   }

@@ -22,7 +22,7 @@ class OfferFilters extends Component {
     render () {
 
         //Get list of categories from offer
-        const categories = this.props.offerData.map(function (offer) {
+        const categories = this.props.offerCategories.map(function (offer) {
           return offer.Category;
         });
 

@@ -11,6 +11,7 @@ class App extends Component {
     this.state = {
       offers: [],
       allOffers: [],
+      offerCategories: []
     }
 
     this.searchOffers = this.searchOffers.bind(this);
@@ -25,7 +26,8 @@ class App extends Component {
     .then(data => {
       this.setState({
         offers: data.Table,
-        allOffers: data.Table
+        allOffers: data.Table,
+        offerCategories: data.Table
       })
     })
     .catch(err => {
@@ -68,7 +70,7 @@ class App extends Component {
     return (
       <Container className="my-5 py-5">
         <Header searchOffers={this.searchOffers} />
-        <FilterContainer offerData={this.state.offers} updateOffers={this.updateOffers} />
+        <FilterContainer offerCategories={this.state.offerCategories} updateOffers={this.updateOffers} />
         <OfferList offerData={this.state.offers} />
       </Container>
     );
