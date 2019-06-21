@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       offers: [],
       allOffers: [],
-      offerCategories: []
+      offerCategories: [],
+      defaultData: []
     }
 
     this.searchOffers = this.searchOffers.bind(this);
@@ -27,7 +28,8 @@ class App extends Component {
       this.setState({
         offers: data.Table,
         allOffers: data.Table,
-        offerCategories: data.Table
+        offerCategories: data.Table,
+        defaultData: data.Table
       })
     })
     .catch(err => {
@@ -57,10 +59,11 @@ class App extends Component {
         this.setState({
             offers: newState
         });
-        console.log(newState);
+        
     }
     else {
-      console.log('Not checked');
+      this.setState({offers: this.state.defaultData})
+      
     }
   }
 
