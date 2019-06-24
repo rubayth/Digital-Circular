@@ -41,13 +41,21 @@ class App extends Component {
   searchOffers(query){
 
     let offerFilter = this.state.allOffers.filter((offer) => {
-      // change current item to lowercase
-      const lc = offer.Category.toLowerCase();
+
+      if (offer.Mainline1 != null) {
+        // change current item to lowercase
+      const lc = offer.Mainline1.toLowerCase();
       
       // check to see if the current list item includes the search term
       // If it does, it will be added to newList. Using lowercase eliminates
       // issues with capitalization in search terms and search content
       return lc.includes(query);
+      }
+
+      // Continue filters through null values
+      else {
+        return false;
+      }
     });
     this.setState({offers: offerFilter})
   }
