@@ -78,7 +78,7 @@ class App extends Component {
   render() {
 
     return (
-      <Container className="my-5 py-5">
+      <Container className="my-5 py-5 circular-container">
         <FilterContainer offerCategories={this.state.offerCategories} updateOffers={this.updateOffers} searchOffers={this.searchOffers} />
         <OfferList offerData={this.state.offers} />
       </Container>
