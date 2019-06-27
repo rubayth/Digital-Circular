@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.promo_price {
+  font-size: 36px;
+  font-weight: 800px;
+}
+
+.promo__overline{
+  margin: 0px;
+}

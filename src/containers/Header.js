@@ -4,7 +4,6 @@ import {
   NavbarBrand, NavLink, NavItem, UncontrolledDropdown,
   DropdownToggle, DropdownMenu, DropdownItem
 } from "reactstrap";
-import SearchOffers from '../components/SearchOffers';
 import logo from '../logo.png';
 
 const LOGO = 'https://www.gravatar.com/avatar/429e504af19fc3e1cfa5c4326ef3394c?s=240&d=mm&r=pg';
@@ -52,7 +51,7 @@ class Header extends Component {
                   </NavbarBrand>
                 </Col>
                 
-                <SearchOffers searchOffers={this.props.searchOffers} />
+                
                 
               </Row>
             </Container>

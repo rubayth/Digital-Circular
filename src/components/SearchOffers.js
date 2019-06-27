@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Form, Col, Input} from 'reactstrap';
+import {Form, Input} from 'reactstrap';
 
 class SearchOffers extends Component {
     
@@ -15,11 +15,9 @@ class SearchOffers extends Component {
 
     render() {
         return(
-            <Col className="d-none d-lg-flex justify-content-end">
                 <Form inline>
                     <Input type="search" className="mr-3" onChange={this.handleSearch} placeholder="Search Weekly" />
                 </Form>
-            </Col>
         );
     }
 

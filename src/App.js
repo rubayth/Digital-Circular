@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import OfferList from './components/Offers';
 import FilterContainer from "./containers/FilterContainer";
-import Header from './containers/Header';
 import { Container } from 'reactstrap';
 import {omsUrl} from './components/getOmsOfferData';
 
@@ -80,8 +79,7 @@ class App extends Component {
 
     return (
       <Container className="my-5 py-5">
-        <Header searchOffers={this.searchOffers} />
-        <FilterContainer offerCategories={this.state.offerCategories} updateOffers={this.updateOffers} />
+        <FilterContainer offerCategories={this.state.offerCategories} updateOffers={this.updateOffers} searchOffers={this.searchOffers} />
         <OfferList offerData={this.state.offers} />
       </Container>
     );
