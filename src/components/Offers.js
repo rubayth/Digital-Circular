@@ -9,14 +9,13 @@ class OfferList extends Component {
           //Just a freaking hack for the images to show...we need to fix.
           if (offer.FPMain1_URL_PNG !== null) {
             var imageName = offer.FPMain1_URL_PNG.substring(offer.FPMain1_URL_PNG.lastIndexOf('/') + 1);
-            console.log (imageName);
           }
           else {
             return false;
           }
           return(
             <Col xs="6" sm="4" className="offer text-center" key={offer.pKey}>
-              <img src={`https://s3.wasabisys.com/hugo-images/2019/05/${imageName}`} alt={offer.Alt_Text} style={{width: '150px', height: '200px'}}/>
+              <img src={`https://s3.wasabisys.com/hugo-images/2019/05/${imageName}`} alt={offer.Alt_Text} className="offer-image" />
               <p className="promo__overline">{offer.Overline1}</p>
               <h5 className="font-weight-bold">{offer.Mainline1}</h5>
               <span className="promo_price">{offer.Price}</span>

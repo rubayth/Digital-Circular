@@ -45,6 +45,7 @@ class OfferFilters extends Component {
 
             )
         })
+        
     }
 }  
 
