@@ -16,6 +16,7 @@ code {
   background: #fff;
 }
 
+/* Offer styling */
 .offer {
   padding-bottom: 40px;
 }
@@ -34,3 +35,46 @@ code {
 .promo__overline{
   margin: 0px;
 }
+/* Offer styling End */
+
+
+/* Modal Offer styling */
+.modal-header {
+  border: none;
+}
+@media (min-width: 992px) {
+  .promoModal__img-col .promo__img--wrap img {
+    max-height: 375px;
+  }
+}
+
+.promoModal__img-col .promo__img--wrap img {
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 225px;
+  max-width: 100%;
+  width: auto;
+}
+
+.promoModal__text-col .promo__title {
+  font-size: 18px;
+}
+
+.promoModal__text-col .promo__title .promo__mainline, .promoModal__text-col .promo__title .promo__overline {
+  display: block;
+}
+
+.promoModal__text-col .promo__mainline, .promoModal__text-col .promo__price, .promoModal__text-col .promo__price--uom {
+  color: #1d1d1f;
+  font-weight: 800;
+}
+
+.promoModal__text-col .promo__price {
+  font-size: 42px;
+}
+
+.promoModal__text-col .promo__description {
+  font-size: 13px;
+}
+
+/* Modal Offer styling End */
