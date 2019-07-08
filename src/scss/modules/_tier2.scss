@@ -1,0 +1,169 @@
+// Tier2 Promo
+
+// Remember that Bootstrap is mobile by default!!!
+
+.tier2 {
+
+  @include p-x( 0 );
+
+  &-slider__wrap {
+    @include p-x( 25px );
+  }
+
+  &-slider {
+    // background-color: rgba( 0, 0, 240, .5 );
+  }
+
+  &__cover {
+    img {
+      max-height: map-get( $tx-xs, 'h' );
+      max-width: map-get( $tx-xs, 'w2' );
+    }
+  }
+
+  .promo {
+
+    &__inner {
+      // background-color: rgba( 233, 200, 0, .5 );
+    }
+
+    &__img--wrap {
+
+    }
+
+    &__text--wrap {
+
+    }
+
+  }
+
+}
+
+
+// md >= 768px
+@include media-breakpoint-up( md ) {
+
+  .tier2 {
+
+    @include pad-x( 15px );
+
+    &-slider__wrap {
+      @include pad-x( 15px );
+    }
+
+    &-slider {
+      @include pad-x( 0 );
+
+    }
+
+    .slick-next {
+      right: -20px;
+    }
+
+    .slick-prev {
+      left: -20px;
+    }
+
+    &__cover {
+      padding: .5rem .25rem;
+      img {
+        height: 100%;
+        max-height: map-get( $tx-md, 'h' );
+        max-width: map-get( $tx-md, 'w2' );
+      }
+    }
+
+    .promo {
+
+      // &.slick-current {
+      //   border-left-color: map-get( $tc, 'dark-gray' );
+      // }
+
+      // &.slick-active {
+      //   &:nth-child( even ) {
+      //     // border-right-color: map-get( $tc, 'dark-gray' );
+      //   }
+      // }
+
+
+    }
+
+
+  }
+}
+
+// lg >= 992px
+@include media-breakpoint-up( lg ) {
+
+  .tier2 {
+
+    // @include pad-x( 0 );
+
+    &__cover {
+      margin: 0 auto;
+      padding: 0 0;
+      img {
+        max-height: map-get( $tx-lg, 'h' );
+        max-width: map-get( $tx-lg, 'w2' );
+      }
+    }
+
+    &-slider {
+      @include pad-x( 15px );
+    }
+
+    .promo {
+      &__inner {
+        margin: 0 auto;
+        max-height: map-get( $tx-lg, 'h' );
+        max-width: map-get( $tx-lg, 'w' );
+      }
+    }
+  }
+
+}
+
+// 1200px
+@include media-breakpoint-up( xl ) {
+
+  .tier2 {
+
+    &__cover {
+      img {
+        max-height: map-get( $tx-xl, 'h' );
+        max-width: map-get( $tx-xl, 'w2' );
+      }
+    }
+
+    .promo {
+      &__inner {
+        max-height: map-get( $tx-xl, 'h' );
+        max-width: map-get( $tx-xl, 'w' );
+      }
+    }
+  }
+
+}
+
+// 1400px
+@include media-breakpoint-up( xxl ) {
+
+  .tier2 {
+
+    &__cover {
+      img {
+        max-height: map-get( $tx-xxl, 'h' );
+        max-width: map-get( $tx-xxl, 'w2' );
+      }
+    }
+
+    .promo {
+      &__inner {
+        max-height: map-get( $tx-xxl, 'h' );
+        max-width: map-get( $tx-xxl, 'w' );
+      }
+
+    }
+  }
+
+}

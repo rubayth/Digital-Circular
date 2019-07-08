@@ -1,0 +1,82 @@
+// fonts/ live adjacent to css/
+// however, minified css is in css/min/
+// so../../
+$icomoon-font-path: "../../fonts" !default;
+
+$icon-play-button: "\e906";
+$icon-maginifying-glass: "\e905";
+$icon-close: "\e5cd";
+$icon-arrow-left: "\e903";
+$icon-arrow-right: "\e904";
+$icon-keyboard_arrow_right: "\e901";
+$icon-keyboard_arrow_left: "\e902";
+$icon-menu2: "\e900";
+$icon-menu: $icon-menu2;
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('#{$icomoon-font-path}/icomoon.eot?rn5468');
+  src:  url('#{$icomoon-font-path}/icomoon.eot?rn5468#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/icomoon.ttf?rn5468') format('truetype'),
+    url('#{$icomoon-font-path}/icomoon.woff?rn5468') format('woff'),
+    url('#{$icomoon-font-path}/icomoon.svg?rn5468#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-play-button {
+  &:before {
+    content: $icon-play-button;
+  }
+}
+.icon-maginifying-glass {
+  &:before {
+    content: $icon-maginifying-glass;
+  }
+}
+.icon-close {
+  &:before {
+    content: $icon-close;
+  }
+}
+.icon-arrow-left {
+  &:before {
+    content: $icon-arrow-left;
+  }
+}
+.icon-arrow-right {
+  &:before {
+    content: $icon-arrow-right;
+  }
+}
+.icon-keyboard_arrow_right {
+  &:before {
+    content: $icon-keyboard_arrow_right;
+  }
+}
+.icon-keyboard_arrow_left {
+  &:before {
+    content: $icon-keyboard_arrow_left;
+  }
+}
+.icon-menu,
+.icon-menu2 {
+  &:before {
+    content: $icon-menu2;
+  }
+}

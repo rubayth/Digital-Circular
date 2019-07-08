@@ -1,0 +1,111 @@
+// this may as well be global
+// except for the weight
+.nav__main {
+
+  .main-nav-list {
+    margin-top: -25px;
+  }
+
+  .nav-item {
+
+    // pull item to the right closer
+    margin-right: -5px;
+
+    a {
+      color: map-get( $tc, 'main-nav' );
+      display: block;
+      padding: 2px 25px 12px;
+      position: relative;
+      text-transform: uppercase;
+
+      &:visited {
+        color: map-get( $tc, 'main-nav' );
+      }
+
+      &:hover {
+        color: map-get( $tc, 'main-nav' );
+        text-decoration: none;
+
+      }
+
+      &:active {
+        color: map-get( $tc, 'main-nav' );
+      }
+
+      &:after {
+        color: #606062;
+        content: "|";
+        display: block;
+        font-size: 17px;
+        position: absolute;
+        right: -3px;
+        top: 2px;
+      }
+
+    } // a
+
+    &:hover {
+      &:after {
+        background: map-get( $tc, 'teal' );
+        // content: "";
+        // display: block;
+        // height: 7px;
+        // position: relative;
+        // width: 100%;
+      }
+    }
+
+    &:after {
+      // background: map-get( $tc, 'teal' );
+      background: transparent;
+      content: "";
+      display: block;
+      height: 7px;
+      position: relative;
+      width: 100%;
+    }
+
+    &:last-child {
+      a {
+        padding-right: 15px;
+        &:after {
+          display: none;
+        }
+      }
+    }
+
+    // add .current--parent so that Adult and Children will highlight on their child pages
+    &.current--item,
+    &.current--parent,
+    &.current--ancestor {
+
+      a {
+        color: map-get( $tc, 'main-nav' );
+
+      }
+
+      &:after {
+        background: map-get( $tc, 'teal' );
+        // content: "";
+        // display: block;
+        // height: 7px;
+        // position: relative;
+        // width: 100%;
+      }
+
+    }
+  } // .nav-item
+} // .nav__main
+
+@include media-breakpoint-up( xl ) {
+
+  .nav__main {
+    .nav-item {
+      a {
+        @include p-x( 30px );
+      }
+    }
+  }
+
+
+}

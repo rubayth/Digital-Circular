@@ -1,0 +1,153 @@
+// Hero
+
+
+// Remember that Bootstrap is mobile by default!!!
+
+$hero-xs: (
+  'arrow': 22px,
+  'dot-size': .8rem,
+  'dot-m-x': .5rem,
+);
+
+.hero {
+
+  @include pad-x( 0 );
+
+  .carousel-item {
+    display: none;
+    &:first-child {
+      display: block;
+    }
+  }
+
+  .slick-initialized {
+    .carousel-item {
+      display: block;
+    }
+  }
+
+  .slick-slide {
+      height: auto;
+  }
+
+  .slick-prev,
+  .slick-next {
+    z-index: 2;
+    // top: 45%;
+    top: 50%;
+    transform: translateY( -50% );
+  }
+
+  .slick-prev::before,
+  .slick-next::before {
+    font-size: 22px;
+    // color: $gray;
+    color: map-get( $tc, 'slider-arrows' );
+  }
+
+  .slick-next {
+    right: 2%;
+  }
+
+  .slick-prev {
+    left: 2%;
+  }
+
+
+
+  .slick-dots {
+
+    bottom: 8%;
+    display: none;
+
+    li {
+      height: map-get( $hero-xs, 'dot-size' );
+      // margin: 0 20px;
+      margin: 0 map-get( $hero-xs, 'dot-m-x' );
+      text-decoration: none;
+      width: map-get( $hero-xs, 'dot-size' );
+    }
+
+    button {
+      background-color: map-get( $tc, 'slider-dots' );
+      // border: 1px solid #a6adb4;
+      border: 1px solid map-get( $tc, 'slider-dot-border' );
+      // border-radius: 20px;
+      border-radius: 50%;
+      // height: 26px;
+      height: map-get( $hero-xs, 'dot-size' );
+      text-decoration: none;
+      // width: 26px;
+      width: map-get( $hero-xs, 'dot-size' );
+
+      &:before {
+        // content: none;
+        content: "";
+      }
+
+    }
+
+    .slick-active {
+      button {
+        // background-color: $gray;
+        background-color: map-get( $tc, 'slider-dot-active' );
+      }
+    }
+
+
+
+  }
+
+}
+
+@include media-breakpoint-down(sm) {
+
+  .hero {
+
+    .mobile {
+      display: block !important;
+    }
+
+    .desktop {
+      display: none !important;
+    }
+
+       /* the slides */
+    .slick-slide {
+      margin: 0;
+    }
+    /* the parent */
+    .slick-list {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+  }
+
+}
+
+@include media-breakpoint-up(sm) {
+
+  .hero {
+
+    .mobile {
+      display: none !important;
+    }
+
+    .desktop {
+      display: block !important;
+    }
+  }
+
+}
+
+@include media-breakpoint-up( md ) {
+  .hero {
+    .slick-dots {
+      display: block;
+    }
+  }
+}

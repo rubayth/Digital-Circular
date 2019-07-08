@@ -1,0 +1,102 @@
+// footer!
+
+// social icon font sizes
+$fs-social_m: 34px;
+$fs-social_d: 32px;
+
+// how much padding-left on tertiary nav-items
+// and how much negative margin-left on their parent
+$tertiary-nav-gap: 10px;
+
+.global-footer {
+  background: $white;
+}
+
+// main menu in footer
+.footer-nav {
+  .nav-item {
+
+    a {
+      font-weight: bold;
+      font-size: rem( $fs-main-nav_m );
+    }
+
+  } // .nav-item
+
+}
+
+// social menu in footer
+.footer-nav-secondary {
+
+  .fab {
+    font-size: rem( $fs-social_m );
+  }
+}
+
+// this is parent of col that wraps the ul
+.footer-nav__wrap--tertiary {
+
+}
+// .footer-nav-tertiary is the ul inside the col
+.footer-nav-tertiary {
+  // to offset the padding-left on children nav-items
+  // we can't guarantee which children will wrap and be on left
+  margin-left: $tertiary-nav-gap * -1;
+
+  .nav-item {
+    padding-left: $tertiary-nav-gap;
+    // background: pink;
+    a {
+      // background: purple;
+      font-size: rem( $fs-sec-nav_m );
+      // padding-left: 1rem;
+      // padding-right: 1rem;
+
+    }
+  }
+}
+
+
+.footer__copyright {
+  color: $light-gray;
+  font-size: rem( $fs-sec-nav_m );
+  text-align: center;
+}
+
+@include media-breakpoint-up( lg ) {
+  .global-footer {
+
+  }
+
+  // main menu in footer
+  .footer-nav {
+    .nav-item {
+      a {
+        font-size: rem( $fs-main-nav_d );
+      }
+    }
+  }
+
+  // social menu in footer
+  .footer-nav-secondary {
+    border: none;
+
+    .fab {
+      font-size: rem( $fs-social_d );
+    }
+  }
+
+  // FAQs, et al
+  .footer-nav-tertiary {
+    .nav-item {
+      a {
+        font-size: $fs-sec-nav_d;
+      }
+    }
+  }
+
+  .footer__copyright {
+    font-size: $fs-sec-nav_d;
+  }
+
+}

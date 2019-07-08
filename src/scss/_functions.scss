@@ -1,0 +1,157 @@
+//------------------------------------
+//  SASS functions to make our lives easier!
+//------------------------------------
+
+//------------------------------------
+//  Remove the units from a length value.
+//  Returns the numeric portion.
+//  Borrowed from Hugo Giraudel at CSS Tricks.
+//  https://css-tricks.com/snippets/sass/strip-unit-function/
+//------------------------------------
+@function strip-units( $length ) {
+  @if type-of( $length ) == 'number' and not unitless( $length ) {
+    // SASS is crazy enough to remember the units after we multiply $length by 0!
+    // Adding 1 to that then gives us 1{units}.
+    // Finally, dividing $length{units} by 1{units} yields $length without units!
+    @return $length / ( $length * 0 + 1 );
+  }
+
+  @return $length;
+}
+
+// came with IcoMoon SASS files
+@function unicode($str) {
+  @return unquote("\"") + $str + unquote("\"");
+}
+
+
+// given pixel measurements from PSD, calculate viewport width units
+// $vp-width can be a number (with or without units) or a string.
+// $vp-width allowed string values...
+@function pixels-to-vw( $value, $vp-width: 1920px ) {
+
+  $vp-width_default: 1920px !default;
+
+  // check for string versions
+  @if type-of( $vp-width ) == 'string' {
+    @if $vp-width == 'mobile' or $vp-width == 'm' {
+      $vp-width: 767px; // 767px because that's how wide the mobile PSD is!
+    }
+    @else if $vp-width == 'final' or $vp-width == 'f' or $vp-width == 'desktop' or $vp-width == 'd' {
+      $vp-width: 1920px;
+    }
+    @else {
+      $vp-width: $vp-width_default;
+    }
+  }
+
+  // strip units from parameters just in case
+  $value: strip-units( $value );
+  $vp-width: strip-units( $vp-width );
+  @return ( $value / $vp-width ) * 100vw;
+}
+
+// for 1rem == 16px
+// 48rem == 768px
+// 120rem == 1920px
+// calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));
+@function fluid( $min, $max, $vp-min: 768px, $vp-max: 1920px ) {
+  $diff: $max - $min;
+  $vp-diff: $vp-max - $vp-min;
+  // @return calc( #{$min} + ((1vw - #{$min / 100}) * 100 * #{$diff / $vp-diff}) );
+  @return calc( 1rem + ((1vw - #{$min / 100}) * 100 * #{$diff / $vp-diff}) );
+}
+
+// takes a pixel value and returns a rem value
+@function rem( $value ) {
+
+  // set $reset-font-divider if it isn't already
+  $reset-font-divider: 16px !default;
+
+  // strip units, just in case
+  $value: strip-units( $value );
+  // strip units from $reset-font-divider inline so we don't overwrite it!
+  @return ( ($value / strip-units($reset-font-divider)) * 1rem);
+  // @return #{unquote(($value / $reset-font-divider ) + 'rem' )};
+  // @return #{($value / $reset-font-divider )}#{'rem'};
+}
+
+// backwards compatibility`
+@function rem-it( $value ) {
+  @return rem( $value );
+}
+
+// Calculates viewport based unit given min & max values for screen size and
+// min-max for the value you want to fluidly scale
+// from https://www.madebymike.com.au/writing/fluid-type-calc-examples/
+// and https://codepen.io/MadeByMike/pen/vNrvdZ
+// Requires the calc-interpolation function which can also be used independently
+// NOTE: this function expects units on the values passed, e.g. 16px!
+@function calc-interpolation($min-screen, $min-value, $max-screen, $max-value) {
+
+  @if type-of( $min-screen ) != "number" {
+    @warn "min-screen is a #{type-of( $min-screen )} not a number!";
+  }
+  @if type-of( $min-value ) != "number" {
+    @warn "min-value is a #{type-of( $min-value )} not a number!";
+  }
+  @if type-of( $max-screen ) != "number" {
+    @warn "max-screen is a #{type-of( $max-screen )} not a number!";
+  }
+  @if type-of( $max-value ) != "number" {
+    @warn "max-value is a #{type-of( $max-value )} not a number!";
+  }
+
+  $a: ($max-value - $min-value) / ($max-screen - $min-screen);
+	$b: $min-value - $a * $min-screen;
+
+	$sign: "+";
+	@if ($b < 0) {
+		$sign: "-";
+		$b: abs($b);
+	}
+	@return calc(#{$a*100}vw #{$sign} #{$b});
+}
+
+// converts pixels to em based on the contextual value of 1 em
+// i.e., the font-size in pixels of the parent element
+$base-font-size-context: 16 !default;
+@function em( $pixels, $context: $base-font-size-context ) {
+  $pixels: strip-units( $pixels );
+  $context: strip-units( $context );
+  @return #{ $pixels / $context }em;
+}
+
+// shorthand for mobile
+// defaults to using $max-font-size_m for $context
+@function mem( $pixels, $context: $max-font-size_m ) {
+  @return em( $pixels, $context );
+}
+
+// shorthand for desktop
+// defaults to using $max-font-size_d for $context
+@function dem( $pixels, $context: $max-font-size_d ) {
+  @return em( $pixels, $context );
+}
+
+// return the ratio of $h to $w expressed as a percentage
+@function ratio-percent( $w, $h, $scale: 100 ) {
+  @return #{ ($h / $w) * $scale + '%' };
+}
+
+/// From https://css-tricks.com/snippets/sass/str-replace-function/
+/// Replace `$search` with `$replace` in `$string`
+/// @author Hugo Giraudel
+/// @param {String} $string - Initial string
+/// @param {String} $search - Substring to replace
+/// @param {String} $replace ('') - New value
+/// @return {String} - Updated string
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}

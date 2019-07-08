@@ -1,0 +1,114 @@
+// stuff for mobile nav
+
+#mobile-nav {
+
+  left: 0;
+
+  top: 100%;
+
+  transform: translate( -100%, 0 );
+  transition: transform .3s;
+  width: 100%;
+
+  z-index: 1000;
+
+  &.open {
+    transform: translate( 0, 0 );
+    transition: transform .6s;
+  }
+
+  .mobile-nav-list {
+    list-style-type: none;
+    padding-left: 0;
+
+    a {
+      color: map-get( $tc, 'main-nav' );
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 400;
+      padding: 1rem 0 1rem 1rem;
+      position: relative;
+    }
+
+    .current--item {
+      a {
+        &:before {
+          border: 9px solid transparent;
+          border-left: 12px solid map-get( $tc, 'red' );
+          border-right: 0;
+          content: "";
+          display: block;
+          // height: 1.5rem;
+          left: 0;
+          position: absolute;
+          top: 50%;
+          transform: translate( -100%, -50% );
+          // width: 5px;
+        }
+      }
+    }
+  }
+
+}
+
+$m-nav-bar-w: 4px;
+
+#mobile-nav__toggle {
+  position: relative;
+
+  border-color: map-get( $tc, 'main-nav' );
+  border-top: $m-nav-bar-w;
+  border-bottom: $m-nav-bar-w;
+  border-style: solid;
+  border-left: 0;
+  border-right: 0;
+  // border-bottom-width: $m-nav-bar-w;
+  // border-color: map-get( $tc, 'red' );
+
+  height: 24px;
+  text-indent: -999px;
+  transition: border-color .6s;
+  vertical-align: middle;
+  width: 28px;
+
+  &:active,
+  &:focus,
+  &:hover,
+  &:visited {
+    color: map-get( $tc, 'main-nav' );
+    text-decoration: none;
+  }
+
+  &:before,
+  &:after {
+    background-color: map-get( $tc, 'main-nav' );
+    // background-color: map-get( $tc, 'red' );
+    content: "";
+    display: block;
+    height: $m-nav-bar-w;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate( -50%, -50% );
+    transition: transform .3s;
+    width: 100%;
+  }
+
+  &.open {
+
+    border-color: transparent;
+    transition: border-color .3s;
+
+    &:before,
+    &:after {
+      transition: transform .6s;
+    }
+    &:before {
+      transform: translate( -50%, -50% ) rotate( -315deg );
+    }
+    &:after {
+      transform: translate( -50%, -50% ) rotate( 315deg );
+    }
+
+  }
+}

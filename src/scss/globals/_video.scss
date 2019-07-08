@@ -1,0 +1,59 @@
+$video-play-button-font-size_d: 104px !default;
+$video-play-button-font-size_m: 100px !default;
+
+
+.video--wrap {
+  position: relative; // to allow positioning the play button
+
+  // actual video wrapper
+  // .video--wrap_video {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; // force 16:9 ratio -> 9 / 16 = 56.25%
+
+    & > iframe,
+    & > video {
+      position: absolute;
+      margin-bottom: 0;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: $white;
+    }
+  // }
+
+  // .video--thumbnail_wrap {
+  .video {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    .video--thumbnail {
+      cursor: pointer;
+      display: block;
+      height: auto;
+      position: relative;
+      width: 100%;
+      z-index: 1000;
+    }
+
+  } // .video  --thumbnail_wrap
+
+} // .video--wrap
+
+@include media-breakpoint-up( md ) {
+
+  .video--wrap {
+
+    .video {
+
+
+    }
+
+  }
+
+}
