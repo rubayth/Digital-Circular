@@ -1,0 +1,237 @@
+// base metrics
+$mobile-width: 960;
+$desktop-width: 1920;
+// $big-bp: "xm"; // name of primary breakpoint
+
+
+// paths
+// make image path overridable to make easier shopify
+$image-path: "../../images/" !default;
+$img-path: $image-path !default; // lazy typing!
+
+// make font path overridable to make easier shopify!
+$font-path: "../../fonts/" !default;
+// fontawesome SCSS files require a specific name!
+$fa-font-path: $font-path;
+
+// COLORS!!!
+$black: #000000;
+$white: #ffffff;
+
+// wireframe colors
+$teal: #3E616F;
+$mint: #d9ffe2;
+$light-blue: #d9f6ff;
+$sea-green: #91AA9D;
+$dark-blue:#0000ff; // for mobile view link at the bottom of desktop version (not sure why that's there, seems useless)
+$cocoa: #6A5B5C;// product description font color
+$red: #be1e2d; // Reorder
+$yellow: #FAC901; // Star
+
+$gray: #A6ADB4; // gray!
+
+$light-gray: #e2e2e2;
+$gray-e2: $light-gray; // alias
+
+$lighter-gray: #ebeded;
+
+$gray-db: #dbdbdb;
+$mid-light-gray: $gray-db;
+
+$mid-gray: #cdcdcd;
+$gray-cd: $mid-gray; // alias
+
+$gray-60: #606062;
+
+$dark-gray: #707070;// gray used for outline of borders, slider dots and containers
+$gray-70: $dark-gray; // alias
+
+$mid-dark-gray: #808688;
+
+$darker-gray: #626262;
+$gray-62: $darker-gray; // alias
+
+$gray-1d: #1d1d1f;
+$darkest-gray: $gray-1d;
+
+// Category heading background colors!
+//
+// Please keep the keys in alphabetical order!
+//
+$cat-bg: (
+  'bakery': #c35f2b,
+  'beverages': #7da3b8,
+  'dairy': #febd19,
+  'deli': #fb9e25,
+  'floral': #687b39,
+  'frozen': #588fb8,
+  'grocery': #7da3b8,
+  'hpc': #86395b,
+  'home-kitchen': #ab4591,
+  'home-family': #ab4591,
+  'meat': #ce312c,
+  'naturally-hugos': #244477,
+  'naturally-organic': #244477,
+  'produce': #687b39,
+  'seafood': #3f91b9,
+  'seasonal': #ea6425,
+  'wine-spirits': #f78d1d,
+);
+
+// make Bootstrap use $teal as the primary theme color (and thus for buttons!)
+//
+// Please keep the keys in alphabetical order!
+//
+$theme-colors: (
+	'arrows-icons-placeholder': $gray,
+	'border-color': $dark-gray,
+  'black': $black,
+	'btn-hover': $lighter-gray,
+	'carousel-arrow': $cocoa,
+	'carousel-indicators': $cocoa,
+	'cocoa': $cocoa,
+	'cocoa-headlines': $cocoa,
+	'dark-blue': $dark-blue,
+	'dark-border-color': $dark-gray,
+	'dark-gray': $dark-gray,
+	'darker-gray': $darker-gray,
+	'darker-gray-icons': $darker-gray,
+	'darkest-gray': $gray-1d,
+	'exclamation-icons': $mid-dark-gray,
+  // 'form-labels': $gray-7,
+	'gray': $gray,
+	'gray-1d': $gray-1d,
+	'gray-60': $gray-60,
+	'light-blue': $light-blue,
+	'light-blue-background': $light-blue,
+	'light-border-color': $lighter-gray,
+	'light-gray': $light-gray,
+	'lighter-gray': $lighter-gray,
+	'location-icon': $teal,
+	'main-nav': $gray-1d,
+	'mid-dark-gray': $mid-dark-gray,
+	'mid-gray': $mid-gray,
+  'mid-light-gray': $mid-light-gray,
+	'mint': $mint,
+	'mint-background': $mint,
+	'mobile-view-btn': $dark-blue,
+// 'nav-active': $orange,
+// 'nav-hover': $yellow-5,
+	'plain-text': $black,
+	'primary': $teal,
+	'product-description-color': $black,
+	'product-image-background': $light-gray,
+	'red': $red,
+	'sea-green': $sea-green,
+	'secondary': $mint,
+  'slider-arrows': $dark-gray,
+	'slider-dots': $white,
+  'slider-dot-active': $teal,
+  'slider-dot-border': $mid-light-gray,
+	'teal': $teal,
+	'text': $gray-1d,
+	'white': $white,
+	'yellow': $yellow, // stars
+);
+
+// alias that sumbitch for us lazy typists!
+$tc: $theme-colors;
+
+
+// font styles using Bootstrap variables
+$font-family-sans-serif: 'Open Sans', sans-serif;
+$body-color: map-get( $tc, 'plain-text' );
+
+// turn on Bootstrap's round corners
+$enable-rounded: true;
+
+// add a bigger breakpoint
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1440px
+);
+
+// Bootstrap font sizes are all rem based so we may not use them...
+
+// maybe we should make classes for these font sizes...
+
+// desktop font sizes from style guide
+$fs-sanofi_d: 11px; // for US residents
+$fs-main-nav_d: 17px; // main nav
+$fs-headline_d: 64px; // headline
+$fs-body-1_d: 27px; // body copy
+$fs-callout_d: 51px; // body copy callout
+$fs-button_d: 17px; // button text
+$fs-h2_d: 64px; // section headline
+$fs-body-2_d: 24px; // more body copy
+$fs-legal_d: 13px; // legal copy
+$fs-sec-nav_d: 15px; // footer secondary nav and copyright
+
+// mobile font sizes from style guide
+$fs-sanofi_m: 11px; // for US residents
+$fs-main-nav_m: 13px; // main nav
+$fs-h1_m: 31px; // homepage headline
+$fs-body_m: 14px; // body copy
+$fs-callout_m: 30px; // body callout
+$fs-button_m: 17px; // button text
+$fs-h2_m: 29px; // section headline
+$fs-legal_m: 10px; // legal copy
+$fs-sec-nav_m: 12px; // footer secondary nav & copyright
+$fs-h3_m: 21px; // subhead on PDP
+
+// desktop font sizes from style guide
+$fs-small-reg_d: 14px;// small black font used near header
+$fs-search-nav_d: 13px;//font used in seach bar and dropdown
+$fs-body-lg_d:24px; //used in slider
+$fs-body-xl-bold_d:37px; //used in large body containers bold header
+$fs-body-xl-light_d:32px; //used in large body containers light header
+$fs-body-md-light_d:25px; //used in small body containers light header
+$fs-body-sm-light_d:24px; //used in small body containers light header
+$fs-category-header_d:18px;// font for product description
+$fs-pricing-section-unit_d: 23px; //price font unit
+$fs-pricing-section_d: 36px; //price font
+$fs-offer-sec_d: 17px; //offer font
+$mobile-view_d: 16px; //mobile view option at bottom of the page
+
+// mobile font sizes from style guide
+$fs-small-reg_m: 14px; // small black font used near header
+$fs-search-nav_m: 13px;//font used in seach bar and dropdown
+$fs-body-lg_m:24px; //used in slider
+$fs-hero-subtext_m: 37px; // hero subtext fontsize displayed only on mobile
+$fs-body-xl-bold_m:22px; //used in large body containers bold header
+$fs-body-xl-light_m:19px; //used in large body containers light header
+$fs-body-md-light_m:18px; //used in small body containers light header
+$fs-body-sm-light_m:18px; //used in small body containers light header
+$fs-category-header_m:14px; // font for product description
+$fs-product-image-text-size_m:11px; // read variable name.....
+$fs-pricing-section-unit_m: 30px; //price font unit
+$fs-pricing-section_m: 17px; //price font
+$fs-offer-sec_m: 17px; //offer font
+
+$font-sizes: (
+	'main-menu': 17px,
+);
+// alias!
+$fs: $font-sizes;
+
+
+// all font sizes from teh style guide in pixels
+$all-font-sizes: 11 13 14 16 17 18 19 22 23 24 25 30 32 36 37;
+
+
+// override Slick Slider font-path
+$slick-font-path: $fa-font-path;
+// override Slick image path
+$slick-loader-path: $img-path;
+// override Slick arrow colors
+$slick-arrow-color: map-get( $tc, 'cocoa' );
+$slick-font-family: 'Font Awesome 5 Free';
+// $slick-prev-character: "\f104";
+// $slick-next-character: "\f105";
+// try chevrons instead of arrows
+$slick-prev-character: "\f053";
+$slick-next-character: "\f054";
