@@ -3,6 +3,7 @@ import OfferList from './components/Offers';
 import FilterContainer from "./containers/FilterContainer";
 import { Container } from 'reactstrap';
 import {omsUrl} from './components/getOmsOfferData';
+import _ from 'lodash';
 
 class App extends Component {
   constructor(props) {
@@ -59,27 +60,25 @@ class App extends Component {
     this.setState({offers: offerFilter})
   }
 
-  updateOffers(e) {
-    if (e.target.checked) {
-      const currState = this.state.offers;
-      const newState = currState.filter(offers => offers.Category.includes(e.target.name));
-        this.setState({
-            offers: newState
-        });
-        
-    }
-    else {
-      this.setState({offers: this.state.defaultData})
-      
-    }
+  updateOffers(checkedCategories) {
+    if(checkedCategories.length) {
+      const newState = _.filter(this.state.offers, (offer) => {
+        return (checkedCategories.includes(offer.Category));
+      })
+      this.setState({
+          offers: newState
+      });
   }
+    else this.setState({offers: this.state.defaultData})
+  }
+  
 
 
   render() {
 
     return (
       <Container className="my-5 py-5 circular-container">
-        <FilterContainer offerCategories={this.state.offerCategories} updateOffers={this.updateOffers} searchOffers={this.searchOffers} />
+        <FilterContainer offerCategories={this.state.offerCategories} updateOffers={this.updateOffers} searchOffers={this.searchOffers} offerData={this.state.offers}/>
         <OfferList offerData={this.state.offers} />
       </Container>
     );
