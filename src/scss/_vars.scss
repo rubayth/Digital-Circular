@@ -55,6 +55,10 @@ $gray-62: $darker-gray; // alias
 $gray-1d: #1d1d1f;
 $darkest-gray: $gray-1d;
 
+// Bootstrap default colors so as to not break Arko's stuff
+$bs-primary: #007bff;
+$bs-secondary: #6c757d;
+
 // Category heading background colors!
 //
 // Please keep the keys in alphabetical order!
@@ -119,12 +123,14 @@ $theme-colors: (
 // 'nav-active': $orange,
 // 'nav-hover': $yellow-5,
 	'plain-text': $black,
-	'primary': $teal,
+	// 'primary': $teal,
+  // 'primary': $bs-primary,
 	'product-description-color': $black,
 	'product-image-background': $light-gray,
 	'red': $red,
 	'sea-green': $sea-green,
-	'secondary': $mint,
+	// 'secondary': $mint,
+  // 'secondary': $bs-secondary,
   'slider-arrows': $dark-gray,
 	'slider-dots': $white,
   'slider-dot-active': $teal,
