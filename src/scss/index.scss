@@ -20,8 +20,8 @@
 // VENDOR
 //----------------------------------
 // @import 'vendor/wordpress_defaults';
-@import 'vendor/slick';
-@import 'vendor/slick-theme';
+@import '~slick-carousel/slick/slick';
+@import '~slick-carousel/slick/slick-theme';
 
 //----------------------------------
 // GLOBALS
@@ -103,5 +103,6 @@
 // original React App styles
 //----------------------------------
 @import 'react/base';
+@import 'react/hero';
 @import 'react/offers';
 @import 'react/promo-modal';

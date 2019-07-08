@@ -1,0 +1,44 @@
+/* Hero Slider */
+.hero {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (min-width: 768px) {
+  .hero .slick-dots {
+    display: block;
+  }
+}
+
+.hero .slick-dots {
+    bottom: 8%;
+    display: none;
+}
+
+.hero .slick-dots li {
+  height: .8rem;
+  margin: 0 .5rem;
+  text-decoration: none;
+  width: .8rem;
+}
+
+.hero .slick-dots .slick-active button {
+  background-color: #3e616f;
+}
+
+.hero .slick-dots button {
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: 50%;
+  height: .8rem;
+  text-decoration: none;
+  width: .8rem;
+}
+
+.hero .slick-dots button:before {
+  content: "";
+}
+
+.hero .slick-next, .hero .slick-prev {
+  display: none !important;
+}
