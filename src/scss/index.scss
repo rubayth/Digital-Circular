@@ -4,12 +4,104 @@
 //   _vars.scss
 @import 'vars';
 
-// including the parts of bootstrap we need happens in
-//   _bootstrap.scss
+// import our functions
+@import 'functions';
+
+// and our mixins
+@import 'mixins';
+
+// import our Google fonts, et al
+@import 'font';
+
+// manage Bootstrap SCSS includes in one place!
 @import 'bootstrap';
 
+//----------------------------------
+// VENDOR
+//----------------------------------
+// @import 'vendor/wordpress_defaults';
+@import 'vendor/slick';
+@import 'vendor/slick-theme';
 
-// original React app styles
+//----------------------------------
+// GLOBALS
+//----------------------------------
+
+@import 'globals/all';
+
+// color helpers
+@import 'globals/colors';
+
+// utility classes for the fonts in the designs/style guide
+// we didn't end up using these
+// @import 'globals/font-sizes';
+
+// common nav stuff
+@import 'globals/nav';
+@import 'globals/mobile-nav';
+
+// Header
+@import 'globals/header';
+
+// Footer
+@import 'globals/footer';
+
+// Our button stuff
+@import 'globals/buttons';
+
+// Generic modal styles
+@import 'globals/modals';
+
+// videos
+@import 'globals/video';
+
+//----------------------------------
+// Widgets!
+// Widgets before Modules so Modules can override base widget styles.
+//----------------------------------
+@import 'widgets/category-filter';
+@import 'widgets/filtered-search';
+@import 'widgets/main-search';
+@import 'widgets/shopping-list';
+@import 'widgets/user-account-menu';
+@import 'widgets/user-store';
+
+
+
+//----------------------------------
+// MODULES
+//----------------------------------
+@import 'modules/common';
+
+// the stuff between header and hero
+@import 'modules/main-widgets';
+
+@import 'modules/hero';
+
+// common styles for tier2 & tier3 promos
+@import 'modules/tierX-promos';
+
+@import 'modules/tier2';
+
+@import 'modules/tier3';
+
+@import 'modules/promo-modal';
+
+@import 'modules/retail-stores-modal';
+
+//----------------------------------
+// PAGE TEMPLATES
+// reorder if conflicts emerge!
+//----------------------------------
+@import 'templates/digital-circular';
+
+// fake OMS pages!
+// @import 'templates/oms';
+
+//----------------------------------
+// REACT
+// original React App styles
+//----------------------------------
 @import 'react/base';
 @import 'react/offers';
 @import 'react/promo-modal';
