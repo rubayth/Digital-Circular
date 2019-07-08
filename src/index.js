@@ -1,4 +1,4 @@
-// import our main SCSS file, which handles loading all the smaller bits
+// index.scss handles loading all the smaller bits
 import './scss/index.scss';
 
 import React from 'react';
