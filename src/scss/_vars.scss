@@ -6,11 +6,12 @@ $desktop-width: 1920;
 
 // paths
 // make image path overridable to make easier shopify
-$image-path: "../../images/" !default;
+$image-path: "../images/" !default;
 $img-path: $image-path !default; // lazy typing!
 
 // make font path overridable to make easier shopify!
-$font-path: "../../fonts/" !default;
+// $font-path: "../../fonts/" !default;
+$font-path: "../fonts/" !default;
 // fontawesome SCSS files require a specific name!
 $fa-font-path: $font-path;
 
