@@ -21,3 +21,20 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Captain's Log, Mate's Log, we don't want it.
+*.log
+
+# backups and other squirreling
+backup_*
+*_backup
+bak_*
+*_bak
+*\.scratch
+
+# zips and other archives
+*.gz
+*.rar
+*.tar
+*.tgz
+*.zip
