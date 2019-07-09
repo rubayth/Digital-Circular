@@ -83,7 +83,10 @@ class App extends Component {
         filteredCategories: checkedCategories
       });
   }
-    else this.setState({offers: this.state.defaultData})
+    else this.setState({
+      offers: this.state.defaultData,
+      filteredCategories:[],
+    })
   }
   
 

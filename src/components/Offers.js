@@ -90,6 +90,7 @@ class OfferList extends Component {
       })
   }
   renderRow() {
+    console.log(this.props.filteredCategories);
     if (this.props.filteredCategories.length > 0) {
       return this.renderCategories(this.props.filteredCategories);
     }
