@@ -12,7 +12,7 @@ class OfferFilters extends Component {
         dropdownOpen: false,
         checkedCategories:[]
       };
-
+      this.onClearClick = this.onClearClick.bind(this);
     }
   
     toggle() {
@@ -42,6 +42,14 @@ class OfferFilters extends Component {
         });
         this.props.updateOffers(this.state.checkedCategories);
       }
+    }
+    
+    onClearClick(){
+      const emptyArr = [];
+      this.setState({
+        checkedCategories:[]
+      });
+      this.props.updateOffers(emptyArr);
     }
     
     renderLabels(){
@@ -77,7 +85,7 @@ class OfferFilters extends Component {
                     <Container>
                       <Row>
                         <Col className="text-center">
-                          <Button onClick={this.props.updateOffers}>Clear All</Button>
+                          <Button onClick={this.onClearClick}>Clear All</Button>
                           <DropdownItem divider />
                         </Col>
                       </Row>
