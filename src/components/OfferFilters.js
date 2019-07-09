@@ -12,7 +12,7 @@ class OfferFilters extends Component {
         dropdownOpen: false,
         checkedCategories:[]
       };
-
+      this.onClearClick = this.onClearClick.bind(this);
     }
   
     toggle() {
@@ -44,18 +44,17 @@ class OfferFilters extends Component {
       }
     }
     
+    onClearClick(){
+      const emptyArr = [];
+      this.setState({
+        checkedCategories:[]
+      });
+      this.props.updateOffers(emptyArr);
+    }
+    
     renderLabels(){
-      //Get list of categories from offer
-      const categories = this.props.offerCategories.map(function (offer) {
-        return offer.Category;
-      });
-
-      //Filter to categories to remove the duplicates for building filters
-      var categoryUnique = categories.filter(function(cat, index){
-        return categories.indexOf(cat) >= index;
-      });
-      
-      return categoryUnique.map((filter, index) => { 
+      //Get list of categories from offer 
+      return this.props.offerCategories.map((filter, index) => { 
         return(
           <Col key={index} sm={4}>
             <FormGroup check>
@@ -86,7 +85,7 @@ class OfferFilters extends Component {
                     <Container>
                       <Row>
                         <Col className="text-center">
-                          <Button onClick={this.props.updateOffers}>Clear All</Button>
+                          <Button onClick={this.onClearClick}>Clear All</Button>
                           <DropdownItem divider />
                         </Col>
                       </Row>
