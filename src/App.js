@@ -13,7 +13,8 @@ class App extends Component {
       offers: [],
       allOffers: [],
       offerCategories: [],
-      defaultData: []
+      defaultData: [],
+      filteredCategories: [],
     }
 
     this.searchOffers = this.searchOffers.bind(this);
@@ -26,17 +27,26 @@ class App extends Component {
     fetch(url)
     .then(data => data.json())
     .then(data => {
+      //Get list of categories from offer
+      const categories = data.Table.map(function (offer) {
+        return offer.Category;
+      });
+      //Filter to categories to remove the duplicates for building filters
+      const categoryUnique = categories.filter(function(cat, index){
+        return categories.indexOf(cat) >= index;
+      });
       this.setState({
         offers: data.Table,
         allOffers: data.Table,
-        offerCategories: data.Table,
-        defaultData: data.Table
+        defaultData: data.Table,
+        offerCategories: categoryUnique,
       })
     })
     .catch(err => {
       console.log('======failure=======');
       console.log(err);
     });
+    
   }
     
   searchOffers(query){
@@ -68,7 +78,10 @@ class App extends Component {
       const newState = _.filter(this.state.defaultData, (offer) => {
         return (checkedCategories.includes(offer.Category));
       })
-      this.setState({ offers: newState });
+      this.setState({ 
+        offers: newState, 
+        filteredCategories: checkedCategories
+      });
   }
     else this.setState({offers: this.state.defaultData})
   }
@@ -81,7 +94,7 @@ class App extends Component {
       <Container className="my-5 py-5 circular-container">
         <FilterContainer offerCategories={this.state.offerCategories} updateOffers={this.updateOffers} searchOffers={this.searchOffers} />
         <HeroSlider />
-        <OfferList offerData={this.state.offers} />
+        <OfferList offerData={this.state.offers} filteredCategories={this.state.filteredCategories}/>
       </Container>
     );
   }

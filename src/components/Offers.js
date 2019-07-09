@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Badge, Row, Col, Modal, ModalHeader, ModalBody, Container } from 'reactstrap';
+import {Row, Col, Modal, ModalHeader, ModalBody, Container } from 'reactstrap';
+import _ from 'lodash';
 
 class OfferList extends Component {
   constructor(props) {
@@ -28,33 +29,15 @@ class OfferList extends Component {
     }));
   }
   
+  renderOffersPrecheck(){
+    if (this.props.filteredCategories.length > 0) {
+      return this.props.filteredCategories;
+    }
+  }
   renderOffers() {
-        
-        let offersData = this.props.offerData.map((offer, index) => {
-          //Just a freaking hack for the images to show...we need to fix.
-          if (offer.FPMain1_URL_PNG !== null) {
-            var imageName = offer.FPMain1_URL_PNG.substring(offer.FPMain1_URL_PNG.lastIndexOf('/') + 1);
-          }
-          else {
-            return false;
-          }
-          return(
-            <Col onClick={()=>this.toggle(offer)} xs="6" sm="4" className="offer text-center" key={offer.pKey}>
-              <img src={`https://s3.wasabisys.com/hugo-images/2019/05/${imageName}`} alt={offer.Alt_Text} className="offer-image" />
-              <p className="promo__overline">{offer.Overline1}</p>
-              <h5 className="font-weight-bold">{offer.Mainline1}</h5>
-              <span className="promo_price">{offer.Price}</span>
-              <span className="d-block pb-2 mb-0 h6 text-uppercase text-info font-weight-bold">
-                Bug
-                <Badge pill color="success" className="text-uppercase px-2 py-1 ml-3 mb-1 align-middle" style={{ fontSize: '0.75rem' }}>New</Badge>
-              </span>
-            
-            </Col>
-            
-            
-          )
-        })
-        return offersData;
+        if (this.props.filteredCategories.length > 0) {
+        }
+        return this.props.filteredCategories;
       }
 
       renderModal(){
@@ -93,10 +76,10 @@ class OfferList extends Component {
     
       render() {
         return (
-          <Row className="content">
+          <section id="tier3-promos" className="tierX tier3 container pb-4">
             {this.renderOffers()}
             {this.renderModal()}
-          </Row>
+          </section>
         );
       }
     }

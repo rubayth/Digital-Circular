@@ -45,17 +45,8 @@ class OfferFilters extends Component {
     }
     
     renderLabels(){
-      //Get list of categories from offer
-      const categories = this.props.offerCategories.map(function (offer) {
-        return offer.Category;
-      });
-
-      //Filter to categories to remove the duplicates for building filters
-      var categoryUnique = categories.filter(function(cat, index){
-        return categories.indexOf(cat) >= index;
-      });
-      
-      return categoryUnique.map((filter, index) => { 
+      //Get list of categories from offer 
+      return this.props.offerCategories.map((filter, index) => { 
         return(
           <Col key={index} sm={4}>
             <FormGroup check>
