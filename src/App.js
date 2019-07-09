@@ -94,7 +94,10 @@ class App extends Component {
       <Container className="my-5 py-5 circular-container">
         <FilterContainer offerCategories={this.state.offerCategories} updateOffers={this.updateOffers} searchOffers={this.searchOffers} />
         <HeroSlider />
-        <OfferList offerData={this.state.offers} filteredCategories={this.state.filteredCategories}/>
+        <OfferList 
+          offerData={this.state.offers} 
+          filteredCategories={this.state.filteredCategories} 
+          offerCategories={this.state.offerCategories}/>
       </Container>
     );
   }
