@@ -3,7 +3,7 @@ import OfferList from './components/Offers';
 import FilterContainer from "./containers/FilterContainer";
 import { Container } from 'reactstrap';
 import {omsUrl} from './components/getOmsOfferData';
-import HeroSlider from './components/HeroSlider';
+import _ from 'lodash';
 
 class App extends Component {
   constructor(props) {
@@ -60,20 +60,18 @@ class App extends Component {
     this.setState({offers: offerFilter})
   }
 
-  updateOffers(e) {
-    if (e.target.checked) {
-      const currState = this.state.offers;
-      const newState = currState.filter(offers => offers.Category.includes(e.target.name));
-        this.setState({
-            offers: newState
-        });
-        
-    }
-    else {
-      this.setState({offers: this.state.defaultData})
-      
-    }
+  //before logic - accounted only for 1 filter
+  //new logic - can have multiple filters
+  updateOffers(checkedCategories) {
+    if(checkedCategories.length) {
+      const newState = _.filter(this.state.defaultData, (offer) => {
+        return (checkedCategories.includes(offer.Category));
+      })
+      this.setState({ offers: newState });
   }
+    else this.setState({offers: this.state.defaultData})
+  }
+  
 
 
   render() {

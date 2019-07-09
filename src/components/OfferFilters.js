@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem , Button} from 'reactstrap';
-
+import _ from 'lodash';
 
 class OfferFilters extends Component {
   constructor(props) {
@@ -10,6 +10,7 @@ class OfferFilters extends Component {
       this.toggle = this.toggle.bind(this);
       this.state = {
         dropdownOpen: false,
+        checkedCategories:[]
       };
 
     }
@@ -21,7 +22,28 @@ class OfferFilters extends Component {
     }
 
   
-
+    onInputClick(filter){
+      //if state already includes filter, remove it and update offers
+      if(this.state.checkedCategories.includes(filter)){
+        const removeCategory = _.remove(this.state.checkedCategories, (category) => {
+          return !(category === filter);
+        })
+        this.props.updateOffers(removeCategory);
+        this.setState({
+          checkedCategories : removeCategory
+        })
+      }
+      //add filter to state and update offers
+      else{
+        const checkedCategories = this.state.checkedCategories;
+        checkedCategories.push(filter);
+        this.setState({
+          checkedCategories
+        });
+        this.props.updateOffers(this.state.checkedCategories);
+      }
+    }
+    
     renderLabels(){
       //Get list of categories from offer
       const categories = this.props.offerCategories.map(function (offer) {
@@ -35,12 +57,17 @@ class OfferFilters extends Component {
       
       return categoryUnique.map((filter, index) => { 
         return(
-          <Col sm={4}>
+          <Col key={index} sm={4}>
             <FormGroup check>
               <Label check key={index}>
-                  <Input type="checkbox" name={filter} onChange={this.props.updateOffers} />
-                      {filter}
-              </Label>
+                  <Input 
+                    type="checkbox" 
+                    name={filter} 
+                    onChange={ () => this.onInputClick(filter)} 
+                    checked={this.state.checkedCategories.includes(filter)} 
+                    />
+                    {filter}
+                  </Label>
             </FormGroup>
             <DropdownItem divider />
           </Col>
@@ -59,7 +86,7 @@ class OfferFilters extends Component {
                     <Container>
                       <Row>
                         <Col className="text-center">
-                          <Button onClick={this.props.updateOffers}>Clear</Button>
+                          <Button onClick={this.props.updateOffers}>Clear All</Button>
                           <DropdownItem divider />
                         </Col>
                       </Row>
