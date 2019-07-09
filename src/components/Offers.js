@@ -37,7 +37,7 @@ class OfferList extends Component {
     }));
   }
   
-  getOffers(category) {
+  getOffers(category) { //render offers, checks if it belongs to specific category, not really efficent
     const offer = _.map(this.props.offerData, (offer) => {
       //Just a freaking hack for the images to show...we need to fix.
       if (offer.FPMain1_URL_PNG !== null) {
@@ -72,7 +72,7 @@ class OfferList extends Component {
     })
     return offer;
   }
-  renderCategories(categoryList){
+  renderCategories(categoryList){ // render each category, also calls getOffers method for each category
     return _.map(categoryList, (category) => {
       return(
         <div className="tierX-row tier3-row row" key={category}>
@@ -90,7 +90,7 @@ class OfferList extends Component {
       })
   }
   renderRow() {
-    console.log(this.props.filteredCategories);
+    //check for filters
     if (this.props.filteredCategories.length > 0) {
       return this.renderCategories(this.props.filteredCategories);
     }
