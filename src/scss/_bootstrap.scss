@@ -1,0 +1,83 @@
+// pull Bootstrap includes into a single file so we don't have to manage in multiple places!
+
+// Required parts of Bootstrap
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+
+// root element stuff
+@import "~bootstrap/scss/root";
+
+// normalize
+@import "~bootstrap/scss/reboot";
+
+// typography may be disposible...
+@import "~bootstrap/scss/type";
+
+// images is useful
+@import "~bootstrap/scss/images";
+
+// don't think we need code
+// @import "~bootstrap/scss/code";
+
+// duh we need grid
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/tables";
+
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/transitions";
+
+// don't think we need...
+// shut yr stinkin' trap!
+@import "~bootstrap/scss/dropdown";
+
+@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/input-group";
+@import "~bootstrap/scss/custom-forms";
+
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+
+// card required for accordion
+// @import "~bootstrap/scss/card";
+
+// dont' think any of these are needed
+// @import "~bootstrap/scss/breadcrumb";
+// @import "~bootstrap/scss/pagination";
+@import "~bootstrap/scss/badge";
+// @import "~bootstrap/scss/jumbotron";
+// @import "~bootstrap/scss/alert";
+// @import "~bootstrap/scss/progress";
+
+// media is probably useful
+@import "~bootstrap/scss/media";
+
+// what's a list group?
+@import "~bootstrap/scss/list-group";
+
+// close required for accordion
+// @import "~bootstrap/scss/close";
+
+//  what are toasts?
+// @import "~bootstrap/scss/toasts";
+
+// do we have any modals on this site?
+@import "~bootstrap/scss/modal";
+
+// don't think we need tooltip...
+// @import "~bootstrap/scss/tooltip";
+
+// dunno what popover is...
+// @import "~bootstrap/scss/popover";
+
+// no carousel
+// @import "~bootstrap/scss/carousel";
+
+// don't think we need spinners...
+@import "~bootstrap/scss/spinners";
+
+// always need utilities
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/print";

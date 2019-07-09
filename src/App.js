@@ -79,6 +79,7 @@ class App extends Component {
     return (
       <Container className="my-5 py-5 circular-container">
         <FilterContainer offerCategories={this.state.offerCategories} updateOffers={this.updateOffers} searchOffers={this.searchOffers} />
+        <HeroSlider />
         <OfferList offerData={this.state.offers} />
       </Container>
     );

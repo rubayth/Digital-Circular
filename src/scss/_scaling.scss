@@ -1,0 +1,63 @@
+//-------------------------------------------------------------------
+// weird shit
+//-------------------------------------------------------------------
+
+// This stuff has to do with the crazy proportional scaling stuff used on DG Careers.
+// Keep all this crazy shit for now unless it conflicts with Bootstrap.
+
+// sizing
+$base-max-width: 100% !default;
+$base-page-gutter: 0 !default;
+
+// font sizing
+$reset-font-divider: 10;
+$reset-font-size: ( 100 / 16 ) * $reset-font-divider !default;
+
+// not sure if this is needed...
+$base-font-size: 16 !default;
+$base-font-size-calc: calc( #{$base-font-size}px + .5vw );
+$base-line-height: 1.4 !default;
+
+// sizes for viewport-based interpolation
+$min-font-size_m: 10px !default;
+// $min-font-size_m: #{$reset-font-divider}px !default;
+$max-font-size_m: 20px !default;
+$min-screen-size_m: 320px !default;
+// $max-screen-size_m: 767px !default;
+$max-screen-size_m: 960px !default;
+$min-font-size_d: 16px !default;
+$max-font-size_d: 32px !default;
+// this way we only have to explicitly set $max-screen-size_m
+$min-screen-size_d: ($max-screen-size_m + 1) !default;
+$max-screen-size_d: 1920px !default;
+
+
+
+// this is the distance from the left side for lots of things
+// e.g.
+// - interior page hero images
+// - interior page content column
+// - homepage gray number blocks
+// - homepage career area modules
+// - and cetera.
+$content-offset-left: 448px !default;
+$content-offset-right: 240px !default;
+
+// right and left offset are (mostly) spozta be equal on mobile!
+$content-offset-left_m: 77px !default;
+// $content-offset-right_m: 35px !default;
+$content-offset-right_m: 77px !default;
+
+$content-max-width_m: 767px !default;
+$content-max-width_d: 1094px !default;
+
+// percentages for content offset
+// for whatever reason, content offset works better as a percentage
+// I think the reason is that it remains constant
+$content-offset-left_pct: #{($content-offset-left / $max-screen-size_d) * 100}#{'%'};
+$content-offset-right_pct: #{($content-offset-right / $max-screen-size_d) * 100}#{'%'};
+$content-offset-left_m_pct: #{($content-offset-left_m / $max-screen-size_m) * 100}#{'%'};
+$content-offset-right_m_pct: #{($content-offset-right_m / $max-screen-size_m) * 100}#{'%'};
+
+// desktop hero max width
+$hero-bg-max-width: #{100 - (($content-offset-left / $max-screen-size_d) * 100)}#{'%'};

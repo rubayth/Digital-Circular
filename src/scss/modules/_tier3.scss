@@ -1,0 +1,203 @@
+// Tier3/Category module
+
+// Remember that Bootstrap is mobile by default!!!
+
+$t3-slide-h_m: 229px;
+$t3-slide-h_d: 348px;
+$t3-slide-w_m: 158px;
+$t3-slide-w_d: 241px;
+
+$t3-arrow_m: 25px;
+$t3-arrow_d: 32px;
+
+.tier3 {
+
+  // to get closer to full-width on mobile
+  @include pad-x( 0 );
+
+  &-row {
+  }
+
+  &-slider__wrap {
+    // somehow prevents overflow on mobile...
+    @include pad-x( 25px );
+  }
+
+  .promo {
+
+    &.slick-active {
+      // border-left: 1px solid transparent;
+      //
+      // &:nth-child( even ) {
+      //   border-left: 1px solid map-get( $tc, 'dark-gray' );
+      // }
+    }
+
+    &__inner {
+      // background: rgba( 0, 123, 0, .4 );
+    }
+
+    &__overline {
+    }
+
+    &__mainline {
+    }
+
+    &__price--wrap {
+    }
+
+    &__price {
+    }
+
+    &__price--uom {
+    }
+
+    &__description {
+    }
+
+    .btn-plus {
+    }
+
+    &__bug {
+    }
+
+  } // .promo
+
+}
+
+// 562px
+@include media-breakpoint-up( sm ) {
+
+  .tier3 {
+
+    .promo {
+      &.slick-active {
+        // border-left: 1px solid transparent;
+        //
+        // &:nth-child( even ) {
+        //   border-left: 1px solid map-get( $tc, 'dark-gray' );
+        // }
+      }
+
+
+    }
+  }
+
+}
+
+// 768px
+@include media-breakpoint-up( md ) {
+
+  .tier3 {
+
+    @include pad-x( 15px );
+
+    &-row {
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    &-slider__wrap {
+      @include pad-x( 15px );
+    }
+
+    .slick-next {
+      right: -20px;
+    }
+
+    .slick-prev {
+      left: -20px;
+    }
+
+
+    &__cover {
+      padding: .5rem .25rem;
+      img {
+        height: 100%;
+        max-height: map-get( $tx-md, 'h' );
+        max-width: map-get( $tx-md, 'w' );
+      }
+    }
+
+    &-slider__wrap {
+      @include pad-x( 15px );
+    }
+
+    .promo {
+      &.slick-current {
+        border-left-color: map-get( $tc, 'dark-gray' );
+      }
+      &.slick-active {
+        // &:nth-child( 3n ) {
+        //   // border-right-color: map-get( $tc, 'dark-gray' );
+        // }
+      }
+    }
+
+
+  }
+}
+
+// 992px
+@include media-breakpoint-up( lg ) {
+
+  .tier3 {
+
+    &__cover {
+      @include p-y( 0 );
+      img {
+        height: 100%;
+        max-height: map-get( $tx-lg, 'h' );
+        max-width: map-get( $tx-lg, 'w' );
+      }
+    }
+
+    .promo {
+      &__inner {
+        margin: 0 auto;
+        max-height: map-get( $tx-lg, 'h' );
+        max-width: map-get( $tx-lg, 'w' );
+      }
+    }
+  }
+
+}
+
+// 1200px
+@include media-breakpoint-up( xl ) {
+
+  .tier3 {
+
+    &__cover {
+      img {
+        max-height: map-get( $tx-xl, 'h' );
+        max-width: map-get( $tx-xl, 'w' );
+      }
+    }
+
+    .promo {
+
+    }
+  }
+
+}
+
+// 1400px
+@include media-breakpoint-up( xxl ) {
+
+  .tier3 {
+
+    &__cover {
+      img {
+        max-height: map-get( $tx-xxl, 'h' );
+        max-width: map-get( $tx-xxl, 'w' );
+      }
+    }
+
+    .promo {
+
+    }
+  }
+
+}

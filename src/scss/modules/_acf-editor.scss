@@ -1,0 +1,56 @@
+// wp-admin is on body on back-end
+// on front-end forms, we add to the <main>
+.wp-admin {
+
+  // make sure Offer grid items are sufficiently tall!
+  .tierX {
+    .promo {
+      min-height: 325px;
+      // height: auto;
+
+      &__img--wrap {
+        img {
+          max-height: 150px;
+        }
+      }
+
+      &__text--wrap {
+        // left: 0;
+        // max-height: none;
+        // position: relative;
+        // top: 0;
+        // transform: translate(0,0);
+      }
+
+      &__price--wrap {
+        // position: relative;
+      }
+
+      // &__btn--wrap {
+      //   text-align: right;
+      //   position: relative;
+      //   .btn-plus {
+      //     position: relative;
+      //     top: 0;
+      //     left: 0;
+      //   }
+      // }
+    }
+  }
+
+  form {
+    .prdc__acf-img--wrap {
+      padding: 1rem 0;
+
+      img {
+        display: block;
+        margin: 0 auto 1rem;
+        max-height: 600px;
+        max-width: 100%;
+      }
+    }
+  }
+
+
+
+}

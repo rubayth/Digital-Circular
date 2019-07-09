@@ -1,0 +1,54 @@
+// Main widgets
+// a.k.a., stuff between hero and the teal strip that reads "Weekly Ad"
+
+.main__widgets {
+
+  .user-store {
+
+    .map-marker {
+      color: map-get( $tc, 'primary' );
+    }
+
+    &__name,
+    &__city {
+      color: $black;
+    }
+  }
+
+  .event-dates {
+    color: $black;
+    font-size: 11px;
+  }
+
+  // wrapper of category filter
+  .col__category-filter {
+    @include pad-x( .5rem );
+  }
+
+  .col__main-search {
+    @include pad-x( .5rem );
+    // padding-right: .5rem;
+  }
+
+}
+
+@include media-breakpoint-up( md ) {
+  .main__widgets {
+
+    .col__category-filter {
+      @include pad-x( 15px );
+    }
+
+    .col__main-search {
+      @include pad-x( 15px );
+    }
+  }
+}
+
+@include media-breakpoint-up( lg ) {
+  .main__widgets {
+    .event-dates {
+      font-size: 14px;
+    }
+  }
+}

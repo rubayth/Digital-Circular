@@ -1,0 +1,12 @@
+// stuff for retail store selection modal
+
+#storeSelectModal {
+  .store {
+    border: 3px solid transparent;
+
+    &.user-store {
+      border-color: map-get( $tc, 'primary' );
+    }
+
+  }
+}

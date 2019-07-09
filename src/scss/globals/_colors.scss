@@ -1,0 +1,83 @@
+// helper classes for applying foreground and background colors
+
+// font colors
+
+.fg-black {
+  color: $black;
+}
+.fg-cocoa {
+  color: map-get( $tc, 'cocoa' );
+}
+.fg-gray {
+  color: map-get( $tc, 'gray' );
+}
+.fg-gray-1d {
+  color: map-get( $tc, 'gray-1d' );
+}
+.fg-gray-60 {
+  color: map-get( $tc, 'gray-60' );
+}
+.fg-lighter-gray {
+  color: map-get( $tc, 'lighter-gray' );
+}
+.fg-red {
+  color: map-get( $tc, 'red' );
+}
+.fg-teal {
+  color: map-get( $tc, 'teal' );
+}
+.fg-white {
+  color: $white;
+}
+.fg-yellow {
+  color: map-get( $tc, 'yellow' );
+}
+
+
+// @TODO: generate these programmatically by looping over $theme-colors
+.bg-white {
+  background-color: $white;
+}
+.bg-cocoa {
+  background-color: map-get( $tc, 'cocoa' );
+}
+
+.bg-teal {
+  background-color: map-get( $tc, 'teal' );
+}
+
+.bg-mint {
+  background-color: map-get( $tc, 'mint' );
+}
+
+.bg-light-blue {
+  background-color: map-get( $tc, 'light-blue' );
+}
+
+.bg-sea-green {
+  background-color: map-get( $tc, 'sea-green' );
+}
+
+// programmatically generate fg and bg classes!
+@each $color in map-keys( $cat-bg ) {
+
+  // #{$color}
+  .fg__#{$color} {
+    color: map-get( $cat-bg, $color );
+  }
+  .bg__#{$color} {
+    background-color: map-get( $cat-bg, $color );
+  }
+
+}
+
+@each $color in map-keys( $tc ) {
+
+  // theme color: #{$color}
+  .fg__#{$color} {
+    color: map-get( $tc, $color );
+  }
+  .bg__#{$color} {
+    background-color: map-get( $tc, $color );
+  }
+}

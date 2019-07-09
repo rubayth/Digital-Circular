@@ -1,0 +1,794 @@
+// Tier3/Category module
+
+// Remember that Bootstrap is mobile by default!!!
+
+$tx-slide-h_m: 229px;
+$tx-slide-h_d: 348px;
+$tx-slide-w_m: 158px;
+$t2-cover-w_m: 326px;
+$tx-slide-w_d: 241px;
+$t2-cover-w_d: 524px;
+
+$tx-arrow_m: 25px;
+$tx-arrow_d: 32px;
+
+$tx-fs-m: (
+  // arrow: 25px,
+  'arrow': 20px, // chevrons are taller than arrows!
+  'btn-plus-fs': .75rem,
+  'btn-plus-px': .5rem,
+  'btn-plus-py': .25rem,
+  'h': 229px,
+  'mainline': 14px,
+  'overline': 13px,
+  'price': 30px,
+  'uom': 17px,
+  'title': 14px,
+  'w': 158px,
+  'w2': 326px, // tier2 cover image width!
+);
+
+
+// xs < 576px
+$tx-xs: (
+  'arrow': 20px,
+  'btn-plus-fs': .75rem,
+  'btn-plus-px': .5rem,
+  'btn-plus-py': .25rem,
+  'h': 229px,
+  'mainline': 14px,
+  'overline': 13px,
+  'price': 30px,
+  'uom': 17px,
+  'title': 14px,
+  'w': 158px,
+  'w2': 326px, // tier2 cover image width!
+);
+
+// sm >= 576px
+$tx-sm: (
+  'arrow': 20px,
+  'btn-plus-fs': .75rem,
+  'btn-plus-px': .5rem,
+  'btn-plus-py': .25rem,
+  'h': 229px,
+  'mainline': 14px,
+  'overline': 13px,
+  'price': 30px,
+  'uom': 17px,
+  'title': 14px,
+  'w': 158px,
+  'w2': 326px, // tier2 cover image width!
+);
+
+// md >= 768px
+$tx-md: (
+  'arrow': 20px,
+  'btn-plus-fs': .75rem,
+  'btn-plus-px': .5rem,
+  'btn-plus-py': .25rem,
+  'h': 227px,
+  'mainline': 16px,
+  'overline': 14px,
+  'price': 24px,
+  'title': 16px,
+  'uom': 16px,
+  'w': 157px,
+  'w2': 342px,
+);
+
+// lg == 992px
+$tx-lg: (
+  'arrow': 20px,
+  'btn-plus-fs': .75rem,
+  'btn-plus-px': .5rem,
+  'btn-plus-py': .25rem,
+  'h': 276px,
+  'mainline': 16px,
+  'overline': 14px,
+  'price': 32px,
+  'title': 16px,
+  'uom': 19px,
+  'w': 191px,
+  'w2': 416px,
+);
+
+// backward compatibility
+$tx-fs-d: (
+  'arrow': 32px,
+  'btn-plus-fs': 1rem,
+  'btn-plus-px': .75rem,
+  'btn-plus-py': .375rem,
+  'h': 348px,
+  'mainline': 18px,
+  'overline': 16px,
+  'price': 36px,
+  'title': 18px,
+  'uom': 23px,
+  'w': 241px,
+  'w2': 524px,
+);
+
+
+// // xl >= 1200px
+$tx-xl: (
+  'arrow': 32px,
+  'btn-plus-fs': 1rem,
+  'btn-plus-px': .75rem,
+  'btn-plus-py': .375rem,
+  'h': 348px,
+  'mainline': 18px,
+  'overline': 16px,
+  'price': 36px,
+  'title': 18px,
+  'uom': 23px,
+  'w': 241px,
+  'w2': 524px,
+);
+
+// // xxl >= 1400px
+$tx-xxl: (
+  'arrow': 32px,
+  'btn-plus-fs': 1rem,
+  'btn-plus-px': .75rem,
+  'btn-plus-py': .375rem,
+  'h': 348px,
+  'mainline': 18px,
+  'overline': 16px,
+  'price': 36px,
+  'title': 18px,
+  'uom': 23px,
+  'w': 241px,
+  'w2': 524px,
+);
+
+
+.tierX {
+
+  // remove container padding to get closer to full-width on mobile
+  @include pad-x( 0 );
+
+  &-row {
+    // background-color: rgba( 255, 240, 0, .5 );
+    // border-bottom: 1px solid map-get( $tc, 'dark-gray' );
+  }
+
+  &-slider__wrap {
+    // background-color: rgba( 0, 240, 0, .5 );
+    // somehow prevents overflow on mobile...
+    // @JAHA! prevents overflow because of how the slider controls are positioned!
+    @include pad-x( 30px );
+  }
+
+  &-slider {
+    // background-color: rgba( 0, 0, 240, .5 );
+    display: none; // hide sliders before they are initialized!
+    max-height: 100%;
+    min-height: map-get( $tx-xs, 'h' );
+
+    @include p-x( 0 );
+
+    &.slick-initialized {
+        display: block;
+    }
+
+
+  }
+
+  .slick-list,
+  .slick-track {
+    min-height: map-get( $tx-xs, 'h' );
+  }
+
+
+  &__cover {
+    // max-height: $tx-slide-h_m;
+
+    img {
+      height: auto;
+      margin: 0 auto;
+      // max-height: 100%;
+      max-width: 100%;
+    }
+  }
+
+  .slick-next,
+  .slick-prev {
+    height: map-get($tx-xs, 'arrow');
+    transform: translate(0, -50%);
+  }
+
+  .slick-next:before,
+  .slick-prev:before {
+    font-size: map-get($tx-xs, 'arrow');
+  }
+
+
+  .slick-cloned + .slick-active {
+    &:after {
+      // background-color: map-get( $tc, 'dark-gray' );
+      // right: -1px;
+    }
+  }
+
+  // .slide {
+  .promo {
+
+
+    border-collapse: collapse;
+    // border-left: 1px solid transparent;
+    // border-right: 1px solid transparent;
+
+    display: table-cell;
+
+    min-height: map-get( $tx-xs, 'h' );
+
+    // background: pink;
+    // height: $tx-slide-h_m;
+    // max-height: 100%;
+    // max-width: $tx-slide-w_m;
+    // overflow: hidden;
+
+    // padding required for space between slides!
+    // padding: 0 .27rem;
+    padding: .5rem .25rem;
+
+    position: relative;
+
+    &:before,
+    &:after {
+      background-color: transparent;
+      content: "";
+      display: block;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 1px;
+    }
+
+    &:before {
+      // background-color: map-get( $tc, 'dark-gray' );
+      left: 0;
+    }
+    &:after {
+      background-color: map-get( $tc, 'dark-gray' );
+      right: 0;
+    }
+
+    // borders change depending on the size!!!
+    &.slick-slide {
+
+    }
+
+    &.slick-current {
+      // border-right-color: map-get( $tc, 'dark-gray' );
+      &:before {
+        // background-color: map-get( $tc, 'dark-gray' );
+      }
+    }
+
+    &.slick-active {
+      // on mobile, make the 2nd active slide have gray left border
+      // &:nth-child( even ) {
+      //   border-left-color: map-get( $tc, 'dark-gray' );
+      // }
+    }
+
+
+    &__inner {
+      // background: rgba( 0, 0, 235, .4 );
+
+      // for when the element is a link
+      color: map-get( $tc, 'text' );
+      display: block;
+
+      height: auto;
+      left: 0;
+      max-height: 100%;
+      max-width: 100%;
+      min-height: 227px;
+      min-width: 157px;
+      overflow: hidden;
+      position: relative;
+      top: 0;
+      width: 100%;
+
+    }
+
+    // MOST OF THIS ONLY CONCERNS PRODUCT OFFERS
+
+    &__img {
+      overflow: hidden;
+      padding-top: 71.9%; // aspect ratio of product images
+      position: relative;
+
+      img {
+        display: block;
+        left: 50%;
+        max-height: 90%;
+        max-width: 90%;
+        position: absolute;
+        top: 50%;
+        transform: translate( -50%, -50% );
+      }
+
+
+      &--inner {
+        height: 100%;
+        left: 50%;
+        padding: 5%;
+        position: absolute;
+        top: 50%;
+        transform: translate( -50%, -50% );
+        width: 100%;
+
+      }
+
+    } // &__img
+
+    &__text--wrap {
+      height: 50%;
+      margin: 0 auto;
+      max-height: 50%;
+      // width: 100%;
+      width: 90%;
+    }
+
+    &__overline {
+      display: block;
+      font-size: map-get($tx-fs-m, overline);
+      font-weight: 400;
+      line-height: 1.2;
+      max-height: 1.2em; // i.e., 1 line
+      overflow: hidden;
+    }
+
+    &__mainline {
+      display: block;
+      font-size: map-get($tx-fs-m, mainline);
+      font-weight: 800;
+      line-height: 1.2;
+      max-height: 2.4em; // i.e., 2 lines
+      overflow: hidden;
+    }
+
+    &__price--wrap {
+      bottom: .5rem;
+      position: absolute;
+    }
+
+    &__price {
+      font-size: map-get($tx-fs-m, price);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    &__price--uom {
+      font-size: map-get($tx-fs-m, uom);
+      font-weight: 800;
+    }
+
+    &__description {
+      display: none;
+    }
+
+    .btn-plus {
+      // bottom: 15px;
+      bottom: .5rem;
+      display: none;
+      font-size: map-get( $tx-xs, 'btn-plus-fs' );
+      // default padding is .375 and .75rem
+      padding: map-get( $tx-xs, 'btn-plus-py' ) map-get( $tx-xs, 'btn-plus-px' );
+      position: absolute;
+      // right: 15px;
+      // right: .5rem;
+      right: 2px;
+      z-index: 1000;
+    }
+
+    &__bug {
+      background-color: map-get( $tc, 'primary' );
+      color: $white;
+      font-size: .5rem;
+      font-weight: 700;
+      height: auto;
+      left: 0;
+      line-height: 1.2;
+      padding: .5rem 1rem;
+      position: absolute;
+      text-align: center;
+      text-transform: uppercase;
+      top: 0;
+      transform: rotateZ( -45deg ) translate( -30%, -100% );
+      // transform-origin: center;
+      width: 100%;
+    }
+
+    // .promo--product
+    &--product {
+      cursor: pointer;
+    }
+
+    //  .promo--banner
+    &--banner {
+
+      img {
+        max-width: 100%;
+      }
+
+      .promo__link {
+        position: relative;
+
+        &:hover {
+          .banner__btn {
+            color: #fff;
+            // these colors are pulled from inspector
+            // I think Bootstrap uses some SASS color functions to generate them
+            // but this is quick and dirty
+            background-color: #304c56;
+            border-color: #2c444e;
+          }
+        }
+
+      }
+
+      .banner__btn {
+        bottom: .5rem;
+        left: 50%;
+        position: absolute;
+        transform: translate( -50%, 0 );
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    } // .promo--banner
+
+  } // .promo
+
+  // Promo Coupon!
+  .promo__coupon {
+    display: block;
+    height: 12.5%;
+    max-height: 12.5%;
+    max-width: 25%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 25%;
+
+    a {
+      display: block;
+      // background-color: rgba( 255, 255, 255, 0.666 );
+    }
+    &--badge,
+    &--img {
+      display: block;
+      height: auto;
+      max-height: 100%;
+      max-width: 100%;
+      width: 100%;
+    }
+    .promo__coupon--badge + .promo__coupon--img {
+      display: none;
+    }
+  }
+
+
+  //sorry, Chris told me to add these
+  .desktop {
+      display: none !important;
+  }
+
+  .mobile {
+      display: block !important;
+  }
+
+
+} // .tierX
+
+
+// zuh?!?
+// why media breakpoint down?
+@include media-breakpoint-down(sm) {
+
+  .tierX {
+
+    &__cover {
+
+      // max-height: $tx-slide-h_d;
+      h3 {
+        // width: 100vw;
+        position: relative;
+        // left: 50%;
+        // Setting right has no impact if left is also set!!!
+        // right: 50%;
+        // margin-left: -50vw;
+        // margin-right: -50vw;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: map-get( $tc, 'primary' );
+        color: $white;
+        font-weight: 600;
+        text-transform: capitalize;
+      }
+
+    }
+
+    .promo {
+     &__mainline {
+        .promo-mainline-mobile {
+          font-size: 12px;
+        }
+      }
+    } // .promo
+
+  } // .tierX
+
+}
+
+
+@include media-breakpoint-up(md) {
+
+  .tierX {
+
+    @include pad-x( 15px );
+
+    &-row {
+      border-bottom: 1px solid map-get( $tc, 'dark-gray' );
+      padding-bottom: 1rem;
+      padding-top: 1rem;
+    }
+
+    &-slider__wrap {
+      // @include pad-x( 15px );
+    }
+
+    &-slider {
+      // border-right: 1px solid map-get( $tc, 'dark-gray' );
+      min-height: map-get( $tx-md, 'h' );
+    }
+
+    &__cover {
+      // @include pad-x( 0 );
+      // padding: .5rem .25rem;
+    }
+
+    .slick-next {
+      // right: -10px;
+    }
+
+    .slick-prev {
+      // left: -10px;
+    }
+
+    .slick-next,
+    .slick-prev {
+      height: map-get($tx-md, 'arrow');
+    }
+
+    .slick-next:before,
+    .slick-prev:before {
+      font-size: map-get($tx-md, 'arrow');
+    }
+
+    .slick-list,
+    .slick-track {
+      min-height: map-get( $tx-md, 'h' );
+    }
+
+    .promo {
+
+      min-height: map-get( $tx-md, 'h' );
+
+      @include p-y( 0 );
+
+      // borders change depending on the size!!!
+      &.slick-active {
+        border-right-color: map-get( $tc, 'dark-gray' );
+        // &:nth-child( even ) {
+        //   border-right-color: inherit;
+        // }
+      }
+
+      &.slick-current {
+        border-left-color: map-get( $tc, 'dark-gray' );
+      }
+
+
+      &__inner {
+        min-height: map-get( $tx-md, 'h' );
+        min-width: map-get( $tx-md, 'w' );
+      }
+
+      &__img--wrap {
+        img {
+          max-width: 100%;
+        }
+      }
+
+      &__overline {
+        font-size: map-get($tx-md, 'overline');
+      }
+
+      &__mainline {
+        font-size: map-get($tx-md, 'mainline');
+      }
+
+      &__price {
+        font-size: map-get($tx-md, 'price');
+      }
+
+      &__price--uom {
+        font-size: map-get($tx-md, 'uom');
+      }
+
+      &__bug {
+        font-size: .75rem;
+      }
+
+      &__description {
+        // shrugs
+      }
+
+      .btn-plus {
+        display: inline-block;
+      }
+
+    } // .promo
+
+    //sorry, Chris told me to add these
+    .desktop {
+      display: block !important;
+    }
+
+    .mobile {
+      display: none !important;
+    }
+  } // .tierX
+
+}
+
+@include media-breakpoint-up( lg ) {
+
+  .tierX {
+
+    &-slider {
+      min-height: map-get( $tx-lg, 'h' );
+    }
+
+    .slick-list,
+    .slick-track {
+      min-height: map-get( $tx-lg, 'h' );
+    }
+
+
+    .promo {
+
+      min-height: map-get( $tx-lg, 'h' );
+
+      &__inner {
+        min-height: map-get( $tx-lg, 'h' );
+        min-width: map-get( $tx-lg, 'w' );
+      }
+
+      &__overline {
+          font-size: map-get($tx-lg, 'overline');
+      }
+
+      &__mainline {
+          font-size: map-get($tx-lg, 'mainline');
+      }
+
+      &__price {
+          font-size: map-get($tx-lg, 'price');
+      }
+
+      &__price--uom {
+        font-size: map-get($tx-lg, 'uom');
+      }
+
+      &__bug {
+        font-size: .75rem;
+      }
+
+    } // .promo
+
+  } // .tierX
+
+}
+
+@include media-breakpoint-up( xl ) {
+
+  .tierX {
+
+    &-slider {
+      min-height: map-get( $tx-xl, 'h' );
+    }
+
+    .slick-list,
+    .slick-track {
+      min-height: map-get( $tx-xl, 'h' );
+    }
+
+    .promo {
+      min-height: map-get( $tx-xl, 'h' );
+
+      &__inner {
+        min-height: map-get( $tx-xl, 'h' );
+        min-width: map-get( $tx-xl, 'w' );
+      }
+
+      &__overline {
+          font-size: map-get($tx-xl, 'overline');
+      }
+
+      &__mainline {
+          font-size: map-get($tx-xl, 'mainline');
+      }
+
+      &__price {
+          font-size: map-get($tx-xl, 'price');
+      }
+
+      &__price--uom {
+        font-size: map-get($tx-xl, 'uom');
+      }
+
+      &__bug {
+        font-size: .8rem;
+      }
+
+    } // .promo
+
+  } // .tierX
+
+}
+
+@include media-breakpoint-up( xxl ) {
+
+  .tierX {
+
+    &-slider {
+      min-height: map-get( $tx-xxl, 'h' );
+    }
+
+    .slick-list,
+    .slick-track {
+      min-height: map-get( $tx-xxl, 'h' );
+    }
+
+
+    .promo {
+      min-height: map-get( $tx-xxl, 'h' );
+
+      &__inner {
+        min-height: map-get( $tx-xxl, 'h' );
+        min-width: map-get( $tx-xxl, 'w' );
+      }
+
+      &__overline {
+          font-size: map-get($tx-xxl, 'overline');
+      }
+
+      &__mainline {
+          font-size: map-get($tx-xxl, 'mainline');
+      }
+
+      &__price {
+          font-size: map-get($tx-xxl, 'price');
+      }
+
+      &__price--uom {
+        font-size: map-get($tx-xxl, 'uom');
+      }
+
+      &__bug {
+        font-size: 1rem;
+      }
+
+    } // .promo
+
+  } // .tierX
+
+}

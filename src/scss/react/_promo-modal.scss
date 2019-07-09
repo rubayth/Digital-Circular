@@ -1,47 +1,5 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-.circular-container {
-  background: #fff;
-}
-
-/* Offer styling */
-.offer {
-  padding-bottom: 40px;
-}
-
-.offer-image {
-  width: auto;
-  height: 200px;
-  max-width: 100%;
-}
-
-.promo_price {
-  font-size: 36px;
-  font-weight: 800px;
-}
-
-.promo__overline{
-  margin: 0px;
-}
-/* Offer styling End */
-
-
 /* Modal Offer styling */
-.modal-header {
-  border: none;
-}
+
 @media (min-width: 992px) {
   .promoModal__img-col .promo__img--wrap img {
     max-height: 375px;

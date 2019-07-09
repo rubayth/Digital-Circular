@@ -1,0 +1,28 @@
+.filtered-search {
+
+  height: 42px;
+
+  form,
+  &__filter,
+  &__form {
+    height: 100%;
+  }
+
+  &__filter {
+    // height: 100%;
+    margin-right: -5px;
+    position: relative;
+    vertical-align: top;
+  }
+
+  &__form {
+    // height: 100%;
+    vertical-align: top;
+
+    input[type="text"] {
+      border: none;
+    }
+
+  }
+
+}

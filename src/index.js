@@ -1,7 +1,8 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+// index.scss handles loading all the smaller bits
+import './scss/index.scss';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

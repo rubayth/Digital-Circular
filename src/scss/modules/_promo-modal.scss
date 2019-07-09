@@ -1,0 +1,115 @@
+// promo modal!
+
+$pm-fs: ('close': 26px,
+'title': 18px,
+'price': 42px,
+'uom': 29px,
+'body': 13px,
+'add': 17px,
+);
+
+#promoModal {
+
+    .modal-header {
+        border: none;
+
+        // .close {
+        //   background-color: transparent;
+        //   border-color: map-get( $tc, 'dark-gray' );
+        //   border-radius: 50%;
+        //   height: map-get( $pm-fs, 'close' );
+        //   margin: -10px -10px 10px auto;
+        //   padding: 0;
+        //   position: relative;
+        //   width: map-get( $pm-fs, 'close' );
+        //
+        //   span {
+        //     color: map-get( $tc, 'dark-gray' );
+        //     display: block;
+        //     height: map-get( $pm-fs, 'close' );
+        //     left: 50%;
+        //     line-height: map-get( $pm-fs, 'close' );
+        //
+        //     position: absolute;
+        //     top: 50%;
+        //     transform: translate( -50%, -50% );
+        //     width: 100%;
+        //   }
+        //
+        // }
+
+    }
+
+    // .modal-header
+
+
+    .promo {
+        &__img--wrap {
+            img {
+                margin-left: auto;
+                margin-right: auto;
+                max-height: 225px;
+                max-width: 100%;
+                width: auto;
+            }
+        }
+
+      &__coupon {
+
+        &--badge {
+          display: none;
+        }
+      }
+
+        &__mainline,
+        &__price,
+        &__price--uom {
+            color: map-get($tc, 'text');
+            font-weight: 800;
+        }
+
+        &__title {
+          font-size: map-get($pm-fs, 'title');
+          .promo__mainline {
+            display: block;
+          }
+          .promo__overline {
+            display: block;
+          }
+
+        }
+
+        &__price {
+            font-size: map-get($pm-fs, 'price');
+        }
+
+        &__price--uom {
+            font-size: map-get($pm-fs, 'uom');
+        }
+
+        &__description {
+            font-size: map-get($pm-fs, 'body');
+        }
+
+    }
+
+    // .promo
+
+}
+
+@include media-breakpoint-up(lg) {
+    #promoModal {
+
+        .promo {
+            &__img--wrap {
+                img {
+                    max-height: 375px;
+                }
+            }
+        }
+
+        .modal-content {
+            min-height: 357px;
+        }
+    }
+}

@@ -1,0 +1,129 @@
+// variables specific to the header!
+$header_height_m: 59px;
+$logo-height_m: 32px;
+$logo-width_m: 95px;
+
+$header_height_d: 90px;
+$logo-height_d: 101px;
+$logo-width_d: 295px;
+
+
+// header!
+.global-header {
+  background: $white;
+  color: $black;
+  position: relative;
+  z-index: 1000; // to make sure content goes behind nav if sticky
+
+  .row {
+    // height: rem( $header_height_m );
+  }
+
+  .logo__link {
+    align-self: center;
+
+    .logo {
+      height: rem( $logo-height_m );
+      width: rem( $logo-width_m );
+    }
+
+  } // .logo__link
+
+  .nav-item {
+    a {
+      font-weight: bold;
+      font-size: rem( $fs-main-nav_m );
+    }
+  }
+
+  .understripe {
+    &__headline {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .user-store {
+      font-size: 14px;
+
+      .map-marker,
+      &__name,
+      &__city {
+        color: $white;
+      }
+
+    }
+  }
+
+} // .global-header
+
+
+
+
+@include media-breakpoint-up( md ) {
+
+  .global-header {
+
+    .row {
+      // height: rem( $header_height_d );
+    }
+
+    .main-header {
+      border-bottom: 2px solid #ccc;
+      position: relative;
+
+    }
+
+    .logo__link {
+      max-width: 138px;
+      margin: 0 auto .5rem;
+
+      .logo {
+        // height: rem( $logo-height_d );
+        // width: rem( $logo-width_d );
+        display: block;
+        height: auto;
+        width: 100%;
+      }
+    }
+
+    .nav-item {
+      a {
+        font-size: rem( $fs-main-nav_d );
+      }
+
+    }
+
+    .user-options {
+      position: absolute;
+      right: 15px;
+      top: 0;
+      // transform: translate( 50%, 0% );
+    }
+
+    .understripe {
+      &__headline {
+        font-size: 36px;
+      }
+    }
+
+  }
+
+}
+
+@include media-breakpoint-up( lg ) {
+  .global-header {
+    .logo__link {
+      margin: 1rem auto .5rem;
+      max-width: 200px;
+      // padding-top: 1rem;
+    }
+  }
+}
+
+@include media-breakpoint-up( xl ) {
+  .global-header {
+    .logo__link {
+      margin: 0;
+      max-width: 242px;
+    }
+  }
+}

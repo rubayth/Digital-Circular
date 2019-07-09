@@ -1,0 +1,43 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+a:focus {
+  // prevent Chrome blue ring on focused links!
+  outline: none;
+}
+
+// COLOR HELPER CLASSES MOVED TO globals/_colors.scss
+
+#main,
+#digital-circular {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#main {
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+
+@include media-breakpoint-up( 'md' ) {
+  #main {
+    .row {
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+  }
+
+  #main,
+  #digital-circular {
+    // add the container padding back
+    padding-left: 15px;
+    padding-right: 15px;
+
+  }
+}

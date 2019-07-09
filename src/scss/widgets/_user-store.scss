@@ -1,0 +1,29 @@
+// all the places where the user's store is displayed!
+
+.user-store {
+  &__btn {
+    background-color: transparent;
+    border: none;
+    padding: 0 0 0 0;
+    
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__name,
+  &__city {
+    font-size: 13px;
+    font-weight: 600;
+  }
+}
+
+
+@include media-breakpoint-up( lg ) {
+  .user-store {
+    &__name,
+    &__city {
+      font-size: 14px;
+    }
+  }
+}

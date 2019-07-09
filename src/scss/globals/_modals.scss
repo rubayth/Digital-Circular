@@ -1,0 +1,52 @@
+// generic modal styles
+
+$modal-fs: (
+  'close': 26px,
+);
+
+
+.modal {
+  .modal-header {
+    // border: none;
+
+    .close {
+      background-color: transparent;
+      border-color: map-get( $tc, 'dark-gray' );
+      border-radius: 50%;
+      height: map-get( $modal-fs, 'close' );
+      margin: -10px -10px 10px auto;
+      padding: 0;
+      position: relative;
+      width: map-get( $modal-fs, 'close' );
+
+      span {
+        color: map-get( $tc, 'dark-gray' );
+        display: block;
+        height: map-get( $modal-fs, 'close' );
+        left: 50%;
+        line-height: map-get( $modal-fs, 'close' );
+
+        position: absolute;
+        top: 50%;
+        transform: translate( -50%, -50% );
+        width: 100%;
+      }
+
+    } // .close
+
+  } // .modal-header
+
+}
+
+
+@include media-breakpoint-up( md ) {
+  .modal {
+
+    .modal-header {
+      .close {
+        margin: 0 0 0 auto;
+      }
+    }
+
+  }
+}

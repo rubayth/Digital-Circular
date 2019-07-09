@@ -1,0 +1,63 @@
+// main search form (above hero)
+
+.main-search {
+
+  border: 1px solid map-get( $tc, 'lighter-gray' );
+  border-radius: .25rem;
+
+  .screen-reader-text {
+    display: none;
+  }
+
+  .search-field {
+    border: none;
+    color: map-get( $tc, 'darker-gray' );
+    display: inline-block;
+    font-size: 13px;
+    max-width: 130px;
+    width: 100%;
+    // min-width: 50%;
+
+    // these ones cause it to break!
+    // &::-webkit-input-placeholder,
+    // &::-moz-placeholder,
+    // &:-ms-input-placeholder,
+    // &:-moz-placeholder,
+    &::placeholder {
+      color: map-get( $tc, 'gray' );
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .btn-search {
+    border: none;
+    font-size: 13px;
+    @include pad-x( .375rem );
+  }
+
+  .fas {
+    color: map-get( $tc, 'darker-gray' );
+  }
+
+}
+
+@include media-breakpoint-up( md ) {
+  .main-search {
+
+    .search-field {
+      font-size: 1rem;
+      max-width: 80%;
+      // min-width: 88%;
+    }
+
+    .btn-search {
+      font-size: 1rem;
+      @include pad-x( .75rem );
+    }
+
+
+  }
+}
