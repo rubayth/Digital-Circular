@@ -13,6 +13,21 @@ class OfferList extends Component {
       modalImg:"",
       modalPrice:"",
       modalOverline:"",
+      categoryImages: {
+        Grocery: "grocery",
+        Meat: "Hugos_dc_dept_meat",
+        Produce: "produce",
+        Seafood: "seafood",
+        Deli: "deli",
+        Bakery: "bakery",
+        Dairy: "dairy",
+        Frozen: "frozen-foods",
+        "Home & Family": "health-personal-care",
+        Floral: "floral",
+        "Naturally Hugo's" : "natural-208x300",
+        "Wine & Spirits": "wine_spirits-208x300",
+        "Wine & Spirits ": "wine_spirits-208x300",
+      },
       sliderSettings: {
         dots: true,
         infinite: false,
@@ -38,6 +53,7 @@ class OfferList extends Component {
   }
   
   getOffers(category) { //render offers, checks if it belongs to specific category, not really efficent
+    console.log(this.props.offerData)
     const offer = _.map(this.props.offerData, (offer) => {
       //Just a freaking hack for the images to show...we need to fix.
       if (offer.FPMain1_URL_PNG !== null) {
@@ -74,11 +90,12 @@ class OfferList extends Component {
   }
   renderCategories(categoryList){ // render each category, also calls getOffers method for each category
     return _.map(categoryList, (category) => {
+      console.log(category);
       return(
         <div className="tierX-row tier3-row row" key={category}>
           <div className="tierX__cover tier3__cover col-12 col-md-3">
             <h3 className="d-md-none text-center py-3 my-4">Placeholder</h3>
-            <img src={`https://s3.wasabisys.com/hugo-images/2019/05/${category.toLowerCase()}.jpg`} alt="" className="d-none d-md-block" />
+            <img src={`https://s3.wasabisys.com/hugo-images/2019/05/${this.state.categoryImages[category]}.jpg`} alt="" className="d-none d-md-block" />
           </div>
           <div className="tierX-slider__wrap tier3-slider__wrap col-12 col-md-9">
             <Slider {...this.state.sliderSettings}>
