@@ -60,14 +60,14 @@ class App extends Component {
     this.setState({offers: offerFilter})
   }
 
+  //before logic - accounted only for 1 filter
+  //new logic - can have multiple filters
   updateOffers(checkedCategories) {
     if(checkedCategories.length) {
-      const newState = _.filter(this.state.offers, (offer) => {
+      const newState = _.filter(this.state.defaultData, (offer) => {
         return (checkedCategories.includes(offer.Category));
       })
-      this.setState({
-          offers: newState
-      });
+      this.setState({ offers: newState });
   }
     else this.setState({offers: this.state.defaultData})
   }
