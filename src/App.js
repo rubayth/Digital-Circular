@@ -4,6 +4,7 @@ import FilterContainer from "./containers/FilterContainer";
 import { Container } from 'reactstrap';
 import {omsUrl} from './components/getOmsOfferData';
 import _ from 'lodash';
+import HeroSlider from './components/HeroSlider';
 
 class App extends Component {
   constructor(props) {
