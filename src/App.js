@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import OfferList from './components/Offers';
+import OfferList from './components/offers/OffersList';
 import FilterContainer from "./containers/FilterContainer";
 import { Container } from 'reactstrap';
 import {omsUrl} from './components/getOmsOfferData';
