@@ -12,7 +12,7 @@ export const storeData = {
           "latitude": "",
           "longitude": ""
         },
-        "name": "Dollar General #1234",
+        "name": "Dollar General",
         "retail_store_events": [
           {
             "ID": 1513,
@@ -82,7 +82,7 @@ export const storeData = {
           "latitude": "",
           "longitude": ""
         },
-        "name": "Dollar General #2345",
+        "name": "Dollar General",
         "retail_store_events": [
           {
             "ID": 1513,
