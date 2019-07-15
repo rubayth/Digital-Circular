@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import OfferFilters from "../components/OfferFilters";
 import { Row, Col } from 'reactstrap';
 import SearchOffers from '../components/SearchOffers';
-import StoreSelection from '../components/StoreSelection';
+import StoreSelection from '../components/stores/StoreSelection';
 
 class FilterContainer extends Component {
  

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import OfferList from './components/offers/OffersList';
 import FilterContainer from "./containers/FilterContainer";
 import { Container } from 'reactstrap';
-import {omsUrl} from './components/getOmsOfferData';
+import {omsUrl} from './services/getOmsOfferData';
 import _ from 'lodash';
 import HeroSlider from './components/HeroSlider';
 
