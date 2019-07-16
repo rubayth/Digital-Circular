@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, Col, Row, Container } from 'reactstrap';
 import { Card, CardText, CardBody,CardTitle, Form, Input } from 'reactstrap';
 import { storeData } from '../../services/Stores';
-import Geolocation from './Location.js'
+import { geolocated } from "react-geolocated";
+//import Location from './Location';
 import geocodeAPI from '../../services/geocodeAPI';
 import { orderByDistance } from 'geolib';
 import _ from 'lodash';
@@ -13,7 +14,12 @@ class StoreSelection extends Component {
         this.state = {
             modal: false,
             storesSorted: false,
+            origin: {
+                latitude: "",
+                longitude: ""
+            },
             zipcode: "",
+            geoLocationBtn: "Get Location",
             stores:"",
             myStore: {
                 store_number:"",
@@ -30,6 +36,7 @@ class StoreSelection extends Component {
         };
     
         this.toggle = this.toggle.bind(this);
+        this.getGeolocation = this.getGeolocation.bind(this);
         this.handleZipCode = this.handleZipCode.bind(this);
       }
     
@@ -70,29 +77,43 @@ class StoreSelection extends Component {
         this.toggle();
     }
 
+    sortStores(){
+        
+        const points = _.map(this.state.stores, (store) => {
+            return store.gps;
+        });
+        
+        const sorted = orderByDistance(this.state.origin, points);
+        const sortedStores = _.map(sorted, (point) => {
+            return _.find(this.state.stores, (store) => {
+                return point === store.gps
+            })
+        });
+        this.setState({ 
+            stores: sortedStores,
+            storesSorted: true,
+         });
+    }
+
     async handleZipCode(e){
         this.setState({
             zipcode: e.target.value
          });
         if(e.target.value.length === 5){
             const data = await geocodeAPI(e.target.value);
-            const origin = data.results[0].locations[0].latLng;
-
-            const points = _.map(this.state.stores, (store) => {
-                return store.gps;
-            });
-            
-            const sorted = orderByDistance(origin, points);
-            const sortedStores = _.map(sorted, (point) => {
-                return _.find(this.state.stores, (store) => {
-                    return point === store.gps
-                })
-            });
-            this.setState({ 
-                stores: sortedStores,
-                storesSorted: true,
-             });
+            this.setState({ origin:data.results[0].locations[0].latLng })
+            this.sortStores();
         }
+    }
+
+    getGeolocation(){
+        return !this.props.isGeolocationAvailable ? (
+            this.setState({geoLocationBtn: "Your browser does not support Geolocation"})
+        ) : !this.props.isGeolocationEnabled ? (
+            this.setState({geoLocationBtn: "Location is not enabled"})
+        ) : this.props.coords 
+            ? this.setState({ geoLocationBtn: this.props.coords })
+            : this.setState({ geolocationBtn: "Getting the location data&hellip"})
     }
 
     renderStoreCards(){
@@ -119,7 +140,7 @@ class StoreSelection extends Component {
         return (
             <div>
                 <Col className="my-3 text-center">
-                    <Geolocation/>
+                    <Button onClick={this.getGeolocation}>{this.state.geoLocationBtn}</Button>
                 </Col>
                 <Col className="my-3 text-center">
                 <p>OR</p>
@@ -143,7 +164,7 @@ class StoreSelection extends Component {
                 </Button>
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                         <ModalHeader className="pb-0" toggle={this.toggle}>
-                        {this.state.storesSorted 
+                        {this.state.storesSorted  //if location is found and stores sorted
                             ?
                             <Row>
                                 <Col>
@@ -180,4 +201,9 @@ class StoreSelection extends Component {
 
 }
 
-export default StoreSelection;
+export default geolocated({
+    positionOptions: {
+        enableHighAccuracy: false,
+    },
+    userDecisionTimeout: 5000,
+})(StoreSelection);
