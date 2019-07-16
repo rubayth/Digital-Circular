@@ -14,10 +14,6 @@ class StoreSelection extends Component {
         this.state = {
             modal: false,
             storesSorted: false,
-            origin: {
-                latitude: "",
-                longitude: ""
-            },
             zipcode: "",
             geoLocationBtn: "Get Location",
             stores:"",
@@ -77,13 +73,13 @@ class StoreSelection extends Component {
         this.toggle();
     }
 
-    sortStores(){
+    sortStores(origin){
         
         const points = _.map(this.state.stores, (store) => {
             return store.gps;
         });
         
-        const sorted = orderByDistance(this.state.origin, points);
+        const sorted = orderByDistance(origin, points);
         const sortedStores = _.map(sorted, (point) => {
             return _.find(this.state.stores, (store) => {
                 return point === store.gps
@@ -101,8 +97,7 @@ class StoreSelection extends Component {
          });
         if(e.target.value.length === 5){
             const data = await geocodeAPI(e.target.value);
-            this.setState({ origin:data.results[0].locations[0].latLng })
-            this.sortStores();
+            this.sortStores(data.results[0].locations[0].latLng);
         }
     }
 
@@ -112,7 +107,7 @@ class StoreSelection extends Component {
         ) : !this.props.isGeolocationEnabled ? (
             this.setState({geoLocationBtn: "Location is not enabled"})
         ) : this.props.coords 
-            ? this.setState({ geoLocationBtn: this.props.coords })
+            ? this.sortStores(this.props.coords)
             : this.setState({ geolocationBtn: "Getting the location data&hellip"})
     }
 
