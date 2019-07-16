@@ -18,6 +18,7 @@ class StoreSelection extends Component {
             geoLocationBtn: "Get Location",
             stores:"",
             myStore: {
+                className:"store user-store",
                 store_number:"",
                 name:"",
                 address:{
@@ -115,18 +116,22 @@ class StoreSelection extends Component {
         return _.map(this.state.stores, (store) => {
             const {store_number, name, address} = store;
             return(
-                <div key={store_number}>
-                    <Col className="my-3 text-center">
-                        <Card>
+                    <Col className="col-12 col-md-6 my-3 text-center">
+                        <Card className={store_number === this.state.myStore.store_number ? "store user-store border border-secondary" : "store"}>
                             <CardBody>
-                                <CardTitle>Store #{store_number + " " + name}</CardTitle>
-                                <CardText>{address.street}</CardText>
-                                <CardText>{address.city + ", " + address.state + " " + address.zip_code} </CardText>
-                                <Button onClick={() => this.onStoreBtnClick(store)}>Make this my store</Button>
+                                <CardTitle className="store__name">Store #{store_number + " " + name}</CardTitle>
+                                <CardText>
+                                    {address.street}
+                                    <br/>
+                                    {address.city + ", " + address.state + " " + address.zip_code}
+                                </CardText>
+                                {store_number === this.state.myStore.store_number 
+                                ? <CardText>This is your store.</CardText>
+                                : <Button className="btn btn-primary btn-store-select fg-white" onClick={() => this.onStoreBtnClick(store)}>Make this my store</Button>
+                                }
                             </CardBody>
                         </Card>
                     </Col>
-                </div>
             )
         })
     }
@@ -186,9 +191,9 @@ class StoreSelection extends Component {
                         </ModalBody>
                     </Modal>
                 <div className="event-dates" data-name="05212019 Local Shop - BASE">
-                 Prices good 
-                <span className="start-date"> {this.state.myStore.startDate}</span>
-                -<span className="end-date"> {this.state.myStore.endDate}</span>
+                    Prices good 
+                    <span className="start-date"> {this.state.myStore.startDate}</span>
+                    -<span className="end-date"> {this.state.myStore.endDate}</span>
                 </div>
             </div>
         );

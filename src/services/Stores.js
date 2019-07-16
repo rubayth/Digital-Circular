@@ -279,6 +279,146 @@ export const storeData = {
           "filter": "raw"
         },
         "store_number": "2"
+      },
+      {
+        "address": {
+          "street": "1631 Washington Street",
+          "city": "Grand Forks",
+          "state": "ND",
+          "zip_code": "58201"
+        },
+        "departments": false,
+        "gps": {
+          "latitude": "44.394885",
+          "longitude": "-89.806212"
+        },
+        "name": "Dollar General",
+        "retail_store_events": [
+          {
+            "ID": 2,
+            "post_author": "1",
+            "post_date": "2019-06-11 16:07:45",
+            "post_date_gmt": "2019-06-11 21:07:45",
+            "post_content": "",
+            "post_title": "06112019 DG - BASE",
+            "post_excerpt": "",
+            "post_status": "publish",
+            "comment_status": "closed",
+            "ping_status": "closed",
+            "post_password": "",
+            "post_name": "06112019-dg-base",
+            "to_ping": "",
+            "pinged": "",
+            "post_modified": "2019-07-03 14:14:07",
+            "post_modified_gmt": "2019-07-03 19:14:07",
+            "post_content_filtered": "",
+            "post_parent": 0,
+            "guid": "https://circular-qa.purered.net/events/06112019-dg-base/",
+            "menu_order": 0,
+            "post_type": "event",
+            "post_mime_type": "",
+            "comment_count": "0",
+            "filter": "raw"
+          }
+        ],
+        "services": "",
+        "store": {
+          "ID": 2,
+          "post_author": "1",
+          "post_date": "2019-06-13 13:58:12",
+          "post_date_gmt": "2019-06-13 18:58:12",
+          "post_content": "",
+          "post_title": "Dollar General #2345",
+          "post_excerpt": "",
+          "post_status": "publish",
+          "comment_status": "closed",
+          "ping_status": "closed",
+          "post_password": "",
+          "post_name": "dollar-general-2345",
+          "to_ping": "",
+          "pinged": "",
+          "post_modified": "2019-06-13 13:58:12",
+          "post_modified_gmt": "2019-06-13 18:58:12",
+          "post_content_filtered": "",
+          "post_parent": 0,
+          "guid": "https://circular-qa.purered.net/?post_type=retail_store&#038;p=1622",
+          "menu_order": 0,
+          "post_type": "retail_store",
+          "post_mime_type": "",
+          "comment_count": "0",
+          "filter": "raw"
+        },
+        "store_number": "2"
+      },
+      {
+        "address": {
+          "street": "1631 Washington Street",
+          "city": "Grand Forks",
+          "state": "ND",
+          "zip_code": "58201"
+        },
+        "departments": false,
+        "gps": {
+          "latitude": "44.394885",
+          "longitude": "-89.806212"
+        },
+        "name": "Dollar General",
+        "retail_store_events": [
+          {
+            "ID": 2,
+            "post_author": "1",
+            "post_date": "2019-06-11 16:07:45",
+            "post_date_gmt": "2019-06-11 21:07:45",
+            "post_content": "",
+            "post_title": "06112019 DG - BASE",
+            "post_excerpt": "",
+            "post_status": "publish",
+            "comment_status": "closed",
+            "ping_status": "closed",
+            "post_password": "",
+            "post_name": "06112019-dg-base",
+            "to_ping": "",
+            "pinged": "",
+            "post_modified": "2019-07-03 14:14:07",
+            "post_modified_gmt": "2019-07-03 19:14:07",
+            "post_content_filtered": "",
+            "post_parent": 0,
+            "guid": "https://circular-qa.purered.net/events/06112019-dg-base/",
+            "menu_order": 0,
+            "post_type": "event",
+            "post_mime_type": "",
+            "comment_count": "0",
+            "filter": "raw"
+          }
+        ],
+        "services": "",
+        "store": {
+          "ID": 2,
+          "post_author": "1",
+          "post_date": "2019-06-13 13:58:12",
+          "post_date_gmt": "2019-06-13 18:58:12",
+          "post_content": "",
+          "post_title": "Dollar General #2345",
+          "post_excerpt": "",
+          "post_status": "publish",
+          "comment_status": "closed",
+          "ping_status": "closed",
+          "post_password": "",
+          "post_name": "dollar-general-2345",
+          "to_ping": "",
+          "pinged": "",
+          "post_modified": "2019-06-13 13:58:12",
+          "post_modified_gmt": "2019-06-13 18:58:12",
+          "post_content_filtered": "",
+          "post_parent": 0,
+          "guid": "https://circular-qa.purered.net/?post_type=retail_store&#038;p=1622",
+          "menu_order": 0,
+          "post_type": "retail_store",
+          "post_mime_type": "",
+          "comment_count": "0",
+          "filter": "raw"
+        },
+        "store_number": "2"
       }
     ]
 }
