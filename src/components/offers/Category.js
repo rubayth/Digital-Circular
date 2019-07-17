@@ -30,7 +30,7 @@ class Category extends React.Component{
       }
       if(offer.Category === category){
         return (
-          <Item toggle={this.props.toggle} imageName={imageName} offer={offer}/>
+          <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.pKey}/>
         )
       }
     })
