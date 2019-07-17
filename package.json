@@ -15,7 +15,8 @@
     "react-scripts": "3.0.1",
     "react-slick": "^0.24.0",
     "reactstrap": "^8.0.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "universal-cookie": "^4.0.2"
   },
   "scripts": {
     "https": "HOST=prdc-local.purered.net HTTPS=true react-scripts start",

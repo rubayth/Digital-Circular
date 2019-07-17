@@ -348,7 +348,7 @@ export const storeData = {
           "comment_count": "0",
           "filter": "raw"
         },
-        "store_number": "2"
+        "store_number": "6"
       },
       {
         "address": {
@@ -418,7 +418,7 @@ export const storeData = {
           "comment_count": "0",
           "filter": "raw"
         },
-        "store_number": "2"
+        "store_number": "5"
       }
     ]
 }

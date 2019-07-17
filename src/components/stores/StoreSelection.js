@@ -3,23 +3,33 @@ import { Button, Modal, ModalHeader, ModalBody, Col, Row, Container } from 'reac
 import { Card, CardText, CardBody,CardTitle, Form, Input } from 'reactstrap';
 import { storeData } from '../../services/Stores';
 import { geolocated } from "react-geolocated";
-//import Location from './Location';
 import geocodeAPI from '../../services/geocodeAPI';
 import { orderByDistance } from 'geolib';
 import _ from 'lodash';
+import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from 'react-cookie';
 
 class StoreSelection extends Component {
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+      };
     constructor(props) {
         super(props);
+        const { cookies } = props;
+        
+        //check for cookies and set them is state
         this.state = {
             modal: false,
             storesSorted: false,
+            origin: cookies.get('origin') || {
+                lat: "",
+                lng: ""
+            },
             zipcode: "",
             geoLocationBtn: "Get Location",
             stores:"",
-            myStore: {
-                className:"store user-store",
-                store_number:"",
+            myStore: cookies.get('store') || {
+                store_number: cookies.get('store'),
                 name:"",
                 address:{
                     street:"",
@@ -38,18 +48,17 @@ class StoreSelection extends Component {
       }
     
     componentDidMount(){
-        //fetch data
-        this.setState({stores: storeData.stores});
+        //check if a store was selected
         this.checkStore();
     }
 
-    toggle() {
+    toggle() { //toggle modal
         this.setState(prevState => ({
             modal: !prevState.modal
         }));
     }
     
-    onStoreBtnClick(store){
+    onStoreBtnClick(store){ //save selected store to state and set cookie
         const {store_number, name, address} = store;
         this.setState({
             myStore:{
@@ -65,24 +74,25 @@ class StoreSelection extends Component {
             }
         });
         this.toggle();
+        const { cookies } = this.props;
+        cookies.set('store', store, { path: '/', maxAge: 60*60*24*30 });
     }
 
     checkStore(){
         if (this.state.myStore.store_number){
-            return
+            this.sortStores(this.state.origin);
         }
-        this.toggle();
+        else this.toggle();
     }
 
-    sortStores(origin){
-        
-        const points = _.map(this.state.stores, (store) => {
+    sortStores(origin){ //after user coords are found, sort stores by distance and save to state
+        const points = _.map(storeData.stores, (store) => {
             return store.gps;
         });
         
         const sorted = orderByDistance(origin, points);
         const sortedStores = _.map(sorted, (point) => {
-            return _.find(this.state.stores, (store) => {
+            return _.find(storeData.stores, (store) => {
                 return point === store.gps
             })
         });
@@ -92,13 +102,18 @@ class StoreSelection extends Component {
          });
     }
 
-    async handleZipCode(e){
+    async handleZipCode(e){ //set zipcode to state and set coords to cookies
         this.setState({
             zipcode: e.target.value
          });
         if(e.target.value.length === 5){
             const data = await geocodeAPI(e.target.value);
-            this.sortStores(data.results[0].locations[0].latLng);
+            const origin = data.results[0].locations[0].latLng;
+
+            const { cookies } = this.props;
+            cookies.set('origin', origin, { path: '/', maxAge: 60*60*24*30 });
+            this.setState({origin});
+            this.sortStores(origin);
         }
     }
 
@@ -108,7 +123,10 @@ class StoreSelection extends Component {
         ) : !this.props.isGeolocationEnabled ? (
             this.setState({geoLocationBtn: "Location is not enabled"})
         ) : this.props.coords 
-            ? this.sortStores(this.props.coords)
+            ? (
+                this.setState({origin: this.props.coords}),
+                this.sortStores(this.props.coords)
+            )
             : this.setState({ geolocationBtn: "Getting the location data&hellip"})
     }
 
@@ -116,7 +134,7 @@ class StoreSelection extends Component {
         return _.map(this.state.stores, (store) => {
             const {store_number, name, address} = store;
             return(
-                    <Col className="col-12 col-md-6 my-3 text-center">
+                    <Col className="col-12 col-md-6 my-3 text-center" key={store_number}>
                         <Card className={store_number === this.state.myStore.store_number ? "store user-store border border-secondary" : "store"}>
                             <CardBody>
                                 <CardTitle className="store__name">Store #{store_number + " " + name}</CardTitle>
@@ -162,7 +180,7 @@ class StoreSelection extends Component {
                      {this.state.myStore.store_number ? `Store #${this.state.myStore.store_number}` : " No Store Selected"}</span>
                     <span className="user-store__city d-none d-md-inline"> {this.state.myStore.name}</span>
                 </Button>
-                    <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+                    <Modal isOpen={this.state.modal} toggle={this.toggle}>
                         <ModalHeader className="pb-0" toggle={this.toggle}>
                         {this.state.storesSorted  //if location is found and stores sorted
                             ?
@@ -182,7 +200,7 @@ class StoreSelection extends Component {
                         <ModalBody className="pt-0 pb-3">
                             <Container fluid>
                                 <Row className="justify-content-center">
-                                    {this.state.storesSorted
+                                    {this.state.storesSorted //if location is found and stores sorted
                                     ? this.renderStoreCards()
                                     : this.renderChooseStore()
                                     }  
@@ -206,4 +224,4 @@ export default geolocated({
         enableHighAccuracy: false,
     },
     userDecisionTimeout: 5000,
-})(StoreSelection);
+})(withCookies(StoreSelection));
