@@ -11,8 +11,8 @@ class FilterContainer extends Component {
     return (
       <Row className="py-3 align-items-center">
         <Col xs="12" sm="3"><StoreSelection /></Col>
-        <Col xs="6" sm="6"><OfferFilters offerCategories={this.props.offerCategories} updateOffers={this.props.updateOffers} /></Col>
-        <Col xs="6" sm="3"><SearchOffers searchOffers={this.props.searchOffers} /></Col>
+        <Col xs="6" sm="4"><OfferFilters offerCategories={this.props.offerCategories} updateOffers={this.props.updateOffers} /></Col>
+        <Col xs="6" sm="5"><SearchOffers searchOffers={this.props.searchOffers} /></Col>
       </Row>
       
     );
