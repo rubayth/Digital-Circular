@@ -10,8 +10,8 @@ class FilterContainer extends Component {
 
     return (
       <Row className="py-3 align-items-top">
-        <Col xs="12" sm="3"><StoreSelection /></Col>
-        <Col xs="6" sm="4"><OfferFilters offerCategories={this.props.offerCategories} updateOffers={this.props.updateOffers} /></Col>
+        <Col className="col-md-3 d-none d-md-block pr-0"><StoreSelection /></Col>
+        <Col className="col__category-filter--handle col-6 col-md-4"><OfferFilters offerCategories={this.props.offerCategories} updateOffers={this.props.updateOffers} /></Col>
         <Col className="col__main-search col-6 col-md-5"><SearchOffers searchOffers={this.props.searchOffers} /></Col>
       </Row>
       

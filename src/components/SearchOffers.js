@@ -15,10 +15,10 @@ class SearchOffers extends Component {
 
     render() {
         return(
-            <div class="main-search mr-lg-3">
+            <div className="main-search mr-lg-3">
                 <Form className="search-form" inline>
-                    <button type="submit" class="btn btn-search">
-                        <i class="fas fa-search"></i>
+                    <button type="submit" className="btn btn-search">
+                        <i className="fas fa-search"></i>
                     </button>
                     <Input type="search" className="search-field" onChange={this.handleSearch} placeholder="Search Weekly Ad" />
                 </Form>
