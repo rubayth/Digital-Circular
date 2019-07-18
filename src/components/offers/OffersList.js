@@ -18,14 +18,14 @@ class OfferList extends Component {
   }
 
   toggle(offer) {
-    const { Mainline1 ,Overline1, Price, FPMain1_URL_PNG, Alt_Text}  = offer;
+    const { Mainline1Web ,Overline1Web, Price, Image1URL, AltText}  = offer;
     this.setState(prevState => ({
       modal: !prevState.modal,
-      modalTitle: Mainline1, 
-      modalDescription: Alt_Text,
-      modalImg: FPMain1_URL_PNG,
+      modalTitle: Mainline1Web, 
+      modalDescription: AltText,
+      modalImg: Image1URL,
       modalPrice: Price,
-      modalOverline: Overline1
+      modalOverline: Overline1Web
     }));
   }
   
