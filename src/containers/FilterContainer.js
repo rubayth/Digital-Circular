@@ -9,10 +9,10 @@ class FilterContainer extends Component {
   render() {
 
     return (
-      <Row className="py-3 align-items-center">
+      <Row className="py-3 align-items-top">
         <Col xs="12" sm="3"><StoreSelection /></Col>
         <Col xs="6" sm="4"><OfferFilters offerCategories={this.props.offerCategories} updateOffers={this.props.updateOffers} /></Col>
-        <Col xs="6" sm="5"><SearchOffers searchOffers={this.props.searchOffers} /></Col>
+        <Col className="col__main-search col-6 col-md-5"><SearchOffers searchOffers={this.props.searchOffers} /></Col>
       </Row>
       
     );
