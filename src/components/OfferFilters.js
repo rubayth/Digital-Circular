@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem , Button} from 'reactstrap';
 import _ from 'lodash';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 class OfferFilters extends Component {
   constructor(props) {
@@ -28,7 +30,7 @@ class OfferFilters extends Component {
         const removeCategory = _.remove(this.state.checkedCategories, (category) => {
           return !(category === filter);
         })
-        this.props.updateOffers(removeCategory);
+        this.props.updateOffers(removeCategory, this.props.allOffers);
         this.setState({
           checkedCategories : removeCategory
         })
@@ -40,7 +42,7 @@ class OfferFilters extends Component {
         this.setState({
           checkedCategories
         });
-        this.props.updateOffers(this.state.checkedCategories);
+        this.props.updateOffers(this.state.checkedCategories, this.props.allOffers);
       }
     }
     
@@ -49,7 +51,7 @@ class OfferFilters extends Component {
       this.setState({
         checkedCategories:[]
       });
-      this.props.updateOffers(emptyArr);
+      this.props.updateOffers(emptyArr, this.props.allOffers);
     }
     
     renderLabels(){
@@ -102,4 +104,10 @@ class OfferFilters extends Component {
     
 }  
 
-export default OfferFilters;
+function mapStateToProps({ categories, allOffers }) {
+  return { 
+    offerCategories: categories,
+    allOffers 
+  };
+}
+export default connect(mapStateToProps, actions)(OfferFilters);

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Row, Col, Modal, ModalHeader, ModalBody, Container } from 'reactstrap';
 import Category from './Category';
+import { connect } from 'react-redux';
 import _ from 'lodash';
 
 class OfferList extends Component {
@@ -71,9 +72,6 @@ class OfferList extends Component {
           toggle={this.toggle}
           key={category}
           category = {category}
-          offerData={this.props.offerData} 
-          filteredCategories={this.props.filteredCategories} 
-          offerCategories={this.props.offerCategories}
           />
         )
     })}
@@ -83,9 +81,6 @@ class OfferList extends Component {
         toggle={this.toggle}
         key={category}
         category = {category}
-        offerData={this.props.offerData} 
-        filteredCategories={this.props.filteredCategories} 
-        offerCategories={this.props.offerCategories}
         />
       )
     })
@@ -93,7 +88,7 @@ class OfferList extends Component {
 
   render() {
     return (
-      <section id="tier3-promos" className="tierX tier3 container pb-4">
+      <section className="tierX tier3 container pb-4">
         {this.renderCategories()}
         {this.renderModal()}
       </section>
@@ -101,4 +96,12 @@ class OfferList extends Component {
   }
 }
     
-export default OfferList;
+function mapStateToProps({ currentOffers, categories, filters }) {
+  return { 
+    offerData: currentOffers,
+    offerCategories: categories,
+    filteredCategories: filters
+  };
+}
+
+export default connect(mapStateToProps)(OfferList);
