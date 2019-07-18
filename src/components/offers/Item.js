@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Item = ({ toggle, offer, imageName }) => {
+    
     return(
         <div onClick={()=>toggle(offer)} className="promo__inner slide__inner" key={offer.ProductKey}>
             <div className="promo__img">
@@ -20,6 +21,8 @@ const Item = ({ toggle, offer, imageName }) => {
             <button type="button" className="btn btn-primary btn-plus fg-white">
                 <i className="fas fa-plus"></i>
             </button>
+            {offer.Bug === "New" ? <div className="promo__bug">{offer.Bug}</div> : <div></div>} 
+
         </div>
     )
 }

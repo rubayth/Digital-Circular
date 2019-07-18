@@ -5,6 +5,7 @@ import { Container } from 'reactstrap';
 import {omsUrl} from './services/getOmsOfferData';
 import _ from 'lodash';
 import HeroSlider from './components/HeroSlider';
+import PromotionalOffers from './components/offers/PromotionalOffers';
 
 class App extends Component {
   constructor(props) {
@@ -99,6 +100,7 @@ class App extends Component {
       <Container className="my-5 py-5 circular-container">
         <FilterContainer offerCategories={this.state.offerCategories} updateOffers={this.updateOffers} searchOffers={this.searchOffers} />
         <HeroSlider />
+        <PromotionalOffers offerData={this.state.offers} />
         <OfferList 
           offerData={this.state.offers} 
           filteredCategories={this.state.filteredCategories} 
