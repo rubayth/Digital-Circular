@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 
 export const fetchOms = () => async dispatch => {
-        const res = await axios.get('https://promo-api-staging.azurewebsites.net/api/selectp?method=Hugo_getEventOfferByStore&eventDate=2019-05-15&StoreID=143005');
+        const res = await axios.get('https://promo-api-dev.azurewebsites.net/api/selectp?method=hugos_get_weekly_ad_offers');
 
         //Get list of categories from offer
         const categories = res.data.Table.map(function (offer) {

@@ -16,9 +16,14 @@ class SearchOffers extends Component {
 
     render() {
         return(
-            <Form className="float-right" inline>
-                <Input type="search" className="mr-3" onChange={this.handleSearch} placeholder="Search Weekly" />
-            </Form>
+            <div className="main-search mr-lg-3">
+                <Form className="search-form" inline>
+                    <button type="submit" className="btn btn-search">
+                        <i className="fas fa-search"></i>
+                    </button>
+                    <Input type="search" className="search-field" onChange={this.handleSearch} placeholder="Search Weekly Ad" />
+                </Form>
+            </div>
         );
     }
 }

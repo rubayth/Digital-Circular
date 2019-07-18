@@ -23,15 +23,15 @@ class Category extends React.Component{
   getOffers(category) { //render offers, checks if it belongs to specific category, not really efficent
     const offer = _.map(this.props.offerData, (offer) => {
       //Just a freaking hack for the images to show...we need to fix.
-      if (offer.FPMain1_URL_PNG !== null) {
-        var imageName = offer.FPMain1_URL_PNG.substring(offer.FPMain1_URL_PNG.lastIndexOf('/') + 1);
+      if (offer.Image1URL !== null) {
+        var imageName = offer.Image1URL.substring(offer.Image1URL.lastIndexOf('/') + 1);
       }
       else {
         return false;
       }
       if(offer.Category === category){
         return (
-          <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.pKey}/>
+          <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.ProductKey}/>
         )
       }
     })
