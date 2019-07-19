@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import { categoryImages } from './categoryImages';
 import _ from 'lodash';
+import { connect } from 'react-redux';
 import Item from './Item';
 
 class Category extends React.Component{
@@ -55,4 +56,8 @@ class Category extends React.Component{
     }
 }
 
-export default Category;
+function mapStateToProps({ currentOffers }) {
+  return { offerData: currentOffers };
+}
+
+export default connect(mapStateToProps)(Category);

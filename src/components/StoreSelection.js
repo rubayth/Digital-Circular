@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, Col, Row, Container } from 'reactstrap';
 import { Card, CardText, CardBody,CardTitle, Form, Input } from 'reactstrap';
-import { storeData } from '../../services/Stores';
+import { storeData } from '../actions/Stores';
 import { geolocated } from "react-geolocated";
-import geocodeAPI from '../../services/geocodeAPI';
+import geocodeAPI from '../actions/geocodeAPI';
 import { orderByDistance } from 'geolib';
 import _ from 'lodash';
 import { instanceOf } from 'prop-types';
