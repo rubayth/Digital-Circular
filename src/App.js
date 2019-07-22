@@ -19,7 +19,6 @@ class App extends Component {
       <Container className="my-5 py-5 circular-container">
         <FilterContainer/>
         <HeroSlider />
-        <PromotionalOffers />
         <OfferList/>
       </Container>
     );
