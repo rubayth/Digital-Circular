@@ -21,7 +21,7 @@ class PromotionalOffers extends Component {
 
     getPromotionalOffersTierOne() { 
         const offer = _.map(this.props.offerData, (offer) => {
-            console.log(offer);
+          
           //Just a freaking hack for the images to show...we need to fix.
           if (offer.Image1URL !== null) {
             var imageName = offer.Image1URL.substring(offer.Image1URL.lastIndexOf('/') + 1);
@@ -39,7 +39,7 @@ class PromotionalOffers extends Component {
 
       getPromotionalOffersTierTwo() { 
         const offer = _.map(this.props.offerData, (offer) => {
-            console.log(offer);
+          
           //Just a freaking hack for the images to show...we need to fix.
           if (offer.Image1URL !== null) {
             var imageName = offer.Image1URL.substring(offer.Image1URL.lastIndexOf('/') + 1);
