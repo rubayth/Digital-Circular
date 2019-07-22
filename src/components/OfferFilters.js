@@ -57,22 +57,24 @@ class OfferFilters extends Component {
     renderLabels(){
       //Get list of categories from offer 
       return this.props.offerCategories.map((filter, index) => { 
-        return(
-          <Col key={index} sm={4}>
-            <FormGroup check>
-              <Label check key={index}>
-                  <Input 
-                    type="checkbox" 
-                    name={filter} 
-                    onChange={ () => this.onInputClick(filter)} 
-                    checked={this.state.checkedCategories.includes(filter)} 
-                    />
-                    {filter}
-                  </Label>
-            </FormGroup>
-            <DropdownItem divider />
-          </Col>
-        )
+        if (filter !== null && filter !== 'HERO1' && filter !== 'HERO2' && filter !== 'HERO3' && filter !== 'TIER2' && filter !== "Seasonal Savings" && filter !== "Seasonal Savings ")
+          return(
+            <Col key={index} sm={4}>
+              <FormGroup check>
+                <Label check key={index}>
+                    <Input 
+                      type="checkbox" 
+                      name={filter} 
+                      onChange={ () => this.onInputClick(filter)} 
+                      checked={this.state.checkedCategories.includes(filter)} 
+                      />
+                      {filter}
+                    </Label>
+              </FormGroup>
+              <DropdownItem divider />
+            </Col>
+          )
+          return <div></div>
       })
     }
 
