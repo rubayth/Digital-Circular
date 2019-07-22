@@ -67,6 +67,7 @@ class OfferList extends Component {
   renderCategories(){
     if (this.props.filteredCategories.length > 0) {
       return _.map(this.props.filteredCategories, (category) => {
+        if (category !== null && category !== 'HERO1' && category !== 'HERO2' && category !== 'HERO3' && category !== 'TIER2' && category !== "Seasonal Savings" && category !== "Seasonal Savings ")
         return(
           <Category 
           toggle={this.toggle}
@@ -76,6 +77,7 @@ class OfferList extends Component {
         )
     })}
     return _.map(this.props.offerCategories, (category) => {
+      if (category !== null && category !== 'HERO1' && category !== 'HERO2' && category !== 'HERO3' && category !== 'TIER2' && category !== "Seasonal Savings" && category !== "Seasonal Savings ")
       return(
         <Category 
         toggle={this.toggle}
@@ -83,6 +85,7 @@ class OfferList extends Component {
         category = {category}
         />
       )
+      
     })
   }
 

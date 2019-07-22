@@ -9,7 +9,7 @@ export const categoryImages = {
     Frozen: "frozen-foods",
     "Home & Family": "health-personal-care",
     Floral: "floral",
-    "Naturally Hugo's" : "natural-208x300",
+    "Naturally Organic" : "natural-208x300",
     "Wine & Spirits": "wine_spirits-208x300",
     "Wine & Spirits ": "wine_spirits-208x300",
 }
