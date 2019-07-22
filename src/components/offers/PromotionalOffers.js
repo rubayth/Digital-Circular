@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Slider from 'react-slick';
 import Item from './Item';
 import _ from 'lodash';
+import { connect } from 'react-redux';
 
 class PromotionalOffers extends Component { 
     constructor(props){
@@ -18,7 +19,7 @@ class PromotionalOffers extends Component {
         };
     }
 
-    getPromotionalOffers() { 
+    getPromotionalOffersTierOne() { 
         const offer = _.map(this.props.offerData, (offer) => {
             console.log(offer);
           //Just a freaking hack for the images to show...we need to fix.
@@ -27,6 +28,24 @@ class PromotionalOffers extends Component {
           }
   
           if(offer.Tier2 === "1"){
+            return (
+              <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.ProductKey}/>
+            )
+          }
+        })
+        return offer;
+        
+      }
+
+      getPromotionalOffersTierTwo() { 
+        const offer = _.map(this.props.offerData, (offer) => {
+            console.log(offer);
+          //Just a freaking hack for the images to show...we need to fix.
+          if (offer.Image1URL !== null) {
+            var imageName = offer.Image1URL.substring(offer.Image1URL.lastIndexOf('/') + 1);
+          }
+  
+          if(offer.Tier2 === "2"){
             return (
               <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.ProductKey}/>
             )
@@ -46,7 +65,7 @@ class PromotionalOffers extends Component {
 
                 <div className="tierX-slider__wrap tier2-slider__wrap col-12 col-md-6 mt-2 mt-md-0">
                     <Slider {...this.state.sliderSettings}>
-                        {this.getPromotionalOffers()}
+                        {this.getPromotionalOffersTierOne()}
                     </Slider>
                 </div>
             </div>
@@ -57,7 +76,7 @@ class PromotionalOffers extends Component {
 
                 <div className="tierX-slider__wrap tier2-slider__wrap col-12 col-md-6 mt-2 mt-md-0">
                     <Slider {...this.state.sliderSettings}>
-<p>Hello</p>
+                        {this.getPromotionalOffersTierTwo()}
                     </Slider>
                 </div>
             </div>
@@ -67,5 +86,8 @@ class PromotionalOffers extends Component {
    }
 
 }
+function mapStateToProps({ currentOffers }) {
+    return { offerData: currentOffers };
+}
 
-export default PromotionalOffers;
+export default connect(mapStateToProps)(PromotionalOffers);
