@@ -9,6 +9,9 @@ import _ from 'lodash';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 
+import * as actions from '../actions';
+import { connect } from 'react-redux';
+
 class StoreSelection extends Component {
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
@@ -16,7 +19,7 @@ class StoreSelection extends Component {
     constructor(props) {
         super(props);
         const { cookies } = props;
-        
+
         //check for cookies and set them is state
         this.state = {
             modal: false,
@@ -28,8 +31,10 @@ class StoreSelection extends Component {
             zipcode: "",
             geoLocationBtn: "Get Location",
             stores:"",
+            startDate:"",
+            endDate:"",
             myStore: cookies.get('store') || {
-                store_number: cookies.get('store'),
+                store_number: "",
                 name:"",
                 address:{
                     street:"",
@@ -37,35 +42,40 @@ class StoreSelection extends Component {
                     state:"",
                     zip:"",
                 },
-                startDate:"06/21",
-                endDate:"07/30"
             }
         };
     
-        this.toggle = this.toggle.bind(this);
         this.getGeolocation = this.getGeolocation.bind(this);
         this.handleZipCode = this.handleZipCode.bind(this);
       }
     
-    componentDidMount(){
+    async componentDidMount(){
         //check if a store was selected
-        this.checkStore();
-    }
-
-    toggle() { //toggle modal
-        this.setState(prevState => ({
-            modal: !prevState.modal
-        }));
+        if (this.state.myStore.store_number){
+            await this.props.fetchOms(this.state.myStore.store_number);
+            //find ad dates
+            const offerWithDate = _.find(this.props.offerData, 'AdDate') || "";
+            this.setState({
+                startDate: offerWithDate.AdDate, 
+                endDate: offerWithDate.EndDate,
+            })
+            this.sortStores(this.state.origin);
+        }
     }
     
-    onStoreBtnClick(store){ //save selected store to state and set cookie
+    async onStoreBtnClick(store){ //save selected store to state and set cookie
+        this.props.toggleStoreModal(this.props.storeModal);
+
         const {store_number, name, address} = store;
+        await this.props.fetchOms(store_number);
+        //find ad dates
+        const offerWithDate = _.find(this.props.offerData, 'AdDate') || "";
         this.setState({
+            startDate: offerWithDate.AdDate, 
+            endDate: offerWithDate.EndDate,
             myStore:{
                 store_number,
                 name,
-                startDate: "06/21", 
-                endDate:"07/30",
                 address: {
                     street: address.street,
                     state: address.state,
@@ -73,16 +83,9 @@ class StoreSelection extends Component {
                 },
             }
         });
-        this.toggle();
+        
         const { cookies } = this.props;
         cookies.set('store', store, { path: '/', maxAge: 60*60*24*30 });
-    }
-
-    checkStore(){
-        if (this.state.myStore.store_number){
-            this.sortStores(this.state.origin);
-        }
-        else this.toggle();
     }
 
     sortStores(origin){ //after user coords are found, sort stores by distance and save to state
@@ -174,14 +177,14 @@ class StoreSelection extends Component {
     render() {
         return(
             <div className="d-none d-md-block pr-0">
-                <Button color="secondary " outline onClick={this.toggle}  data-toggle="modal" data-target="#storeSelectModal">
+                <Button color="secondary " outline onClick={ () => this.props.toggleStoreModal(this.props.storeModal)}>
                     <i className="map-marker fas fa-map-marker-alt"></i>
                     <span className="user-store__name">
                      {this.state.myStore.store_number ? `Store #${this.state.myStore.store_number}` : " No Store Selected"}</span>
                     <span className="user-store__city d-none d-md-inline"> {this.state.myStore.name}</span>
                 </Button>
-                    <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                        <ModalHeader className="pb-0" toggle={this.toggle}>
+                    <Modal isOpen={this.props.storeModal} toggle={ () => this.props.toggleStoreModal(this.props.storeModal)}>
+                        <ModalHeader className="pb-0" toggle={ () => this.props.toggleStoreModal(this.props.storeModal)}>
                         {this.state.storesSorted  //if location is found and stores sorted
                             ?
                             <Row>
@@ -210,8 +213,8 @@ class StoreSelection extends Component {
                     </Modal>
                 <div className="event-dates" data-name="05212019 Local Shop - BASE">
                     Prices good 
-                    <span className="start-date"> {this.state.myStore.startDate}</span>
-                    -<span className="end-date"> {this.state.myStore.endDate}</span>
+                    <span className="start-date"> {this.state.startDate}</span>
+                    -<span className="end-date"> {this.state.endDate}</span>
                 </div>
             </div>
         );
@@ -219,9 +222,16 @@ class StoreSelection extends Component {
 
 }
 
+function mapStateToProps({ currentOffers, storeModal }) {
+    return { 
+        offerData: currentOffers, 
+        storeModal 
+    };
+  }
+
 export default geolocated({
     positionOptions: {
         enableHighAccuracy: false,
     },
     userDecisionTimeout: 5000,
-})(withCookies(StoreSelection));
+})(withCookies(connect(mapStateToProps, actions)(StoreSelection)));

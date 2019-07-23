@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Row, Col, Modal, ModalHeader, ModalBody, Container } from 'reactstrap';
 import Category from './Category';
+import PromotionalOffers from './PromotionalOffers';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
@@ -91,10 +92,13 @@ class OfferList extends Component {
 
   render() {
     return (
-      <section className="tierX tier3 container pb-4">
-        {this.renderCategories()}
-        {this.renderModal()}
-      </section>
+      <div>
+        <PromotionalOffers toggle={this.toggle}/>
+        <section className="tierX tier3 container pb-4">
+          {this.renderCategories()}
+          {this.renderModal()}
+        </section>
+      </div>
     );
   }
 }

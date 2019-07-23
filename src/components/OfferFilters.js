@@ -74,7 +74,7 @@ class OfferFilters extends Component {
               <DropdownItem divider />
             </Col>
           )
-          return <div></div>
+          return null;
       })
     }
 

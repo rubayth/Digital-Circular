@@ -1,11 +1,12 @@
 
 import axios from 'axios';
-import { FETCH_OMS, FETCH_OMS_CATEGORY, FETCH_GEOCODE, UPDATE_FILTERED_CATEGORIES, UPDATE_OFFERS} from './types';
-import { keys } from './keys';
+import { STORE_MODAL, FETCH_OMS, FETCH_OMS_CATEGORY, UPDATE_FILTERED_CATEGORIES, UPDATE_OFFERS} from './types';
 import _ from 'lodash';
 
-
-export const fetchOms = () => async dispatch => {
+export const toggleStoreModal = ( state ) => dispatch => {
+  dispatch({type: STORE_MODAL, payload: !state});
+}
+export const fetchOms = (store_number) => async dispatch => {
         const res = await axios.get('https://promo-api-dev.azurewebsites.net/api/selectp?method=hugos_get_weekly_ad_offers');
 
         //Get list of categories from offer
@@ -17,20 +18,11 @@ export const fetchOms = () => async dispatch => {
             return categories.indexOf(cat) >= index;
         });
 
+        const storeOffers = _.filter(res.data.Table, {EventId: parseInt(store_number)}
+        )
         dispatch({type:FETCH_OMS, payload:res.data.Table});
-        dispatch({type:UPDATE_OFFERS, payload:res.data.Table});
+        dispatch({type:UPDATE_OFFERS, payload:storeOffers});
         dispatch({type:FETCH_OMS_CATEGORY, payload: categoryUnique});
-};
-
-export const fetchGeocode = (zipcode) => async dispatch => {
-    const res = await axios.get('https://www.mapquestapi.com/geocoding/v1/address', {
-        params: {
-            key: keys.mapquestKey,
-            location: zipcode,
-        }
-    });
-    const origin = res.results[0].locations[0].latLng
-    dispatch({type:FETCH_GEOCODE, payload:origin});
 };
 
 export const updateOffers = (checkedCategories, allOffers) => dispatch => {
@@ -70,3 +62,16 @@ export const searchOffers = (query, allOffers) => dispatch => {
       });
       dispatch({type: UPDATE_OFFERS, payload: offerFilter});
 }
+
+/*
+export const fetchGeocode = (zipcode) => async dispatch => {
+    const res = await axios.get('https://www.mapquestapi.com/geocoding/v1/address', {
+        params: {
+            key: keys.mapquestKey,
+            location: zipcode,
+        }
+    });
+    const origin = res.results[0].locations[0].latLng
+    dispatch({type:FETCH_GEOCODE, payload:origin});
+};
+*/
