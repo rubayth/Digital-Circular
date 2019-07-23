@@ -5,7 +5,7 @@ import { keys } from './keys';
 import _ from 'lodash';
 
 
-export const fetchOms = () => async dispatch => {
+export const fetchOms = (store_number) => async dispatch => {
         const res = await axios.get('https://promo-api-dev.azurewebsites.net/api/selectp?method=hugos_get_weekly_ad_offers');
 
         //Get list of categories from offer
@@ -17,8 +17,10 @@ export const fetchOms = () => async dispatch => {
             return categories.indexOf(cat) >= index;
         });
 
+        const storeOffers = _.filter(res.data.Table, {EventId: parseInt(store_number)}
+        )
         dispatch({type:FETCH_OMS, payload:res.data.Table});
-        dispatch({type:UPDATE_OFFERS, payload:res.data.Table});
+        dispatch({type:UPDATE_OFFERS, payload:storeOffers});
         dispatch({type:FETCH_OMS_CATEGORY, payload: categoryUnique});
 };
 

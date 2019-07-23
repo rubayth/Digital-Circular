@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import OfferList from './components/offers/OffersList';
-import PromotionalOffers from './components/offers/PromotionalOffers';
 import FilterContainer from "./containers/FilterContainer";
 import { Container } from 'reactstrap';
 import HeroSlider from './components/HeroSlider';
@@ -10,10 +9,6 @@ import * as actions from './actions';
 
 class App extends Component {
 
-  componentDidMount(){
-    this.props.fetchOms();
-  }
-    
   render() {
     return (
       <Container className="my-5 py-5 circular-container">
