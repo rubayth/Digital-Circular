@@ -45,23 +45,27 @@ class StoreSelection extends Component {
             }
         };
     
-        this.toggle = this.toggle.bind(this);
         this.getGeolocation = this.getGeolocation.bind(this);
         this.handleZipCode = this.handleZipCode.bind(this);
       }
     
-    componentDidMount(){
+    async componentDidMount(){
         //check if a store was selected
-        this.checkStore();
-    }
-
-    toggle() { //toggle modal
-        this.setState(prevState => ({
-            modal: !prevState.modal
-        }));
+        if (this.state.myStore.store_number){
+            await this.props.fetchOms(this.state.myStore.store_number);
+            //find ad dates
+            const offerWithDate = _.find(this.props.offerData, 'AdDate') || "";
+            this.setState({
+                startDate: offerWithDate.AdDate, 
+                endDate: offerWithDate.EndDate,
+            })
+            this.sortStores(this.state.origin);
+        }
     }
     
     async onStoreBtnClick(store){ //save selected store to state and set cookie
+        this.props.toggleStoreModal(this.props.storeModal);
+
         const {store_number, name, address} = store;
         await this.props.fetchOms(store_number);
         //find ad dates
@@ -79,24 +83,9 @@ class StoreSelection extends Component {
                 },
             }
         });
-        this.toggle();
+        
         const { cookies } = this.props;
         cookies.set('store', store, { path: '/', maxAge: 60*60*24*30 });
-
-    }
-
-    async checkStore(){
-        if (this.state.myStore.store_number){
-            await this.props.fetchOms(this.state.myStore.store_number);
-            //find ad dates
-            const offerWithDate = _.find(this.props.offerData, 'AdDate') || "";
-            this.setState({
-                startDate: offerWithDate.AdDate, 
-                endDate: offerWithDate.EndDate,
-            })
-            this.sortStores(this.state.origin);
-        }
-        else this.toggle();
     }
 
     sortStores(origin){ //after user coords are found, sort stores by distance and save to state
@@ -188,14 +177,14 @@ class StoreSelection extends Component {
     render() {
         return(
             <div className="d-none d-md-block pr-0">
-                <Button color="secondary " outline onClick={this.toggle}  data-toggle="modal" data-target="#storeSelectModal">
+                <Button color="secondary " outline onClick={ () => this.props.toggleStoreModal(this.props.storeModal)}>
                     <i className="map-marker fas fa-map-marker-alt"></i>
                     <span className="user-store__name">
                      {this.state.myStore.store_number ? `Store #${this.state.myStore.store_number}` : " No Store Selected"}</span>
                     <span className="user-store__city d-none d-md-inline"> {this.state.myStore.name}</span>
                 </Button>
-                    <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                        <ModalHeader className="pb-0" toggle={this.toggle}>
+                    <Modal isOpen={this.props.storeModal} toggle={ () => this.props.toggleStoreModal(this.props.storeModal)}>
+                        <ModalHeader className="pb-0" toggle={ () => this.props.toggleStoreModal(this.props.storeModal)}>
                         {this.state.storesSorted  //if location is found and stores sorted
                             ?
                             <Row>
@@ -233,8 +222,11 @@ class StoreSelection extends Component {
 
 }
 
-function mapStateToProps({ currentOffers }) {
-    return { offerData: currentOffers };
+function mapStateToProps({ currentOffers, storeModal }) {
+    return { 
+        offerData: currentOffers, 
+        storeModal 
+    };
   }
 
 export default geolocated({

@@ -3,22 +3,32 @@ import OfferList from './components/offers/OffersList';
 import FilterContainer from "./containers/FilterContainer";
 import { Container } from 'reactstrap';
 import HeroSlider from './components/HeroSlider';
+import Landing from './components/Landing'
 
-import { connect } from 'react-redux';
-import * as actions from './actions';
+import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from 'react-cookie';
+
 
 class App extends Component {
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+  };
 
   render() {
     return (
       <Container className="my-5 py-5 circular-container">
         <FilterContainer/>
-        <HeroSlider />
-        <OfferList/>
+        {this.props.cookies.get('store')
+          ? <div>
+              <HeroSlider />
+              <OfferList/>
+            </div>
+          : <Landing/>
+        }
       </Container>
     );
   }
 }
 
 
-export default connect(null, actions)(App);
+export default withCookies(App);

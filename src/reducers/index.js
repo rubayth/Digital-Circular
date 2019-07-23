@@ -4,12 +4,12 @@ import omsReducer from './OmsReducer';
 import categoryReducer from './CategoryReducer'
 import currentOffersReducer from './CurrentOffersReducer';
 import filterReducer from './FilterReducer';
-import geocodeReducer from './GeocodeReducer';
+import StoreModalReducer from './StoreModalReducer';
 
 export default combineReducers({
     allOffers: omsReducer,
     categories: categoryReducer,
     filters: filterReducer,
     currentOffers: currentOffersReducer,
-    geocode: geocodeReducer
+    storeModal: StoreModalReducer
 });

@@ -1,3 +1,5 @@
+export const STORE_MODAL = 'store_modal';
+
 export const FETCH_OMS = 'fetch_oms';
 export const FETCH_GEOCODE = 'fetch_geocode';
 export const FETCH_OMS_CATEGORY = 'fetch_oms_category';
