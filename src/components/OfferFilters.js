@@ -57,7 +57,7 @@ class OfferFilters extends Component {
     renderLabels(){
       //Get list of categories from offer 
       return this.props.offerCategories.map((filter, index) => { 
-        if (filter !== null && filter !== 'HERO1' && filter !== 'HERO2' && filter !== 'HERO3' && filter !== 'TIER2' && filter !== "Seasonal Savings" && filter !== "Seasonal Savings ")
+        if (filter !== "" && filter !== 'HERO1' && filter !== 'HERO2' && filter !== 'HERO3' && filter !== 'TIER2' && filter !== "Seasonal Savings" && filter !== "Seasonal Savings")
           return(
             <Col key={index} sm={4}>
               <FormGroup check>

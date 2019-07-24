@@ -11,15 +11,16 @@ export const fetchOms = (store_number) => async dispatch => {
 
         //Get list of categories from offer
         const categories = res.data.Table.map(function (offer) {
-            return offer.Category;
+            const categoryTrim = _.trimEnd(offer.Category); //remove ending whitespace
+            return categoryTrim;
         });
         //Filter to categories to remove the duplicates for building filters
         const categoryUnique = categories.filter(function(cat, index){
             return categories.indexOf(cat) >= index;
         });
-
         const storeOffers = _.filter(res.data.Table, {EventId: parseInt(store_number)}
         )
+
         dispatch({type:FETCH_OMS, payload:storeOffers});
         dispatch({type:UPDATE_OFFERS, payload:storeOffers});
         dispatch({type:FETCH_OMS_CATEGORY, payload: categoryUnique});

@@ -11,5 +11,4 @@ export const categoryImages = {
     Floral: "floral",
     "Naturally Organic" : "natural-208x300",
     "Wine & Spirits": "wine_spirits-208x300",
-    "Wine & Spirits ": "wine_spirits-208x300",
 }

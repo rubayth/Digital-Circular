@@ -26,10 +26,7 @@ class Category extends React.Component{
       if (offer.Image1URL !== null) {
         var imageName = offer.Image1URL.substring(offer.Image1URL.lastIndexOf('/') + 1);
       }
-      else {
-        return false;
-      }
-      if(offer.Category === category){
+      if(_.trim(offer.Category) === category){
         return (
           <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.ProductKey}/>
         )
