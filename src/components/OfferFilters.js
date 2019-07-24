@@ -81,7 +81,7 @@ class OfferFilters extends Component {
   render () {
     return(
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-            <DropdownToggle outline color="secondary" block caret disabled={this.props.searchQuery}>
+            <DropdownToggle outline color="secondary" block caret disabled={Boolean(this.props.searchQuery)}>
               Filter Offers
             </DropdownToggle>
             <DropdownMenu>

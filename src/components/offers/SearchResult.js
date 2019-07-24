@@ -20,8 +20,8 @@ class SearchResult extends React.Component{
             return false;
             }
             return (
-                <div class="col-6 col-md-3">
-                    <div class="promo slide promo--product">
+                <div className="col-6 col-md-3" key={offer.ProductKey}>
+                    <div className="promo slide promo--product">
                         <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.ProductKey}/>
                     </div>
                 </div>
@@ -36,20 +36,20 @@ class SearchResult extends React.Component{
     render(){
         return(
             <div>
-                <header class="page-header text-dark">
-                    <div class="row">
-                        <div class="col-12 col-md-9">
-                            <h1 class="page-title">
-                            Search results for: <span class="query-string font-weight-bold">{this.props.searchQuery}</span>
+                <header className="page-header text-dark">
+                    <div className="row">
+                        <div className="col-12 col-md-9">
+                            <h1 className="page-title">
+                            Search results for: <span className="query-string font-weight-bold">{this.props.searchQuery}</span>
                             </h1>
                         </div>
-                        <div class="col-12 col-md-3">
-                            <button onClick={this.onBtnClick} class="btn btn-secondary">Back to Weekly Ad</button>
+                        <div className="col-12 col-md-3">
+                            <button onClick={this.onBtnClick} className="btn btn-secondary">Back to Weekly Ad</button>
                         </div>
                     </div>
                 </header>
-                <section id="offer-grid" class="tierX my-5">
-                <div class="row">
+                <section id="offer-grid" className="tierX my-5">
+                <div className="row">
                     {this.renderOffers()}
                 </div>
                 </section>
