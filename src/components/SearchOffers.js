@@ -18,17 +18,15 @@ class SearchOffers extends Component {
         return(
             <div className="main-search mr-lg-3">
                 <Form className="search-form" inline>
-                    <button type="submit" className="btn btn-search">
-                        <i className="fas fa-search"></i>
-                    </button>
-                    <Input type="search" className="search-field" onChange={this.handleSearch} placeholder="Search Weekly Ad" />
+                    <i className="btn fas fa-search"></i>
+                    <Input type="search" className="search-field" onChange={this.handleSearch} placeholder="Search Weekly Ad" value={this.props.searchQuery}/>
                 </Form>
             </div>
         );
     }
 }
 
-function mapStateToProps({ allOffers }) {
-    return { allOffers };
+function mapStateToProps({ allOffers, searchQuery }) {
+    return { allOffers, searchQuery };
   }
 export default connect(mapStateToProps, actions)(SearchOffers);

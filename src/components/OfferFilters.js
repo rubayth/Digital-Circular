@@ -17,20 +17,20 @@ class OfferFilters extends Component {
       this.onClearClick = this.onClearClick.bind(this);
     }
   
+    
     toggle() {
       this.setState(prevState => ({
         dropdownOpen: !prevState.dropdownOpen
       }));
     }
 
-  
     onInputClick(filter){
       //if state already includes filter, remove it and update offers
       if(this.state.checkedCategories.includes(filter)){
         const removeCategory = _.remove(this.state.checkedCategories, (category) => {
           return !(category === filter);
         })
-        this.props.updateOffers(removeCategory, this.props.allOffers);
+        this.props.updateOffers(removeCategory);
         this.setState({
           checkedCategories : removeCategory
         })
@@ -42,7 +42,7 @@ class OfferFilters extends Component {
         this.setState({
           checkedCategories
         });
-        this.props.updateOffers(this.state.checkedCategories, this.props.allOffers);
+        this.props.updateOffers(this.state.checkedCategories);
       }
     }
     
@@ -51,7 +51,7 @@ class OfferFilters extends Component {
       this.setState({
         checkedCategories:[]
       });
-      this.props.updateOffers(emptyArr, this.props.allOffers);
+      this.props.updateOffers(emptyArr);
     }
     
     renderLabels(){
@@ -81,7 +81,7 @@ class OfferFilters extends Component {
   render () {
     return(
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-            <DropdownToggle outline color="secondary" block caret>
+            <DropdownToggle outline color="secondary" block caret disabled={this.props.searchQuery}>
               Filter Offers
             </DropdownToggle>
             <DropdownMenu>
@@ -106,10 +106,11 @@ class OfferFilters extends Component {
     
 }  
 
-function mapStateToProps({ categories, allOffers }) {
+function mapStateToProps({ categories, allOffers, searchQuery }) {
   return { 
     offerCategories: categories,
-    allOffers 
+    allOffers,
+    searchQuery 
   };
 }
 export default connect(mapStateToProps, actions)(OfferFilters);

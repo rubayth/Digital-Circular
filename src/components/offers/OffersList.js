@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Row, Col, Modal, ModalHeader, ModalBody, Container } from 'reactstrap';
 import Category from './Category';
 import PromotionalOffers from './PromotionalOffers';
+import SearchResult from './SearchResult';
+import HeroSlider from '../HeroSlider';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
@@ -93,21 +95,30 @@ class OfferList extends Component {
   render() {
     return (
       <div>
-        <PromotionalOffers toggle={this.toggle}/>
-        <section className="tierX tier3 container pb-4">
-          {this.renderCategories()}
+          {this.props.searchQuery 
+            ? <SearchResult toggle={this.toggle}/>
+            : (
+              <div>
+                <HeroSlider />
+                <PromotionalOffers toggle={this.toggle}/>
+                  <section className="tierX tier3 container pb-4">
+                    {this.renderCategories()}
+                  </section>
+              </div>
+            )
+          }
           {this.renderModal()}
-        </section>
       </div>
     );
   }
 }
     
-function mapStateToProps({ currentOffers, categories, filters }) {
+function mapStateToProps({ currentOffers, categories, filters, searchQuery}) {
   return { 
     offerData: currentOffers,
     offerCategories: categories,
-    filteredCategories: filters
+    filteredCategories: filters,
+    searchQuery
   };
 }
 
