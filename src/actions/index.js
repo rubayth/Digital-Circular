@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { STORE_MODAL, FETCH_OMS, FETCH_OMS_CATEGORY, UPDATE_FILTERED_CATEGORIES, UPDATE_OFFERS} from './types';
+import { STORE_MODAL, FETCH_OMS, FETCH_OMS_CATEGORY, UPDATE_FILTERED_CATEGORIES, UPDATE_OFFERS, SEARCH_QUERY} from './types';
 import _ from 'lodash';
 
 export const toggleStoreModal = ( state ) => dispatch => {
@@ -20,12 +20,14 @@ export const fetchOms = (store_number) => async dispatch => {
 
         const storeOffers = _.filter(res.data.Table, {EventId: parseInt(store_number)}
         )
-        dispatch({type:FETCH_OMS, payload:res.data.Table});
+        dispatch({type:FETCH_OMS, payload:storeOffers});
         dispatch({type:UPDATE_OFFERS, payload:storeOffers});
         dispatch({type:FETCH_OMS_CATEGORY, payload: categoryUnique});
+        dispatch({type: UPDATE_FILTERED_CATEGORIES, payload: []})
 };
 
-export const updateOffers = (checkedCategories, allOffers) => dispatch => {
+export const updateOffers = (checkedCategories) => (dispatch, getState) => {
+    const { allOffers } = getState();
     //if there are filters...
     if(checkedCategories.length) {
       const newState = _.filter(allOffers, (offer) => {
@@ -42,25 +44,28 @@ export const updateOffers = (checkedCategories, allOffers) => dispatch => {
     }
   }
 
-export const searchOffers = (query, allOffers) => dispatch => {
-    const offerFilter = allOffers.filter((offer) => {
+export const searchOffers = (query) => (dispatch, getState) => {
+  const { allOffers } = getState();
 
-        if (offer.Mainline1 != null) {
-          // change current item to lowercase
-        const lc = offer.Mainline1.toLowerCase();
-        
-        // check to see if the current list item includes the search term
-        // If it does, it will be added to newList. Using lowercase eliminates
-        // issues with capitalization in search terms and search content
-        return lc.includes(query);
-        }
-  
-        // Continue filters through null values
-        else {
-          return false;
-        }
-      });
-      dispatch({type: UPDATE_OFFERS, payload: offerFilter});
+  const offerFilter = allOffers.filter((offer) => {
+
+      if (offer.Mainline1 != null) {
+        // change current item to lowercase
+      const lc = offer.Mainline1.toLowerCase();
+      
+      // check to see if the current list item includes the search term
+      // If it does, it will be added to newList. Using lowercase eliminates
+      // issues with capitalization in search terms and search content
+      return lc.includes(query);
+      }
+
+      // Continue filters through null values
+      else {
+        return false;
+      }
+    });
+    dispatch({type: UPDATE_OFFERS, payload: offerFilter});
+    dispatch({type: SEARCH_QUERY, payload: query})
 }
 
 /*

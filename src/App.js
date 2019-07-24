@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import OfferList from './components/offers/OffersList';
 import FilterContainer from "./containers/FilterContainer";
 import { Container } from 'reactstrap';
-import HeroSlider from './components/HeroSlider';
 import Landing from './components/Landing'
 
 import { instanceOf } from 'prop-types';
@@ -20,7 +19,6 @@ class App extends Component {
         <FilterContainer/>
         {this.props.cookies.get('store')
           ? <div>
-              <HeroSlider />
               <OfferList/>
             </div>
           : <Landing/>

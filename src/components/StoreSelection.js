@@ -65,6 +65,7 @@ class StoreSelection extends Component {
     
     async onStoreBtnClick(store){ //save selected store to state and set cookie
         this.props.toggleStoreModal(this.props.storeModal);
+        this.props.searchOffers(""); //on store change reset search query
 
         const {store_number, name, address} = store;
         await this.props.fetchOms(store_number);
