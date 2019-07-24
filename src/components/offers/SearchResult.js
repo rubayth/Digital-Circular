@@ -16,9 +16,6 @@ class SearchResult extends React.Component{
             if (offer.Image1URL !== null) {
             var imageName = offer.Image1URL.substring(offer.Image1URL.lastIndexOf('/') + 1);
             }
-            else {
-            return false;
-            }
             return (
                 <div className="col-6 col-md-3" key={offer.ProductKey}>
                     <div className="promo slide promo--product">
