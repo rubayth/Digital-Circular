@@ -98,13 +98,17 @@ class OfferList extends Component {
           {this.props.searchQuery 
             ? <SearchResult toggle={this.toggle}/>
             : (
-              <div>
-                <HeroSlider />
-                <PromotionalOffers toggle={this.toggle}/>
-                  <section className="tierX tier3 container pb-4">
-                    {this.renderCategories()}
-                  </section>
-              </div>
+                this.props.filteredCategories.length > 0
+                  ? <section className="tierX tier3 container pb-4">
+                      {this.renderCategories()}
+                    </section>
+                  : <div>
+                      <HeroSlider />
+                      <PromotionalOffers toggle={this.toggle}/>
+                        <section className="tierX tier3 container pb-4">
+                          {this.renderCategories()}
+                        </section>
+                    </div>
             )
           }
           {this.renderModal()}
