@@ -60,7 +60,7 @@ class PromotionalOffers extends Component {
         <section id="tier2-promos" className="tierX tier2 container">
             <div className="tierX-row tier2-row row mt-3 mt-md-0">
                 <div className="tierX__cover tier2__cover col-12 col-md-6 mb-2 mb-md-0">
-                    <img src="https://s3.wasabisys.com/hugo-images/2019/05/hugos_promo_generic_03.jpg" alt="" className="d-block img-fluid"></img>
+                    <img src="https://s3.wasabisys.com/hugo-images/flat/hugos_promo_generic_03.jpg" alt="" className="d-block img-fluid"></img>
                 </div>
 
                 <div className="tierX-slider__wrap tier2-slider__wrap col-12 col-md-6 mt-2 mt-md-0">
@@ -71,7 +71,7 @@ class PromotionalOffers extends Component {
             </div>
             <div className="tierX-row tier2-row row mt-3 mt-md-0">
                 <div className="tierX__cover tier2__cover col-12 col-md-6 mb-2 mb-md-0">
-                    <img src="https://s3.wasabisys.com/hugo-images/2019/05/hugos_promo_02.jpg" alt="" className="d-block img-fluid"></img>
+                    <img src="https://s3.wasabisys.com/hugo-images/flat/hugos_promo_02.jpg" alt="" className="d-block img-fluid"></img>
                 </div>
 
                 <div className="tierX-slider__wrap tier2-slider__wrap col-12 col-md-6 mt-2 mt-md-0">

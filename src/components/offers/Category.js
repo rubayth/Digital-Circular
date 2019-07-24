@@ -44,7 +44,7 @@ class Category extends React.Component{
         <div className="tierX-row tier3-row row">
             <div className="tierX__cover tier3__cover col-12 col-md-3">
                 <h3 className="d-md-none text-center py-3 my-4">Placeholder</h3>
-                <img src={`https://s3.wasabisys.com/hugo-images/2019/05/${categoryImages[category]}.jpg`} alt="" className="d-none d-md-block" />
+                <img src={`https://s3.wasabisys.com/hugo-images/flat/${categoryImages[category]}.jpg`} alt="" className="d-none d-md-block" />
                 </div>
                 <div className="tierX-slider__wrap tier3-slider__wrap col-12 col-md-9">
                 <Slider {...this.state.sliderSettings}>
