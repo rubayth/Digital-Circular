@@ -95,7 +95,14 @@ class OfferList extends Component {
   render() {
     return (
       <div>
-          {this.props.searchQuery 
+        { this.props.offerData.length === 0 //no offers to display
+        ? (<section id="hero" className="hero container-fluid">
+            <div className="col-12 mt-5 pb-5 text-center">
+                <h3 className="fg-gray-1d">There are no offers available this week.</h3>
+            </div>
+          </section>
+        )
+      : this.props.searchQuery 
             ? <SearchResult toggle={this.toggle}/>
             : (
                 this.props.filteredCategories.length > 0
@@ -110,7 +117,7 @@ class OfferList extends Component {
                         </section>
                     </div>
             )
-          }
+        }
           {this.renderModal()}
       </div>
     );
