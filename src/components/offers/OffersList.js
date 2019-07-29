@@ -79,12 +79,12 @@ class OfferList extends Component {
           />
         )
     })}
-    return _.map(this.props.offerCategories, (category) => {
-      if (category !== "" && category !== 'HERO1' && category !== 'HERO2' && category !== 'HERO3' && category !== 'TIER2' && category !== "Seasonal Savings")
+    return _.map(this.props.offerData, (category) => {
+      //if (category !== "" && category !== 'HERO1' && category !== 'HERO2' && category !== 'HERO3' && category !== 'TIER2' && category !== "Seasonal Savings")
       return(
         <Category 
         toggle={this.toggle}
-        key={category}
+        //key={category}
         category = {category}
         />
       )
@@ -93,6 +93,7 @@ class OfferList extends Component {
   }
 
   render() {
+    //<PromotionalOffers toggle={this.toggle}/>
     return (
       <div>
         { this.props.offerData.length === 0 //no offers to display
@@ -111,7 +112,7 @@ class OfferList extends Component {
                     </section>
                   : <div>
                       <HeroSlider />
-                      <PromotionalOffers toggle={this.toggle}/>
+                      
                         <section className="tierX tier3 container pb-4">
                           {this.renderCategories()}
                         </section>

@@ -7,24 +7,36 @@ export const toggleStoreModal = ( state ) => dispatch => {
   dispatch({type: STORE_MODAL, payload: !state});
 }
 export const fetchOms = (store_number) => async dispatch => {
-        const res = await axios.get('https://promo-api-dev.azurewebsites.net/api/selectp?method=hugos_get_weekly_ad_offers');
+      const res = await axios.get('https://promo-api-dev.azurewebsites.net/api/selectp?method=hugos_get_weekly_ad_offers');
 
-        //Get list of categories from offer
-        const categories = res.data.Table.map(function (offer) {
-            const categoryTrim = _.trimEnd(offer.Category); //remove ending whitespace
-            return categoryTrim;
-        });
-        //Filter to categories to remove the duplicates for building filters
-        const categoryUnique = categories.filter(function(cat, index){
-            return categories.indexOf(cat) >= index;
-        });
-        const storeOffers = _.filter(res.data.Table, {EventId: parseInt(store_number)}
-        )
+      //Get list of categories from offer
+      const categories = res.data.Table.map(function (offer) {
+          const categoryTrim = _.trimEnd(offer.Category); //remove ending whitespace
+          return categoryTrim;
+      });
+      //Filter to categories to remove the duplicates for building filters
+      const categoryUnique = categories.filter(function(cat, index){
+          return categories.indexOf(cat) >= index;
+      });
 
-        dispatch({type:FETCH_OMS, payload:storeOffers});
-        dispatch({type:UPDATE_OFFERS, payload:storeOffers});
-        dispatch({type:FETCH_OMS_CATEGORY, payload: categoryUnique});
-        dispatch({type: UPDATE_FILTERED_CATEGORIES, payload: []})
+      const storeOffers = _.filter(res.data.Table, {EventId: parseInt(store_number)}
+      );
+
+      const grouped = _.groupBy(storeOffers, offer => {
+        return offer.Tier3
+      });
+      
+      const groupOrdered = _.map(grouped, group => {
+        return _.sortBy(group, offer => {
+          return offer.Tier3Order
+        });
+      });
+      console.log(groupOrdered)
+  
+      dispatch({type:FETCH_OMS, payload:storeOffers});
+      dispatch({type:UPDATE_OFFERS, payload:groupOrdered});
+      dispatch({type:FETCH_OMS_CATEGORY, payload: categoryUnique});
+      dispatch({type: UPDATE_FILTERED_CATEGORIES, payload: []})
 };
 
 export const updateOffers = (checkedCategories) => (dispatch, getState) => {
