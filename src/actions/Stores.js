@@ -138,7 +138,7 @@ export const storeData = {
           "comment_count": "0",
           "filter": "raw"
         },
-        "store_number": "2345"
+        "store_number": "631"
       },
       {
         "address": {
@@ -208,7 +208,7 @@ export const storeData = {
           "comment_count": "0",
           "filter": "raw"
         },
-        "store_number": "3"
+        "store_number": "632"
       },
       {
         "address": {
@@ -278,7 +278,7 @@ export const storeData = {
           "comment_count": "0",
           "filter": "raw"
         },
-        "store_number": "2"
+        "store_number": "637"
       },
       {
         "address": {
@@ -348,7 +348,7 @@ export const storeData = {
           "comment_count": "0",
           "filter": "raw"
         },
-        "store_number": "6"
+        "store_number": "634"
       },
       {
         "address": {
