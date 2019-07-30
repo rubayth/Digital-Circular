@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Row, Col, Modal, ModalHeader, ModalBody, Container } from 'reactstrap';
+import {Row, Col, Modal, ModalHeader, ModalBody, Container, Spinner } from 'reactstrap';
 import Category from './Category';
 import PromotionalOffers from './PromotionalOffers';
 import SearchResult from './SearchResult';
@@ -70,7 +70,6 @@ class OfferList extends Component {
   renderCategories(){
     if (this.props.filteredCategories.length > 0) {
       return _.map(this.props.filteredCategories, (category) => {
-        if (category !== "" && category !== 'HERO1' && category !== 'HERO2' && category !== 'HERO3' && category !== 'TIER2' && category !== "Seasonal Savings")
         return(
           <Category 
           toggle={this.toggle}
@@ -79,58 +78,72 @@ class OfferList extends Component {
           />
         )
     })}
-    return _.map(this.props.offerData, (category) => {
-      //if (category !== "" && category !== 'HERO1' && category !== 'HERO2' && category !== 'HERO3' && category !== 'TIER2' && category !== "Seasonal Savings")
+    return _.map(this.props.offerCategories, (category) => {
       return(
         <Category 
         toggle={this.toggle}
-        //key={category}
+        key={category}
         category = {category}
         />
       )
-      
     })
   }
 
+  isPending(){
+    return(
+      <section id="hero" className="hero container-fluid">
+        <div className="col-12 mt-5 pb-5 text-center">
+          <Spinner style={{ width: '3rem', height: '3rem' }} />
+        </div>
+      </section>
+    )
+  }
+
+  noOffers(){
+    return(
+      <section id="hero" className="hero container-fluid">
+        <div className="col-12 mt-5 pb-5 text-center">
+            <h3 className="fg-gray-1d">There are no offers available this week.</h3>
+        </div>
+      </section>
+    )
+  }
   render() {
-    //<PromotionalOffers toggle={this.toggle}/>
     return (
       <div>
-        { this.props.offerData.length === 0 //no offers to display
-        ? (<section id="hero" className="hero container-fluid">
-            <div className="col-12 mt-5 pb-5 text-center">
-                <h3 className="fg-gray-1d">There are no offers available this week.</h3>
-            </div>
-          </section>
-        )
-      : this.props.searchQuery 
-            ? <SearchResult toggle={this.toggle}/>
-            : (
+        { this.props.omsData === false
+          ? this.isPending()
+          : this.props.offerData.length === 0 //no offers to display
+            ? this.noOffers()
+            : this.props.searchQuery 
+              ? <SearchResult toggle={this.toggle}/>
+              : (
                 this.props.filteredCategories.length > 0
                   ? <section className="tierX tier3 container pb-4">
                       {this.renderCategories()}
                     </section>
                   : <div>
                       <HeroSlider />
-                      
+                      <PromotionalOffers toggle={this.toggle}/>
                         <section className="tierX tier3 container pb-4">
                           {this.renderCategories()}
                         </section>
                     </div>
-            )
-        }
+                )
+          }
           {this.renderModal()}
       </div>
     );
   }
 }
     
-function mapStateToProps({ currentOffers, categories, filters, searchQuery}) {
+function mapStateToProps({ currentOffers, omsData, categories, filters, searchQuery}) {
   return { 
     offerData: currentOffers,
     offerCategories: categories,
     filteredCategories: filters,
-    searchQuery
+    searchQuery,
+    omsData
   };
 }
 

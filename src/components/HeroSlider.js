@@ -1,7 +1,20 @@
 import React, {Component} from 'react';
 import Slider from "react-slick";
-
+import { connect } from 'react-redux';
+import altImage from '../images/hero-slide_1140w.png';
+import _ from 'lodash';
 class HeroSlider extends Component {
+
+  renderImage(){
+    const heroImgs = _.map(this.props.omsData.Hero, hero => {
+      return (
+      <div key={hero}>
+        <img src={hero.Image1URL} onError={(e)=>{e.target.onerror = null; e.target.src=altImage}} alt={hero.AltText}  className="d-block w-100 desktop img-fluid" />
+      </div>
+      )
+    })
+  return heroImgs;
+  }
 
   render() {
     const settings = {
@@ -15,20 +28,14 @@ class HeroSlider extends Component {
     return (
       <section id="hero" className="hero container-fluid">
         <Slider {...settings}>
-          <div>
-            <img src="https://s3.wasabisys.com/hugo-images/2019/05/hugos_hero_d_01.jpg" alt="" className="d-block w-100 desktop img-fluid" />
-          </div>
-          <div>
-            <img src="https://s3.wasabisys.com/hugo-images/2019/05/hugos_hero_d_02-1.jpg" alt="" className="d-block w-100 desktop img-fluid" />
-          </div>
-          <div>
-            <img src="https://s3.wasabisys.com/hugo-images/2019/05/hugos_hero_d_03-1.jpg" alt="" className="d-block w-100 desktop img-fluid" />
-          </div>
-          
+          {this.renderImage()}
         </Slider>
       </section>
     );
   }
 }
 
-export default HeroSlider;
+function mapStateToProps({ omsData }) {
+  return { omsData };
+}
+export default connect(mapStateToProps)(HeroSlider);

@@ -11,7 +11,7 @@ class SearchResult extends React.Component{
     }
 
     renderOffers() {
-        const offer = _.map(this.props.offerData, (offer) => {
+        const offer = _.map(this.props.allOffers, (offer) => {
             //Just a freaking hack for the images to show...we need to fix.
             if (offer.Image1URL !== null) {
             var imageName = offer.Image1URL.substring(offer.Image1URL.lastIndexOf('/') + 1);
@@ -55,9 +55,9 @@ class SearchResult extends React.Component{
     }
 }
 
-function mapStateToProps({ currentOffers, searchQuery}) {
+function mapStateToProps({ allOffers, searchQuery}) {
     return { 
-      offerData: currentOffers,
+      allOffers,
       searchQuery
     };
   }

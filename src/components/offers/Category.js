@@ -21,21 +21,18 @@ class Category extends React.Component{
     }
 
   getOffers(category) { //render offers, checks if it belongs to specific category, not really efficent
-    const offers = _.map(category, (offer) => {
-      if(offer.Tier3Order === "0"){
-        return
-      }
+    const offers = _.map(this.props.offerData[category], (offer) => {
       //Just a freaking hack for the images to show...we need to fix.
       if (offer.Image1URL !== null) {
         var imageName = offer.Image1URL.substring(offer.Image1URL.lastIndexOf('/') + 1);
       }
-        return (
-          <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.ProductKey}/>
-        )
-      
-    })
+      return (
+        <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.ProductKey}/>
+      )
+    });
     return offers;
-  }
+  
+}
 
     render() {
         const category = this.props.category;
@@ -43,7 +40,7 @@ class Category extends React.Component{
         <div className="tierX-row tier3-row row">
             <div className="tierX__cover tier3__cover col-12 col-md-3">
                 <h3 className="d-md-none text-center py-3 my-4">Placeholder</h3>
-                <img src={`https://s3.wasabisys.com/hugo-images/flat/${categoryImages[(category[0].Category)]}.jpg`} alt="" className="d-none d-md-block" />
+                <img src={`https://s3.wasabisys.com/hugo-images/flat/${categoryImages[category]}.jpg`} alt="" className="d-none d-md-block" />
                 </div>
                 <div className="tierX-slider__wrap tier3-slider__wrap col-12 col-md-9">
                 <Slider {...this.state.sliderSettings}>
