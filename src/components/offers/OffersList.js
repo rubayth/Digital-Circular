@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Row, Col, Modal, ModalHeader, ModalBody, Container } from 'reactstrap';
+import {Row, Col, Modal, ModalHeader, ModalBody, Container, Spinner } from 'reactstrap';
 import Category from './Category';
 import PromotionalOffers from './PromotionalOffers';
 import SearchResult from './SearchResult';
@@ -92,19 +92,35 @@ class OfferList extends Component {
     })
   }
 
+  isPending(){
+    return(
+      <section id="hero" className="hero container-fluid">
+        <div className="col-12 mt-5 pb-5 text-center">
+          <Spinner style={{ width: '3rem', height: '3rem' }} />
+        </div>
+      </section>
+    )
+  }
+
+  noOffers(){
+    return(
+      <section id="hero" className="hero container-fluid">
+        <div className="col-12 mt-5 pb-5 text-center">
+            <h3 className="fg-gray-1d">There are no offers available this week.</h3>
+        </div>
+      </section>
+    )
+  }
   render() {
     return (
       <div>
-        { this.props.offerData.length === 0 //no offers to display
-        ? (<section id="hero" className="hero container-fluid">
-            <div className="col-12 mt-5 pb-5 text-center">
-                <h3 className="fg-gray-1d">There are no offers available this week.</h3>
-            </div>
-          </section>
-        )
-      : this.props.searchQuery 
-            ? <SearchResult toggle={this.toggle}/>
-            : (
+        { this.props.allOffers === false
+          ? this.isPending()
+          : this.props.offerData.length === 0 //no offers to display
+            ? this.noOffers()
+            : this.props.searchQuery 
+              ? <SearchResult toggle={this.toggle}/>
+              : (
                 this.props.filteredCategories.length > 0
                   ? <section className="tierX tier3 container pb-4">
                       {this.renderCategories()}
@@ -116,20 +132,21 @@ class OfferList extends Component {
                           {this.renderCategories()}
                         </section>
                     </div>
-            )
-        }
+                )
+          }
           {this.renderModal()}
       </div>
     );
   }
 }
     
-function mapStateToProps({ currentOffers, categories, filters, searchQuery}) {
+function mapStateToProps({ currentOffers, allOffers, categories, filters, searchQuery}) {
   return { 
     offerData: currentOffers,
     offerCategories: categories,
     filteredCategories: filters,
-    searchQuery
+    searchQuery,
+    allOffers
   };
 }
 
