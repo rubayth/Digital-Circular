@@ -3,7 +3,7 @@ import {Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem , Button} from 'reactstrap';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import * as actions from '../../actions';
 
 class OfferFilters extends Component {
   constructor(props) {
@@ -51,13 +51,13 @@ class OfferFilters extends Component {
       this.setState({
         checkedCategories:[]
       });
+      this.toggle();
       this.props.updateOffers(emptyArr);
     }
     
     renderLabels(){
       //Get list of categories from offer 
       return this.props.offerCategories.map((filter, index) => { 
-        if (filter !== "" && filter !== 'HERO1' && filter !== 'HERO2' && filter !== 'HERO3' && filter !== 'TIER2' && filter !== "Seasonal Savings" && filter !== "Seasonal Savings")
           return(
             <Col key={index} sm={4}>
               <FormGroup check>
@@ -74,7 +74,6 @@ class OfferFilters extends Component {
               <DropdownItem divider />
             </Col>
           )
-          return null;
       })
     }
 

@@ -11,16 +11,15 @@ class SearchResult extends React.Component{
     }
 
     renderOffers() {
-        const offer = _.map(this.props.offerData, (offer) => {
+        const offer = _.map(this.props.allOffers, (offer) => {
             //Just a freaking hack for the images to show...we need to fix.
             if (offer.Image1URL !== null) {
             var imageName = offer.Image1URL.substring(offer.Image1URL.lastIndexOf('/') + 1);
             }
             return (
                 <div className="col-6 col-md-3" key={offer.ProductKey}>
-                    <div className="promo slide promo--product">
                         <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.ProductKey}/>
-                    </div>
+                    
                 </div>
             )
         })
@@ -55,9 +54,9 @@ class SearchResult extends React.Component{
     }
 }
 
-function mapStateToProps({ currentOffers, searchQuery}) {
+function mapStateToProps({ allOffers, searchQuery}) {
     return { 
-      offerData: currentOffers,
+      allOffers,
       searchQuery
     };
   }

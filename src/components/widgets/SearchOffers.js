@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Form, Input} from 'reactstrap';
 
-import * as actions from '../actions';
+import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
 class SearchOffers extends Component {
@@ -11,7 +11,7 @@ class SearchOffers extends Component {
     }
 
     handleSearch(e) {
-        this.props.searchOffers(e.target.value.toLowerCase(), this.props.allOffers)
+        this.props.searchOffers(e.target.value.toLowerCase())
     }
 
     render() {
@@ -26,7 +26,7 @@ class SearchOffers extends Component {
     }
 }
 
-function mapStateToProps({ allOffers, searchQuery }) {
-    return { allOffers, searchQuery };
+function mapStateToProps({ searchQuery }) {
+    return { searchQuery };
   }
 export default connect(mapStateToProps, actions)(SearchOffers);

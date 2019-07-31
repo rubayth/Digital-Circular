@@ -6,5 +6,6 @@ export const FETCH_OMS_PENDING = 'fetch_oms_pending';
 export const FETCH_GEOCODE = 'fetch_geocode';
 export const FETCH_OMS_CATEGORY = 'fetch_oms_category';
 
-export const UPDATE_FILTERED_CATEGORIES = 'update-filtered-categories';
-export const UPDATE_OFFERS = 'update-offers';
+export const UPDATE_FILTERED_CATEGORIES = 'update_filtered_categories';
+export const UPDATE_OFFERS = 'update_offers';
+export const ALL_OFFERS = 'all_offers';

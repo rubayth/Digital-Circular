@@ -1,6 +1,5 @@
-
 import axios from 'axios';
-import { STORE_MODAL, FETCH_OMS, FETCH_OMS_CATEGORY, UPDATE_FILTERED_CATEGORIES, UPDATE_OFFERS, SEARCH_QUERY, FETCH_OMS_PENDING} from './types';
+import { STORE_MODAL, FETCH_OMS, FETCH_OMS_CATEGORY, UPDATE_FILTERED_CATEGORIES, UPDATE_OFFERS, ALL_OFFERS, SEARCH_QUERY, FETCH_OMS_PENDING} from './types';
 import _ from 'lodash';
 
 export const toggleStoreModal = ( state ) => dispatch => {
@@ -10,45 +9,68 @@ export const fetchOms = (store_number) => async dispatch => {
   dispatch({ type: FETCH_OMS_PENDING });
   const res = await axios.get('https://promo-api-dev.azurewebsites.net/api/selectp?method=hugos_get_weekly_ad_offers');
 
-  //Get list of categories from offer
-  const categories = res.data.Table.map(function (offer) {
-      const categoryTrim = _.trimEnd(offer.Category); //remove ending whitespace
-      return categoryTrim;
-  });
-  //Filter to categories to remove the duplicates for building filters
-  const categoryUnique = categories.filter(function(cat, index){
-      return categories.indexOf(cat) >= index;
-  });
   const storeOffers = _.filter(res.data.Table, {EventId: parseInt(store_number)}
-  )
+  );
 
-  dispatch({type:FETCH_OMS, payload:storeOffers});
-  dispatch({type:UPDATE_OFFERS, payload:storeOffers});
-  dispatch({type:FETCH_OMS_CATEGORY, payload: categoryUnique});
+  const groupedData = _.groupBy(storeOffers, offer => {
+    return offer.PromoType;
+  });
+  
+  const sortTier3Covers = _.sortBy(groupedData["Tier3 Cover"], category => {
+    return parseInt(category.Tier3);
+  });
+
+  const groupedProducts = _.groupBy(groupedData.Product, offer =>{
+    return _.trim(offer.Category);
+  });
+
+  /*
+  Seems to already be in order...
+  Use this to sort Tier2 Offers
+  const sortTier2Offers = _.map(groupedProducts, category => {
+    return _.sortBy(category, offer => {
+      return parseInt(offer.Tier2Order);
+    })
+  })
+  console.log(sortTier2Offers)
+*/
+
+  let promoType = groupedData;
+  promoType.Product = groupedProducts;
+  promoType["Tier3 Cover"] = sortTier3Covers;
+
+  const categories = _.map(groupedData["Tier3 Cover"], (type) => {
+    return type.Category
+  });
+
+  dispatch({type:FETCH_OMS, payload:promoType});
+  dispatch({type:ALL_OFFERS, payload: storeOffers})
+  dispatch({type:UPDATE_OFFERS, payload:promoType.Product});
+  dispatch({type:FETCH_OMS_CATEGORY, payload: categories});
   dispatch({type: UPDATE_FILTERED_CATEGORIES, payload: []})
 };
 
 export const updateOffers = (checkedCategories) => (dispatch, getState) => {
-    const { allOffers } = getState();
+    const { omsData } = getState();
     //if there are filters...
     if(checkedCategories.length) {
-      const newState = _.filter(allOffers, (offer) => {
-        return (checkedCategories.includes(offer.Category));
-      });
+      const newState = _.pick(omsData.Product, checkedCategories);
+        //return (checkedCategories.includes(offer.Category));
+      
       dispatch({type: UPDATE_OFFERS, payload: newState});
       dispatch({type: UPDATE_FILTERED_CATEGORIES, payload: checkedCategories})
-  }
+    }
     //if no filters, reset offer data and clear filteredCategories state
     else {
-        dispatch({type: UPDATE_OFFERS, payload: allOffers});
+        dispatch({type: UPDATE_OFFERS, payload: omsData.Product});
         dispatch({type: UPDATE_FILTERED_CATEGORIES, payload: []})
-
     }
   }
-
+  
 export const searchOffers = (query) => (dispatch, getState) => {
-  const { allOffers } = getState();
-
+  const { omsData } = getState();
+  const allOffers = _.flatMap(omsData.Product)
+ 
   const offerFilter = allOffers.filter((offer) => {
 
       if (offer.Mainline1 != null) {
@@ -66,7 +88,7 @@ export const searchOffers = (query) => (dispatch, getState) => {
         return false;
       }
     });
-    dispatch({type: UPDATE_OFFERS, payload: offerFilter});
+    dispatch({type: ALL_OFFERS, payload: offerFilter});
     dispatch({type: SEARCH_QUERY, payload: query})
 }
 

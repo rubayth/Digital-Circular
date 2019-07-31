@@ -22,7 +22,7 @@ class OfferList extends Component {
   }
 
   toggle(offer) {
-    const { Mainline1Web ,Overline1Web, Price, Image1URL, AltText}  = offer;
+    const { Mainline1Web ,Overline1Web, Price, Image1URL, AltText }  = offer;
     this.setState(prevState => ({
       modal: !prevState.modal,
       modalTitle: Mainline1Web, 
@@ -70,25 +70,30 @@ class OfferList extends Component {
   renderCategories(){
     if (this.props.filteredCategories.length > 0) {
       return _.map(this.props.filteredCategories, (category) => {
-        if (category !== "" && category !== 'HERO1' && category !== 'HERO2' && category !== 'HERO3' && category !== 'TIER2' && category !== "Seasonal Savings")
-        return(
-          <Category 
-          toggle={this.toggle}
-          key={category}
-          category = {category}
-          />
-        )
+        return _.map(this.props.omsData['Tier3 Cover'], (categoryOffer) => {
+          if( categoryOffer.Category === category){
+            const banner = _.find(this.props.omsData.Banner, {'Category': categoryOffer.Category});
+            return(
+              <Category 
+              toggle={this.toggle}
+              key={categoryOffer.Category}
+              categoryOffer = {categoryOffer}
+              banner={banner || false}
+            />
+            )
+          }
+        })
     })}
-    return _.map(this.props.offerCategories, (category) => {
-      if (category !== "" && category !== 'HERO1' && category !== 'HERO2' && category !== 'HERO3' && category !== 'TIER2' && category !== "Seasonal Savings")
+    return _.map(this.props.omsData['Tier3 Cover'], (categoryOffer) => {
+      const banner = _.find(this.props.omsData.Banner, {'Category': categoryOffer.Category});
       return(
         <Category 
         toggle={this.toggle}
-        key={category}
-        category = {category}
+        key={categoryOffer.Category}
+        categoryOffer = {categoryOffer}
+        banner={banner || false}
         />
       )
-      
     })
   }
 
@@ -114,7 +119,7 @@ class OfferList extends Component {
   render() {
     return (
       <div>
-        { this.props.allOffers === false
+        { this.props.omsData === false
           ? this.isPending()
           : this.props.offerData.length === 0 //no offers to display
             ? this.noOffers()
@@ -140,13 +145,13 @@ class OfferList extends Component {
   }
 }
     
-function mapStateToProps({ currentOffers, allOffers, categories, filters, searchQuery}) {
+function mapStateToProps({ currentOffers, omsData, categories, filters, searchQuery}) {
   return { 
     offerData: currentOffers,
     offerCategories: categories,
     filteredCategories: filters,
     searchQuery,
-    allOffers
+    omsData
   };
 }
 
