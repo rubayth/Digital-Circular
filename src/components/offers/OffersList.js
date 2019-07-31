@@ -70,13 +70,19 @@ class OfferList extends Component {
   renderCategories(){
     if (this.props.filteredCategories.length > 0) {
       return _.map(this.props.filteredCategories, (category) => {
-        return(
-          <Category 
-          toggle={this.toggle}
-          key={category}
-          category = {category}
-          />
-        )
+        return _.map(this.props.omsData['Tier3 Cover'], (categoryOffer) => {
+          if( categoryOffer.Category === category){
+            const banner = _.find(this.props.omsData.Banner, {'Category': categoryOffer.Category});
+            return(
+              <Category 
+              toggle={this.toggle}
+              key={categoryOffer.Category}
+              categoryOffer = {categoryOffer}
+              banner={banner || false}
+            />
+            )
+          }
+        })
     })}
     return _.map(this.props.omsData['Tier3 Cover'], (categoryOffer) => {
       const banner = _.find(this.props.omsData.Banner, {'Category': categoryOffer.Category});

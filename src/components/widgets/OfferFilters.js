@@ -51,6 +51,7 @@ class OfferFilters extends Component {
       this.setState({
         checkedCategories:[]
       });
+      this.toggle();
       this.props.updateOffers(emptyArr);
     }
     
