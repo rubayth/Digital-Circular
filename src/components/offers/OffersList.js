@@ -119,7 +119,7 @@ class OfferList extends Component {
   render() {
     return (
       <div>
-        { this.props.omsData === false
+        { this.props.omsData === false || this.props.offerData === false
           ? this.isPending()
           : this.props.offerData.length === 0 //no offers to display
             ? this.noOffers()
