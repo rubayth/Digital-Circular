@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Form, Input} from 'reactstrap';
 
-import * as actions from '../actions';
+import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
 class SearchOffers extends Component {

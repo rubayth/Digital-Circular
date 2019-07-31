@@ -22,7 +22,7 @@ class OfferList extends Component {
   }
 
   toggle(offer) {
-    const { Mainline1Web ,Overline1Web, Price, Image1URL, AltText}  = offer;
+    const { Mainline1Web ,Overline1Web, Price, Image1URL, AltText }  = offer;
     this.setState(prevState => ({
       modal: !prevState.modal,
       modalTitle: Mainline1Web, 
@@ -78,12 +78,14 @@ class OfferList extends Component {
           />
         )
     })}
-    return _.map(this.props.offerCategories, (category) => {
+    return _.map(this.props.omsData['Tier3 Cover'], (categoryOffer) => {
+      const banner = _.find(this.props.omsData.Banner, {'Category': categoryOffer.Category});
       return(
         <Category 
         toggle={this.toggle}
-        key={category}
-        category = {category}
+        key={categoryOffer.Category}
+        categoryOffer = {categoryOffer}
+        banner={banner || false}
         />
       )
     })

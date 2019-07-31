@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, Col, Row, Container } from 'reactstrap';
 import { Card, CardText, CardBody,CardTitle, Form, Input } from 'reactstrap';
-import { storeData } from '../actions/Stores';
+import { storeData } from '../../actions/Stores';
 import { geolocated } from "react-geolocated";
-import geocodeAPI from '../actions/geocodeAPI';
+import geocodeAPI from '../../actions/geocodeAPI';
 import { orderByDistance } from 'geolib';
 import _ from 'lodash';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 
-import * as actions from '../actions';
+import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
 class StoreSelection extends Component {

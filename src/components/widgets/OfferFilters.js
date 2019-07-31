@@ -3,7 +3,7 @@ import {Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem , Button} from 'reactstrap';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import * as actions from '../../actions';
 
 class OfferFilters extends Component {
   constructor(props) {

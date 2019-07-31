@@ -37,9 +37,9 @@ class PromotionalOffers extends Component {
   renderTier2(){
     const tier2 = _.map(this.props.omsData["Tier2 Cover"], tier2Offer => {
       return(
-        <div className="tierX-row tier2-row row mt-3 mt-md-0">
+        <div className="tierX-row tier2-row row mt-3 mt-md-0" key={tier2Offer.OfferId}>
           <div className="tierX__cover tier2__cover col-12 col-md-6 mb-2 mb-md-0">
-              <img src={tier2Offer.Image1URL} alt="" className="d-block img-fluid"></img>
+              <img src={tier2Offer.Image1URL} alt={tier2Offer.Category} className="d-block img-fluid"></img>
           </div>
 
           <div className="tierX-slider__wrap tier2-slider__wrap col-12 col-md-6 mt-2 mt-md-0">

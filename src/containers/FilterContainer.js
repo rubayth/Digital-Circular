@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import OfferFilters from "../components/OfferFilters";
+import OfferFilters from "../components/widgets/OfferFilters";
 import { Row, Col } from 'reactstrap';
-import SearchOffers from '../components/SearchOffers';
-import StoreSelection from '../components/StoreSelection';
+import SearchOffers from '../components/widgets/SearchOffers';
+import StoreSelection from '../components/widgets/StoreSelection';
 
 class FilterContainer extends Component {
  
@@ -17,7 +17,6 @@ class FilterContainer extends Component {
       
     );
   }
-
 }
 
 export default FilterContainer;

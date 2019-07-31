@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Slider from "react-slick";
 import { connect } from 'react-redux';
-import altImage from '../images/hero-slide_1140w.png';
 import _ from 'lodash';
 class HeroSlider extends Component {
 
@@ -9,7 +8,7 @@ class HeroSlider extends Component {
     const heroImgs = _.map(this.props.omsData.Hero, hero => {
       return (
       <div key={hero}>
-        <img src={hero.Image1URL} onError={(e)=>{e.target.onerror = null; e.target.src=altImage}} alt={hero.AltText}  className="d-block w-100 desktop img-fluid" />
+        <img src={hero.Image1URL} alt={hero.Category}  className="d-block w-100 desktop img-fluid" />
       </div>
       )
     })
