@@ -54,7 +54,7 @@ class StoreSelection extends Component {
         if (this.state.myStore.store_number){
             await this.props.fetchOms(this.state.myStore.store_number);
             //find ad dates
-            const offerWithDate = _.find(this.props.offerData, 'AdDate') || "";
+            const offerWithDate = _.find(this.props.offerData.Grocery, 'AdDate') || "";
             this.setState({
                 startDate: offerWithDate.AdDate, 
                 endDate: offerWithDate.EndDate,
