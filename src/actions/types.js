@@ -8,4 +8,5 @@ export const FETCH_OMS_CATEGORY = 'fetch_oms_category';
 
 export const UPDATE_FILTERED_CATEGORIES = 'update_filtered_categories';
 export const UPDATE_OFFERS = 'update_offers';
+export const UPDATE_OFFERS_PENDING = 'update_offers_pending'
 export const ALL_OFFERS = 'all_offers';

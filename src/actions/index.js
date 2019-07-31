@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { STORE_MODAL, FETCH_OMS, FETCH_OMS_CATEGORY, UPDATE_FILTERED_CATEGORIES, UPDATE_OFFERS, ALL_OFFERS, SEARCH_QUERY, FETCH_OMS_PENDING} from './types';
+import { STORE_MODAL, FETCH_OMS, FETCH_OMS_CATEGORY, UPDATE_FILTERED_CATEGORIES, UPDATE_OFFERS, ALL_OFFERS, SEARCH_QUERY, FETCH_OMS_PENDING, UPDATE_OFFERS_PENDING} from './types';
 import _ from 'lodash';
 
 export const toggleStoreModal = ( state ) => dispatch => {
@@ -7,6 +7,8 @@ export const toggleStoreModal = ( state ) => dispatch => {
 }
 export const fetchOms = (store_number) => async dispatch => {
   dispatch({ type: FETCH_OMS_PENDING });
+  dispatch({ type: UPDATE_OFFERS_PENDING});
+
   const res = await axios.get('https://promo-api-dev.azurewebsites.net/api/selectp?method=hugos_get_weekly_ad_offers');
 
   const storeOffers = _.filter(res.data.Table, {EventId: parseInt(store_number)}
@@ -38,7 +40,7 @@ export const fetchOms = (store_number) => async dispatch => {
   let promoType = groupedData;
   promoType.Product = groupedProducts;
   promoType["Tier3 Cover"] = sortTier3Covers;
-
+  
   const categories = _.map(groupedData["Tier3 Cover"], (type) => {
     return type.Category
   });

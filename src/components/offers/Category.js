@@ -22,9 +22,7 @@ class Category extends React.Component{
 
   insertBanner(category){
     const products = this.props.offerData[category].slice();
-    if(this.props.banner){
-      products.splice((this.props.banner.Tier3Order - 1), 0, this.props.banner)
-    }
+    products.splice((this.props.banner.Tier3Order - 1), 0, this.props.banner)
     return products;
   }
   
