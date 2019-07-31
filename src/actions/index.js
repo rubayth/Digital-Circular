@@ -16,13 +16,28 @@ export const fetchOms = (store_number) => async dispatch => {
     return offer.PromoType;
   });
   
+  const sortTier3Covers = _.sortBy(groupedData["Tier3 Cover"], category => {
+    return parseInt(category.Tier3);
+  });
+
   const groupedProducts = _.groupBy(groupedData.Product, offer =>{
     return _.trim(offer.Category);
   });
 
+  /*
+  Seems to already be in order...
+  Use this to sort Tier2 Offers
+  const sortTier2Offers = _.map(groupedProducts, category => {
+    return _.sortBy(category, offer => {
+      return parseInt(offer.Tier2Order);
+    })
+  })
+  console.log(sortTier2Offers)
+*/
+
   let promoType = groupedData;
   promoType.Product = groupedProducts;
-  console.log(promoType);
+  promoType["Tier3 Cover"] = sortTier3Covers;
 
   const categories = _.map(groupedData["Tier3 Cover"], (type) => {
     return type.Category

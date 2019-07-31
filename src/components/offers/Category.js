@@ -72,7 +72,6 @@ class Category extends React.Component{
                 <div className="tierX-slider__wrap tier3-slider__wrap col-12 col-md-9">
                 <Slider {...this.state.sliderSettings}>
                     {this.getOffers(categoryOffer.Category)}
-                    {console.log(1)}
                 </Slider>
             </div>
         </div>
