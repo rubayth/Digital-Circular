@@ -37,6 +37,11 @@
 
   }
 
+  // cover up the right most slide border!
+  .slick-list {
+    border-right: 1px solid #fff;
+  }
+
 }
 
 
@@ -166,4 +171,16 @@
     }
   }
 
+}
+
+// frickin frackin iPhone 5/SE
+@media (max-width: 374px) {
+  .tier2 {
+    &__cover {
+      img {
+        max-height: map-get( $tx-xxs, 'h' );
+        max-width: map-get( $tx-xxs, 'w2' );
+      }
+    }
+  }
 }
