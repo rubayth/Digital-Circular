@@ -10,7 +10,7 @@ class PromotionalOffers extends Component {
       this.state = {
           sliderSettings: {
               dots: true,
-              infinite: false,
+              infinite: true,
               speed: 500,
               slidesToShow: 2,
               slidesToScroll: 2,
@@ -27,8 +27,8 @@ class PromotionalOffers extends Component {
         }
         if(offer.Tier2 === tier2num && offer.PromoType === "Product"){
           return (
-            <div className="promo promo--product">
-              <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.ProductKey}/>
+            <div className="promo promo--product" key={offer.ProductKey}>
+              <Item toggle={this.props.toggle} imageName={imageName} offer={offer}/>
             </div>
           )
         }

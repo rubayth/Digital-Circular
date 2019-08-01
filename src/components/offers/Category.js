@@ -36,15 +36,15 @@ class Category extends React.Component{
         }
         if (offer.PromoType === "Banner"){
           return (
-            <div className="promo promo--product">
-              <BannerItem banner={offer} key={offer.ProductKey}/>
+            <div className="promo promo--product" key={offer.ProductKey}>
+              <BannerItem banner={offer} />
             </div>
             
           )
         }
         return (
-          <div className="promo promo--product">
-            <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.ProductKey}/>
+          <div className="promo promo--product" key={offer.ProductKey}>
+            <Item toggle={this.props.toggle} imageName={imageName} offer={offer} />
           </div>
           
         )
@@ -58,8 +58,8 @@ class Category extends React.Component{
         var imageName = offer.Image1URL.substring(offer.Image1URL.lastIndexOf('/') + 1);
       }
       return (
-        <div className="promo promo--product">
-          <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.ProductKey}/>
+        <div className="promo promo--product" key={offer.ProductKey}>
+          <Item toggle={this.props.toggle} imageName={imageName} offer={offer}/>
         </div>
       )
     });
