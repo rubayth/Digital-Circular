@@ -9,6 +9,7 @@ class HeroSlider extends Component {
       return (
       <div key={hero}>
         <img src={hero.Image1URL} alt={hero.Category}  className="d-block w-100 desktop img-fluid" />
+        <img src={hero.Image1MobileURL} alt={hero.Category} className="d-block w-100 mobile img-fluid"></img>
       </div>
       )
     })

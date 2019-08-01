@@ -14,8 +14,17 @@ class Category extends React.Component{
                 infinite: true,
                 speed: 500,
                 slidesToShow: 3,
-                slidesToScroll: 4,
+                slidesToScroll: 3,
                 initialSlide: 0,
+                responsive: [
+                  {
+                    breakpoint: 768,
+                    settings:{
+                      slidesToShow: 2,
+                      slidesToScroll: 2
+                    }
+                  }
+                ]
             }
         };
     }
