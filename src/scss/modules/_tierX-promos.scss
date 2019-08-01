@@ -29,7 +29,24 @@ $tx-fs-m: (
 );
 
 
-// xs < 576px
+// xxs < 375px
+$tx-xxs: (
+  'arrow': 16px,
+  'btn-plus-fs': .666rem,
+  'btn-plus-px': .375rem,
+  'btn-plus-py': .15rem,
+  'h': 194px,
+  'mainline': 12px,
+  'overline': 11px,
+  'price': 25px,
+  'uom': 15px,
+  'title': 12px,
+  'w': 134px,
+  'w2': 290px, // tier2 cover image width!
+);
+
+
+// 375px <= xs < 576px
 $tx-xs: (
   'arrow': 20px,
   'btn-plus-fs': .75rem,
@@ -141,6 +158,7 @@ $tx-xxl: (
   'w': 241px,
   'w2': 524px,
 );
+
 
 
 .tierX {
@@ -786,6 +804,100 @@ $tx-xxl: (
       &__bug {
         font-size: 1rem;
       }
+
+    } // .promo
+
+  } // .tierX
+
+}
+
+// because iPhone 5/SE is only 320px wide, which breaks a lot of stuff!!!
+@media (max-width: 374px) {
+  .tierX {
+
+    // remove container padding to get closer to full-width on mobile
+    @include pad-x( 0 );
+
+    &-slider__wrap {
+      // background-color: rgba( 0, 240, 0, .5 );
+      // somehow prevents overflow on mobile...
+      // @JAHA! prevents overflow because of how the slider controls are positioned!
+      @include pad-x( 20px );
+    }
+
+    &-slider {
+      min-height: map-get( $tx-xxs, 'h' );
+
+      &.slick-initialized {
+          display: block;
+      }
+
+
+    }
+
+    .slick-list,
+    .slick-track {
+      min-height: map-get( $tx-xxs, 'h' );
+    }
+
+    .slick-next,
+    .slick-prev {
+      height: map-get($tx-xxs, 'arrow');
+    }
+
+    .slick-next:before,
+    .slick-prev:before {
+      font-size: map-get($tx-xxs, 'arrow');
+    }
+
+    // .slide {
+    .promo {
+      min-height: map-get( $tx-xxs, 'h' );
+
+      // padding required for space between slides!
+      padding: .375rem .2rem;
+
+      &__inner {
+        // background: rgba( 0, 0, 235, .4 );
+
+        min-height: map-get( $tx-xxs, 'h' );
+        min-width: map-get( $tx-xxs, 'w' );
+
+      }
+
+      // MOST OF THIS ONLY CONCERNS PRODUCT OFFERS
+
+      &__overline {
+        font-size: map-get($tx-xxs, 'overline');
+      }
+
+      &__mainline {
+        font-size: map-get($tx-xxs, 'mainline');
+      }
+
+      &__price--wrap {
+        bottom: .375rem;
+      }
+
+      &__price {
+        font-size: map-get($tx-xxs, 'price');
+      }
+
+      &__price--uom {
+        font-size: map-get($tx-xxs, 'uom');
+      }
+
+      //  .promo--banner
+      &--banner {
+
+        img {
+          max-width: map-get( $tx-xxs, 'w' );
+        }
+
+        .banner__btn {
+          bottom: .375rem;
+        }
+      } // .promo--banner
 
     } // .promo
 
