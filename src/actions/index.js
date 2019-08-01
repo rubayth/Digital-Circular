@@ -18,29 +18,35 @@ export const fetchOms = (store_number) => async dispatch => {
     return offer.PromoType;
   });
   
+  const sortHero = _.sortBy(groupedData.Hero, heroOffer => {
+    return parseInt(heroOffer.HeroOrder);
+  });
+
   const sortTier3Covers = _.sortBy(groupedData["Tier3 Cover"], category => {
     return parseInt(category.Tier3);
   });
 
-  const groupedProducts = _.groupBy(groupedData.Product, offer =>{
-    return _.trim(offer.Category);
-  });
+  const sortTier3Offers = _
+    .chain(groupedData.Product)
+    .sortBy( offer => { return parseInt(offer.Tier3Order) })
+    .groupBy( offer => {return _.trim(offer.Category)})
+    .value();
 
-  /*
-  Seems to already be in order...
-  Use this to sort Tier2 Offers
-  const sortTier2Offers = _.map(groupedProducts, category => {
-    return _.sortBy(category, offer => {
-      return parseInt(offer.Tier2Order);
-    })
-  })
-  console.log(sortTier2Offers)
-*/
+  const sortTier2Offers = _
+    .chain(storeOffers)
+    .filter( offer => { return (offer.Tier2 && offer.PromoType === "Product")})
+    .sortBy( offer => parseInt(offer.Tier2Order))
+    .value();
+
 
   let promoType = groupedData;
-  promoType.Product = groupedProducts;
+  promoType.Product = sortTier3Offers;
   promoType["Tier3 Cover"] = sortTier3Covers;
+  promoType.Hero = sortHero;
+  promoType.Tier2Offers = sortTier2Offers;
   
+  //console.log(promoType)
+
   const categories = _.map(groupedData["Tier3 Cover"], (type) => {
     return type.Category
   });
@@ -71,7 +77,7 @@ export const updateOffers = (checkedCategories) => (dispatch, getState) => {
   
 export const searchOffers = (query) => (dispatch, getState) => {
   const { omsData } = getState();
-  const allOffers = _.flatMap(omsData.Product)
+  const allOffers = _.flatMap(omsData.Product);
  
   const offerFilter = allOffers.filter((offer) => {
 

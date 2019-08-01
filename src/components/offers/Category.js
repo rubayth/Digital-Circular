@@ -36,11 +36,17 @@ class Category extends React.Component{
         }
         if (offer.PromoType === "Banner"){
           return (
-            <BannerItem banner={offer} key={offer.ProductKey}/>
+            <div className="promo promo--product" key={offer.ProductKey}>
+              <BannerItem banner={offer} />
+            </div>
+            
           )
         }
         return (
-          <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.ProductKey}/>
+          <div className="promo promo--product" key={offer.ProductKey}>
+            <Item toggle={this.props.toggle} imageName={imageName} offer={offer} />
+          </div>
+          
         )
       });
       return offers;
@@ -52,7 +58,9 @@ class Category extends React.Component{
         var imageName = offer.Image1URL.substring(offer.Image1URL.lastIndexOf('/') + 1);
       }
       return (
-        <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.ProductKey}/>
+        <div className="promo promo--product" key={offer.ProductKey}>
+          <Item toggle={this.props.toggle} imageName={imageName} offer={offer}/>
+        </div>
       )
     });
 
@@ -68,7 +76,7 @@ class Category extends React.Component{
                 <img src={categoryOffer.Image1URL} alt={categoryOffer.Category} className="d-none d-md-block" />
                 </div>
                 <div className="tierX-slider__wrap tier3-slider__wrap col-12 col-md-9">
-                <Slider {...this.state.sliderSettings}>
+                <Slider {...this.state.sliderSettings} >
                     {this.getOffers(categoryOffer.Category)}
                 </Slider>
             </div>

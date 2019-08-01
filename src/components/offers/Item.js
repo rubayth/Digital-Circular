@@ -3,7 +3,6 @@ import altImage from '../../images/product-image_241w.png';
 
 const Item = ({ toggle, offer, imageName }) => {
     return(
-        <div className="promo slide promo--product slick-slide slick-current slick-active" aria-hidden="false">
             <div onClick={()=>toggle(offer)} className="promo__inner slide__inner">
                 <div className="promo__img">
                     <img src={`https://s3.wasabisys.com/hugo-images/flat/${imageName}`} onError={(e)=>{e.target.onerror = null; e.target.src=altImage}} alt={offer.AltText} className="img-fluid d-block" />
@@ -19,12 +18,11 @@ const Item = ({ toggle, offer, imageName }) => {
                     </div>      
                 </div>
                 
-                <button type="button" className="btn btn-primary btn-plus fg-white">
+                <button type="button" className="btn  btn-plus fg-white bg-teal">
                     <i className="fas fa-plus"></i>
                 </button>
-                {offer.Bug === "New" ? <div className="promo__bug">{offer.Bug}</div> : <div></div>} 
+                {offer.Bug ? <div className="promo__bug bg-teal">{offer.Bug}</div> : <div></div>} 
             </div>
-        </div>
     )
 }
     
