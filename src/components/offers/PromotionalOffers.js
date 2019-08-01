@@ -27,7 +27,9 @@ class PromotionalOffers extends Component {
         }
         if(offer.Tier2 === tier2num && offer.PromoType === "Product"){
           return (
-            <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.ProductKey}/>
+            <div className="promo promo--product">
+              <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.ProductKey}/>
+            </div>
           )
         }
     })
