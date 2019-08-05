@@ -5,7 +5,7 @@ const Item = ({ toggle, offer, imageName }) => {
     return(
             <div onClick={()=>toggle(offer)} className="promo__inner slide__inner">
                 <div className="promo__img">
-                    <img src={`https://s3.wasabisys.com/hugo-images/flat/${imageName}`} onError={(e)=>{e.target.onerror = null; e.target.src=altImage}} alt={offer.AltText} className="img-fluid d-block" />
+                    <img src={imageName} onError={(e)=>{e.target.onerror = null; e.target.src=altImage}} alt={offer.AltText} className="img-fluid d-block" />
                 </div>
 
                 <div className="promo__text--wrap">

@@ -18,7 +18,7 @@ class SearchOffers extends Component {
         return(
             <div className="main-search mr-lg-3">
                 <Form className="search-form" inline>
-                    <i className="btn fas fa-search"></i>
+                    <i className="btn btn-search fas fa-search"></i>
                     <Input type="search" className="search-field" onChange={this.handleSearch} placeholder="Search Weekly Ad" value={this.props.searchQuery}/>
                 </Form>
             </div>

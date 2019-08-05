@@ -21,14 +21,10 @@ class PromotionalOffers extends Component {
 
   getPromotionalOffers(tier2num) {
     const offer = _.map(this.props.omsData.Tier2Offers, (offer) => {
-        //Just a freaking hack for the images to show...we need to fix.
-        if (offer.Image1URL !== null) {
-          var imageName = offer.Image1URL.substring(offer.Image1URL.lastIndexOf('/') + 1);
-        }
         if(offer.Tier2 === tier2num){
           return (
             <div className="promo promo--product" key={offer.ProductKey}>
-              <Item toggle={this.props.toggle} imageName={imageName} offer={offer}/>
+              <Item toggle={this.props.toggle} imageName={offer.Image1URL} offer={offer}/>
             </div>
           )
         }

@@ -30,7 +30,7 @@ class Category extends React.Component{
     }
 
   insertBanner(category){
-    const products = this.props.offerData[category].slice();
+    const products = this.props.offerData[_.trimEnd(category)].slice();
     products.splice((this.props.banner.Tier3Order - 1), 0, this.props.banner)
     return products;
   }
@@ -39,13 +39,10 @@ class Category extends React.Component{
     if(this.props.banner){
       const products = this.insertBanner(category);
       const offers = _.map(products, (offer) => {
-        //Just a freaking hack for the images to show...we need to fix.
-        if (offer.Image1URL !== null) {
-          var imageName = offer.Image1URL.substring(offer.Image1URL.lastIndexOf('/') + 1);
-        }
+        
         if (offer.PromoType === "Banner"){
           return (
-            <div className="promo promo--product" key={offer.ProductKey}>
+            <div className="promo promo--banner" key={offer.ProductKey}>
               <BannerItem banner={offer} />
             </div>
             
@@ -53,7 +50,7 @@ class Category extends React.Component{
         }
         return (
           <div className="promo promo--product" key={offer.ProductKey}>
-            <Item toggle={this.props.toggle} imageName={imageName} offer={offer} />
+            <Item toggle={this.props.toggle} imageName={offer.Image1URL} offer={offer} />
           </div>
           
         )
@@ -62,13 +59,9 @@ class Category extends React.Component{
     }
     //else no banner
     const offers = _.map(this.props.offerData[category], (offer) => {
-      //Just a freaking hack for the images to show...we need to fix.
-      if (offer.Image1URL !== null) {
-        var imageName = offer.Image1URL.substring(offer.Image1URL.lastIndexOf('/') + 1);
-      }
       return (
         <div className="promo promo--product" key={offer.ProductKey}>
-          <Item toggle={this.props.toggle} imageName={imageName} offer={offer}/>
+          <Item toggle={this.props.toggle} imageName={offer.Image1URL} offer={offer}/>
         </div>
       )
     });
@@ -90,10 +83,15 @@ class Category extends React.Component{
           Produce: "rgb(104, 123, 57)",
           Seafood: "rgb(63, 145, 185)",
           "Wine & Spirits": "rgb(125, 163, 184)",
-          "Seasonal Savings": "#ea6425"
+          "Seasonal Savings": "#ea6425",
+          "Meat & Seafood": "rgb(206, 49, 44)",
+          "Fresh Produce": "rgb(104, 123, 57)",
+          "Natural & Organic": "rgb(36, 68, 119)",
+          "Beer & Wine": "rgb(125, 163, 184)",
         }
 
         const categoryOffer = this.props.categoryOffer;
+        console.log(categoryOffer.Category)
         return(
         <div className="tierX-row tier3-row row">
             <div className="tierX__cover tier3__cover col-12 col-md-3">

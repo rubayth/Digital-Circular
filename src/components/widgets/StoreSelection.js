@@ -36,6 +36,7 @@ class StoreSelection extends Component {
             myStore: cookies.get('store') || {
                 store_number: "",
                 name:"",
+                api:"",
                 address:{
                     street:"",
                     city:"",
@@ -52,7 +53,7 @@ class StoreSelection extends Component {
     async componentDidMount(){
         //check if a store was selected
         if (this.state.myStore.store_number){
-            await this.props.fetchOms(this.state.myStore.store_number);
+            await this.props.fetchOms(this.state.myStore);
             //find ad dates
             const offerWithDate = _.find(this.props.offerData.Grocery, 'AdDate') || "";
             this.setState({
@@ -67,8 +68,8 @@ class StoreSelection extends Component {
         this.props.toggleStoreModal(this.props.storeModal);
         this.props.searchOffers(""); //on store change reset search query
 
-        const {store_number, name, address} = store;
-        await this.props.fetchOms(store_number);
+        const {store_number, name, address, api} = store;
+        await this.props.fetchOms(store);
         //find ad dates
         const offerWithDate = _.find(this.props.offerData, 'AdDate') || "";
         this.setState({
@@ -82,6 +83,7 @@ class StoreSelection extends Component {
                     state: address.state,
                     zip: address.zip_code
                 },
+                api
             }
         });
         
@@ -139,7 +141,7 @@ class StoreSelection extends Component {
             const {store_number, name, address} = store;
             return(
                     <Col className="col-12 col-md-6 my-3 text-center" key={store_number}>
-                        <Card className={store_number === this.state.myStore.store_number ? "store user-store border border-secondary" : "store"}>
+                        <Card className={store_number === this.state.myStore.store_number ? "store user-store border border-teal" : "store"}>
                             <CardBody>
                                 <CardTitle className="store__name">Store #{store_number + " " + name}</CardTitle>
                                 <CardText>
@@ -149,7 +151,7 @@ class StoreSelection extends Component {
                                 </CardText>
                                 {store_number === this.state.myStore.store_number 
                                 ? <CardText>This is your store.</CardText>
-                                : <Button className="btn btn-primary btn-store-select fg-white" onClick={() => this.onStoreBtnClick(store)}>Make this my store</Button>
+                                : <Button className="btn bg-teal btn-store-select fg-white" onClick={() => this.onStoreBtnClick(store)}>Make this my store</Button>
                                 }
                             </CardBody>
                         </Card>
@@ -178,7 +180,7 @@ class StoreSelection extends Component {
     render() {
         return(
             <div className="d-none d-md-block pr-0">
-                <Button color="secondary " outline onClick={ () => this.props.toggleStoreModal(this.props.storeModal)}>
+                <Button color="teal " outline onClick={ () => this.props.toggleStoreModal(this.props.storeModal)}>
                     <i className="map-marker fas fa-map-marker-alt"></i>
                     <span className="user-store__name">
                      {this.state.myStore.store_number ? `Store #${this.state.myStore.store_number}` : " No Store Selected"}</span>

@@ -4,7 +4,7 @@ class BannerItem extends React.Component{
 
     renderContent(){
         const {Href, Mainline1, Image1URL, ShowButton} = this.props.banner;
-        if(ShowButton)
+        if(Href)
             return(
                 <a className="promo__link d-block" href={Href} target="_blank" rel="noopener noreferrer" tabIndex="0">
                     <div className="banner__wrap">
@@ -22,10 +22,8 @@ class BannerItem extends React.Component{
 
     render(){
         return(
-            <div className="promo slide promo--banner" aria-hidden="false">
-                <div className="promo__inner slide__inner">
-                    {this.renderContent()}
-                </div>
+            <div className="promo__inner slide__inner">
+                {this.renderContent()}
             </div>
         )
     }

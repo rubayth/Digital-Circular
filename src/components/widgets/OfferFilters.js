@@ -59,7 +59,7 @@ class OfferFilters extends Component {
       //Get list of categories from offer 
       return this.props.offerCategories.map((filter, index) => { 
           return(
-            <Col key={index} sm={4}>
+            <Col key={index} className="category__item col-12 col-lg-4">
               <FormGroup check>
                 <Label check key={index}>
                     <Input 
@@ -79,26 +79,35 @@ class OfferFilters extends Component {
 
   render () {
     return(
-      <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-            <DropdownToggle outline color="secondary" block caret disabled={Boolean(this.props.searchQuery)}>
-              Filter Offers
-            </DropdownToggle>
-            <DropdownMenu>
-                <Form className="form-check-inline">
-                    <Container>
-                      <Row>
-                        <Col className="text-center">
-                          <Button onClick={this.onClearClick}>Clear All</Button>
-                          <DropdownItem divider />
-                        </Col>
-                      </Row>
-                      <Row>
-                        {this.renderLabels()}
-                      </Row>
-                    </Container>
-                </Form> 
-            </DropdownMenu>
-          </Dropdown>
+      <div className="category-filter__handle">
+        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+          <DropdownToggle outline color="teal" block caret disabled={Boolean(this.props.searchQuery)}>
+            Filter Offers
+          </DropdownToggle>
+          <DropdownMenu  className="container"
+            style={{
+              width: "100vw",
+              position: "relative",
+              left: "50%",
+              right: "50%",
+              marginLeft: "-50vw",
+              marginRight: "-50vw"
+              }}>
+                  <Container>
+                    <Row >
+                      <Col className="col-12 text-center">
+                        <Button onClick={this.onClearClick} color="teal">Clear All</Button>
+                        <DropdownItem divider />
+                      </Col>
+                    </Row>
+                    <Row >
+                      {this.renderLabels()}
+                    </Row>
+                  </Container>
+          </DropdownMenu>
+        </Dropdown>
+      </div>
+      
     )
   }
         
