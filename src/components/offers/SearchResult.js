@@ -14,8 +14,9 @@ class SearchResult extends React.Component{
         const offer = _.map(this.props.allOffers, (offer) => {
             return (
                 <div className="col-6 col-md-3" key={offer.ProductKey}>
+                    <div className="promo slide promo--product">
                         <Item toggle={this.props.toggle} imageName={offer.Image1URL} offer={offer} key={offer.ProductKey}/>
-                    
+                    </div>
                 </div>
             )
         })

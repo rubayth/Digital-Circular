@@ -8,8 +8,8 @@ class HeroSlider extends Component {
     const heroImgs = _.map(this.props.omsData.Hero, hero => {
       if(hero.Href.length > 1){
         return (
-          <a href={hero.Href} target="_blank" rel="noopener noreferrer" tabIndex="0"> 
-            <div key={hero}>
+          <a href={hero.Href} key={hero.UniqueId} target="_blank" rel="noopener noreferrer" tabIndex="0"> 
+            <div>
               <img src={hero.Image1URL} alt={hero.Category}  className="d-block w-100 desktop img-fluid" />
               <img src={hero.Image1MobileURL} alt={hero.Category} className="d-block w-100 mobile img-fluid"></img>
             </div>
