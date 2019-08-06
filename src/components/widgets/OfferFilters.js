@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
+import {FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem , Button} from 'reactstrap';
 import _ from 'lodash';
 import { connect } from 'react-redux';
@@ -59,7 +59,7 @@ class OfferFilters extends Component {
       //Get list of categories from offer 
       return this.props.offerCategories.map((filter, index) => { 
           return(
-            <Col key={index} className="category__item col-12 col-lg-4">
+            <Col key={index} className="category__item col-12">
               <FormGroup check>
                 <Label check key={index}>
                     <Input 
@@ -81,22 +81,17 @@ class OfferFilters extends Component {
     return(
       <div className="category-filter__handle">
         <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-          <DropdownToggle outline color="teal" block caret disabled={Boolean(this.props.searchQuery)}>
+          <DropdownToggle outline color="grey" block caret disabled={Boolean(this.props.searchQuery)}>
             Filter Offers
           </DropdownToggle>
-          <DropdownMenu  className="container"
+          <DropdownMenu  className="container col__category-filter container"
             style={{
-              width: "100vw",
-              position: "relative",
-              left: "50%",
-              right: "50%",
-              marginLeft: "-50vw",
-              marginRight: "-50vw"
+              position: "absolute"
               }}>
                   <Container>
                     <Row >
                       <Col className="col-12 text-center">
-                        <Button onClick={this.onClearClick} color="teal">Clear All</Button>
+                        <Button onClick={this.onClearClick} color="blue">Clear All</Button>
                         <DropdownItem divider />
                       </Col>
                     </Row>

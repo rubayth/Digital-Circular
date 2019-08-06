@@ -18,10 +18,10 @@ const Item = ({ toggle, offer, imageName }) => {
                     </div>      
                 </div>
                 
-                <button type="button" className="btn  btn-plus fg-white bg-red">
+                <button type="button" className="btn  btn-plus fg-white bg-blue">
                     <i className="fas fa-plus"></i>
                 </button>
-                {offer.Bug ? <div className="promo__bug bg-red">{offer.Bug}</div> : <div></div>} 
+                {offer.Bug ? <div className="promo__bug">{offer.Bug}</div> : <div></div>} 
             </div>
     )
 }

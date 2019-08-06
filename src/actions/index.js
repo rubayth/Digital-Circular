@@ -44,8 +44,7 @@ export const fetchOms = ({ store_number, api }) => async dispatch => {
   promoType["Tier3 Cover"] = sortTier3Covers;
   promoType.Hero = sortHero;
   promoType.Tier2Offers = sortTier2Offers;
-  
-  console.log(promoType)
+
 
   const categories = _.map(groupedData["Tier3 Cover"], (type) => {
     return type.Category

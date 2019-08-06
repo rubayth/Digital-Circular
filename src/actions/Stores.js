@@ -12,7 +12,7 @@ export const storeData = {
           "latitude": "33.811038",
           "longitude": "-84.131682"
         },
-        "name": "ShopLocalDemo",
+        "name": "Kroger",
         "api": "https://promo-api-dev.azurewebsites.net/api/selectp?method=hugos_get_weekly_ad_offers",
         "retail_store_events": [
           {
@@ -83,7 +83,7 @@ export const storeData = {
           "latitude": "40.591629",
           "longitude": "-98.365087"
         },
-        "name": "Dollar General",
+        "name": "Kroger",
         "api": "https://promo-api-dev.azurewebsites.net/api/selectp?method=hugos_get_weekly_ad_offers",
         "retail_store_events": [
           {
@@ -225,7 +225,7 @@ export const storeData = {
           "latitude": "44.394885",
           "longitude": "-89.806212"
         },
-        "name": "ShopLocalDemo2",
+        "name": "Kroger",
         "api": "https://promo-api-dev.azurewebsites.net/api/selectp?method=hugos_get_weekly_ad_offers",
         "retail_store_events": [
           {

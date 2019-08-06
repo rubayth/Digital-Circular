@@ -1,5 +1,25 @@
 // all the places where the user's store is displayed!
 
+.store-info {
+  .btn-outline-blue {
+    color: #0068b3;
+    padding: 0;
+  }
+
+  .event-dates {
+    font-size: 14px;
+  }
+}
+
+//Store Selection Modal
+#storeSelectModal {
+  .store {
+    .bg-blue {
+      background-color: #0068b3;
+    }
+  }
+}
+
 .user-store {
   &__btn {
     background-color: transparent;
