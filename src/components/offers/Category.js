@@ -10,7 +10,7 @@ class Category extends React.Component{
         super(props);
         this.state = {
             sliderSettings: {
-                dots: true,
+                dots: false,
                 infinite: true,
                 speed: 500,
                 slidesToShow: 3,
@@ -85,13 +85,12 @@ class Category extends React.Component{
           "Wine & Spirits": "rgb(125, 163, 184)",
           "Seasonal Savings": "#ea6425",
           "Meat & Seafood": "rgb(206, 49, 44)",
-          "Fresh Produce": "rgb(104, 123, 57)",
-          "Natural & Organic": "rgb(36, 68, 119)",
-          "Beer & Wine": "rgb(125, 163, 184)",
+          "Fresh Produce": "rgb(0, 92, 169)",
+          "Natural & Organic": "rgb(105, 159, 77)",
+          "Beer & Wine": "rgb(0, 92, 169)",
         }
 
         const categoryOffer = this.props.categoryOffer;
-        console.log(categoryOffer.Category)
         return(
         <div className="tierX-row tier3-row row">
             <div className="tierX__cover tier3__cover col-12 col-md-3">

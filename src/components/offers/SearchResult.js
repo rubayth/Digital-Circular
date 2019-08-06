@@ -12,13 +12,9 @@ class SearchResult extends React.Component{
 
     renderOffers() {
         const offer = _.map(this.props.allOffers, (offer) => {
-            //Just a freaking hack for the images to show...we need to fix.
-            if (offer.Image1URL !== null) {
-            var imageName = offer.Image1URL.substring(offer.Image1URL.lastIndexOf('/') + 1);
-            }
             return (
                 <div className="col-6 col-md-3" key={offer.ProductKey}>
-                        <Item toggle={this.props.toggle} imageName={imageName} offer={offer} key={offer.ProductKey}/>
+                        <Item toggle={this.props.toggle} imageName={offer.Image1URL} offer={offer} key={offer.ProductKey}/>
                     
                 </div>
             )

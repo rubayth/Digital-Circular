@@ -9,7 +9,10 @@ class BannerItem extends React.Component{
                 <a className="promo__link d-block" href={Href} target="_blank" rel="noopener noreferrer" tabIndex="0">
                     <div className="banner__wrap">
                         <img className="d-block img-fluid" src={Image1URL} alt={Mainline1}/>
-                        <button className="banner__btn btn fg-white bg-teal" tabIndex="0">{ShowButton}</button>
+                        {ShowButton
+                        && <button className="banner__btn btn fg-white bg-teal" tabIndex="0">{ShowButton}</button> 
+                        }
+                        
                     </div>
                 </a>
             )
