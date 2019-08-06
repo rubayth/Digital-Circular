@@ -12,7 +12,8 @@ export const storeData = {
           "latitude": "33.811038",
           "longitude": "-84.131682"
         },
-        "name": "ShopLocalDemo",
+        "name": "Kroger",
+        "api": "https://promo-api-dev.azurewebsites.net/api/selectp?method=hugos_get_weekly_ad_offers",
         "retail_store_events": [
           {
             "ID": 1513,
@@ -68,7 +69,7 @@ export const storeData = {
           "comment_count": "0",
           "filter": "raw"
         },
-        "store_number": "616"
+        "store_number": "648"
       },
       {
         "address": {
@@ -82,7 +83,8 @@ export const storeData = {
           "latitude": "40.591629",
           "longitude": "-98.365087"
         },
-        "name": "Dollar General",
+        "name": "Kroger",
+        "api": "https://promo-api-dev.azurewebsites.net/api/selectp?method=hugos_get_weekly_ad_offers",
         "retail_store_events": [
           {
             "ID": 1513,
@@ -152,7 +154,8 @@ export const storeData = {
           "latitude": "47.93217",
           "longitude": "-97.054545"
         },
-        "name": "Dollar General",
+        "name": "Kroger",
+        "api":"https://promo-api-dev.azurewebsites.net/api/selectp?method=hugos_get_weekly_ad_offers",
         "retail_store_events": [
           {
             "ID": 3,
@@ -208,7 +211,7 @@ export const storeData = {
           "comment_count": "0",
           "filter": "raw"
         },
-        "store_number": "632"
+        "store_number": "650"
       },
       {
         "address": {
@@ -222,7 +225,8 @@ export const storeData = {
           "latitude": "44.394885",
           "longitude": "-89.806212"
         },
-        "name": "ShopLocalDemo2",
+        "name": "Kroger",
+        "api": "https://promo-api-dev.azurewebsites.net/api/selectp?method=hugos_get_weekly_ad_offers",
         "retail_store_events": [
           {
             "ID": 2,
@@ -292,7 +296,8 @@ export const storeData = {
           "latitude": "44.394885",
           "longitude": "-89.806212"
         },
-        "name": "Dollar General",
+        "name": "Kroger",
+        "api": "https://promo-api-dev.azurewebsites.net/api/selectp?method=hugos_get_weekly_ad_offers",
         "retail_store_events": [
           {
             "ID": 2,
@@ -348,7 +353,7 @@ export const storeData = {
           "comment_count": "0",
           "filter": "raw"
         },
-        "store_number": "634"
+        "store_number": "651"
       },
       {
         "address": {
@@ -362,7 +367,8 @@ export const storeData = {
           "latitude": "44.394885",
           "longitude": "-89.806212"
         },
-        "name": "Dollar General",
+        "name": "Kroger",
+        "api":"https://promo-api-dev.azurewebsites.net/api/selectp?method=kroger_get_weekly_ad_offers",
         "retail_store_events": [
           {
             "ID": 2,
@@ -418,7 +424,7 @@ export const storeData = {
           "comment_count": "0",
           "filter": "raw"
         },
-        "store_number": "5"
+        "store_number": "659"
       }
     ]
 }
