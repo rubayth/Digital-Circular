@@ -13,6 +13,13 @@ export const fetchOms = ({ store_number, api }) => async dispatch => {
   
   const storeOffers = _.filter(res.data.Table, {EventId: parseInt(store_number)}
   );
+  const bugs = _.chain(storeOffers)
+    .map(offer => { 
+      if(offer.Bug) return offer.Bug 
+      else return null})
+    .uniq()
+    .value();
+
   const groupedData = _.groupBy(storeOffers, offer => {
     return offer.PromoType;
   });
@@ -41,6 +48,7 @@ export const fetchOms = ({ store_number, api }) => async dispatch => {
   let promoType = groupedData;
   promoType.Product = sortTier3Offers;
   promoType["Tier3 Cover"] = sortTier3Covers;
+  promoType.Bugs=bugs;
   promoType.Hero = sortHero;
   promoType.Tier2Offers = sortTier2Offers;
   
@@ -49,6 +57,7 @@ export const fetchOms = ({ store_number, api }) => async dispatch => {
   const categories = _.map(groupedData["Tier3 Cover"], (type) => {
     return type.Category
   });
+  const filters= _.concat(categories, bugs);
 
   dispatch({type:FETCH_OMS, payload:promoType});
   dispatch({type:ALL_OFFERS, payload: storeOffers})
@@ -60,13 +69,24 @@ export const fetchOms = ({ store_number, api }) => async dispatch => {
 export const updateOffers = (checkedCategories) => (dispatch, getState) => {
     const { omsData } = getState();
     //if there are filters...
-    if(checkedCategories.length) {
-      const newState = _.pick(omsData.Product, checkedCategories);
-        //return (checkedCategories.includes(offer.Category));
-      
+    const bugFilter = _.mapValues(omsData.Product, category => {
+      return _.filter(category, offer => {
+        return _.includes(checkedCategories, offer.Bug)
+      })
+    });
+
+    if (_.flatMap(bugFilter).length > 0){
+      console.log(bugFilter)
+      const newState = _.pick(bugFilter, checkedCategories);
       dispatch({type: UPDATE_OFFERS, payload: newState});
       dispatch({type: UPDATE_FILTERED_CATEGORIES, payload: checkedCategories})
     }
+    else if(checkedCategories.length) {
+      const newState = _.pick(omsData.Product, checkedCategories);
+      dispatch({type: UPDATE_OFFERS, payload: newState});
+      dispatch({type: UPDATE_FILTERED_CATEGORIES, payload: checkedCategories})
+    }
+    
     //if no filters, reset offer data and clear filteredCategories state
     else {
         dispatch({type: UPDATE_OFFERS, payload: omsData.Product});

@@ -56,8 +56,8 @@ class OfferFilters extends Component {
     }
     
     renderLabels(){
-      //Get list of categories from offer 
-      return this.props.offerCategories.map((filter, index) => { 
+      const filters= _.concat(this.props.offerCategories, this.props.omsData.Bugs);
+      return filters.map((filter, index) => { 
           return(
             <Col key={index} className="category__item col-12 col-lg-4">
               <FormGroup check>
@@ -86,12 +86,6 @@ class OfferFilters extends Component {
           </DropdownToggle>
           <DropdownMenu  className="container"
             style={{
-              width: "100vw",
-              position: "relative",
-              left: "50%",
-              right: "50%",
-              marginLeft: "-50vw",
-              marginRight: "-50vw"
               }}>
                   <Container>
                     <Row >
@@ -114,11 +108,12 @@ class OfferFilters extends Component {
     
 }  
 
-function mapStateToProps({ categories, allOffers, searchQuery }) {
+function mapStateToProps({ categories, allOffers, searchQuery, omsData }) {
   return { 
     offerCategories: categories,
     allOffers,
-    searchQuery 
+    searchQuery ,
+    omsData
   };
 }
 export default connect(mapStateToProps, actions)(OfferFilters);
