@@ -6,7 +6,6 @@ export const toggleStoreModal = ( state ) => dispatch => {
   dispatch({type: STORE_MODAL, payload: !state});
 }
 export const fetchOms = ({ store_number, api }) => async dispatch => {
-  console.log(api)
   dispatch({ type: FETCH_OMS_PENDING });
   dispatch({ type: UPDATE_OFFERS_PENDING});
 
