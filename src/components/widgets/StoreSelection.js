@@ -55,16 +55,18 @@ class StoreSelection extends Component {
         if (this.state.myStore.store_number){
             await this.props.fetchOms(this.state.myStore);
             //find ad dates
-            const offerWithDate =  _.find(this.props.offerData.Grocery, offer => {
-               return offer.AdDate.length > 1
-            });
-            //format dates
-            const startDate = offerWithDate.AdDate.replace(/-/g, '/');
-            const endDate = offerWithDate.EndDate.replace(/-/g, '/');
-            this.setState({
-                startDate,
-                endDate
-            })
+            if(this.props.allOffers.length > 0){
+                const offerWithDate =  _.find(this.props.offerData.Grocery, offer => {
+                return offer.AdDate.length > 1
+                });
+                //format dates
+                const startDate = offerWithDate.AdDate.replace(/-/g, '/');
+                const endDate = offerWithDate.EndDate.replace(/-/g, '/');
+                this.setState({
+                    startDate,
+                    endDate
+                })
+            }
             this.sortStores(this.state.origin);
         }
     }
@@ -75,28 +77,29 @@ class StoreSelection extends Component {
 
         const {store_number, name, address, api} = store;
         await this.props.fetchOms(store);
-        //find ad dates
-        const offerWithDate =  _.find(this.props.offerData.Grocery, offer => {
-            return offer.AdDate.length > 1
-         });
-        //format dates
-        const startDate = offerWithDate.AdDate.replace(/-/g, '/');
-        const endDate = offerWithDate.EndDate.replace(/-/g, '/');
-        this.setState({
-            startDate,
-            endDate,
-            myStore:{
-                store_number,
-                name,
-                address: {
-                    street: address.street,
-                    state: address.state,
-                    zip: address.zip_code
-                },
-                api
-            }
-        });
-        
+        if(this.props.allOffers.length > 0){
+            //find ad dates
+            const offerWithDate =  _.find(this.props.offerData.Grocery, offer => {
+                return offer.AdDate.length > 1
+            });
+            //format dates
+            const startDate = offerWithDate.AdDate.replace(/-/g, '/') || "";
+            const endDate = offerWithDate.EndDate.replace(/-/g, '/');
+            this.setState({
+                startDate,
+                endDate,
+                myStore:{
+                    store_number,
+                    name,
+                    address: {
+                        street: address.street,
+                        state: address.state,
+                        zip: address.zip_code
+                    },
+                    api
+                }
+            });
+        }
         const { cookies } = this.props;
         cookies.set('store', store, { path: '/', maxAge: 60*60*24*30 });
     }
@@ -235,10 +238,11 @@ class StoreSelection extends Component {
 
 }
 
-function mapStateToProps({ currentOffers, storeModal, omsData }) {
+function mapStateToProps({ currentOffers, storeModal, allOffers }) {
     return { 
         offerData: currentOffers, 
-        storeModal 
+        storeModal ,
+        allOffers
     };
   }
 
