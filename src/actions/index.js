@@ -15,7 +15,7 @@ export const fetchOms = ({ store_number, api }) => async dispatch => {
   );
   const bugs = _
     .chain(storeOffers)
-    .filter(offer => {return offer.Bug})
+    .filter(offer => {return (offer.Bug && offer.Bug !== " ")})
     .map(offer => { 
       if(offer.Bug) return offer.Bug 
       else return null})
