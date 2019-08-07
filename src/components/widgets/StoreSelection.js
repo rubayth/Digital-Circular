@@ -164,7 +164,7 @@ class StoreSelection extends Component {
                                 </CardText>
                                 {store_number === this.state.myStore.store_number 
                                 ? <CardText>This is your store.</CardText>
-                                : <Button className="btn bg-teal btn-store-select fg-white" onClick={() => this.onStoreBtnClick(store)}>Make this my store</Button>
+                                : <Button className="btn bg-blue btn-store-select fg-white" onClick={() => this.onStoreBtnClick(store)}>Make this my store</Button>
                                 }
                             </CardBody>
                         </Card>
@@ -192,8 +192,8 @@ class StoreSelection extends Component {
     }
     render() {
         return(
-            <div className="d-none d-md-block pr-0">
-                <Button color="teal " outline 
+            <div className="d-none d-md-block pr-0 store-info">
+                <Button color="blue" outline 
                     disabled={this.props.omsData === false} 
                     onClick={ () => this.props.toggleStoreModal(this.props.storeModal)}
                     >
@@ -202,7 +202,7 @@ class StoreSelection extends Component {
                      {this.state.myStore.store_number ? `Store #${this.state.myStore.store_number}` : " No Store Selected"}</span>
                     <span className="user-store__city d-none d-md-inline"> {this.state.myStore.name}</span>
                 </Button>
-                    <Modal isOpen={this.props.storeModal} toggle={ () => this.props.toggleStoreModal(this.props.storeModal)}>
+                    <Modal id="storeSelectModal" size="lg" isOpen={this.props.storeModal} toggle={ () => this.props.toggleStoreModal(this.props.storeModal)}>
                         <ModalHeader className="pb-0" toggle={ () => this.props.toggleStoreModal(this.props.storeModal)}>
                         {this.state.storesSorted  //if location is found and stores sorted
                             ?

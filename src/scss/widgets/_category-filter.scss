@@ -154,6 +154,17 @@
   //   display: none;
   // }
 
+  .btn-outline-grey {
+    color: #a6adb4;
+    border-color: #a6adb4;
+  }
+
+  .btn-blue {
+    color: #ffffff;
+    background-color: #0068b3;
+    border-color: #0068b3;
+  }
+
 }
 
 @include media-breakpoint-up( lg ) {

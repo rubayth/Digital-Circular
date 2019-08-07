@@ -15,7 +15,7 @@ class App extends Component {
 
   render() {
     return (
-      <Container className="my-5 py-5 circular-container">
+      <Container className="circular-container">
         <FilterContainer/>
         {this.props.cookies.get('store')
           ? <div>

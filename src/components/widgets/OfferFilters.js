@@ -80,7 +80,7 @@ class OfferFilters extends Component {
       const filters= _.concat(categories, this.props.omsData.Bugs);
       return filters.map((filter, index) => { 
           return(
-            <Col key={index} className="category__item col-12 col-lg-4">
+            <Col key={index} className="category__item col-12">
               <FormGroup check>
                 <Label check key={index}>
                     <Input 
@@ -102,16 +102,17 @@ class OfferFilters extends Component {
     return(
       <div className="category-filter__handle">
         <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-          <DropdownToggle outline color="teal" block caret disabled={Boolean(this.props.searchQuery) || this.props.omsData === false}>
+          <DropdownToggle outline color="grey" block caret disabled={Boolean(this.props.searchQuery) || this.props.omsData === false}>
             Filter Offers
           </DropdownToggle>
-          <DropdownMenu  className="container"
+          <DropdownMenu  className="container col__category-filter container"
             style={{
+              position: "absolute"
               }}>
                   <Container>
                     <Row >
                       <Col className="col-12 text-center">
-                        <Button onClick={this.onClearClick} color="teal">Clear All</Button>
+                        <Button onClick={this.onClearClick} color="blue">Clear All</Button>
                         <DropdownItem divider />
                       </Col>
                     </Row>
