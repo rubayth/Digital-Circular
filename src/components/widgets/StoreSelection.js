@@ -56,7 +56,7 @@ class StoreSelection extends Component {
             await this.props.fetchOms(this.state.myStore);
             //find ad dates
             if(this.props.allOffers.length > 0){
-                const offerWithDate =  _.find(this.props.offerData.Grocery, offer => {
+                const offerWithDate =  _.find(this.props.allOffers, offer => {
                 return offer.AdDate.length > 1
                 });
                 //format dates
@@ -79,7 +79,7 @@ class StoreSelection extends Component {
         await this.props.fetchOms(store);
         if(this.props.allOffers.length > 0){
             //find ad dates
-            const offerWithDate =  _.find(this.props.offerData.Grocery, offer => {
+            const offerWithDate =  _.find(this.props.allOffers, offer => {
                 return offer.AdDate.length > 1
             });
             //format dates
@@ -193,7 +193,10 @@ class StoreSelection extends Component {
     render() {
         return(
             <div className="d-none d-md-block pr-0">
-                <Button color="teal " outline onClick={ () => this.props.toggleStoreModal(this.props.storeModal)}>
+                <Button color="teal " outline 
+                    disabled={this.props.omsData === false} 
+                    onClick={ () => this.props.toggleStoreModal(this.props.storeModal)}
+                    >
                     <i className="map-marker fas fa-map-marker-alt"></i>
                     <span className="user-store__name">
                      {this.state.myStore.store_number ? `Store #${this.state.myStore.store_number}` : " No Store Selected"}</span>
@@ -238,11 +241,11 @@ class StoreSelection extends Component {
 
 }
 
-function mapStateToProps({ currentOffers, storeModal, allOffers }) {
+function mapStateToProps({ storeModal, allOffers, omsData }) {
     return { 
-        offerData: currentOffers, 
-        storeModal ,
-        allOffers
+        storeModal,
+        allOffers,
+        omsData
     };
   }
 

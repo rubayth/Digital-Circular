@@ -30,7 +30,6 @@ class Category extends React.Component{
     }
 
   insertBanner(category){
-    console.log(this.props.offerData)
     const products = this.props.offerData[_.trimEnd(category)].slice();
     products.splice((this.props.banner.Tier3Order - 1), 0, this.props.banner)
     return products;

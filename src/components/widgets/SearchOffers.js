@@ -17,16 +17,19 @@ class SearchOffers extends Component {
     render() {
         return(
             <div className="main-search mr-lg-3">
-                <Form className="search-form" inline>
+                <Form className="search-form" inline >
                     <i className="btn btn-search fas fa-search"></i>
-                    <Input type="search" className="search-field" onChange={this.handleSearch} placeholder="Search Weekly Ad" value={this.props.searchQuery}/>
+                    <Input type="search" className="search-field" onChange={this.handleSearch} placeholder="Search Weekly Ad" value={this.props.searchQuery} disabled={this.props.omsData === false}/>
                 </Form>
             </div>
         );
     }
 }
 
-function mapStateToProps({ searchQuery }) {
-    return { searchQuery };
+function mapStateToProps({ searchQuery, omsData }) {
+    return { 
+        searchQuery,
+        omsData
+     };
   }
 export default connect(mapStateToProps, actions)(SearchOffers);
