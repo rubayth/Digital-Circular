@@ -88,18 +88,20 @@ class StoreSelection extends Component {
             this.setState({
                 startDate,
                 endDate,
-                myStore:{
-                    store_number,
-                    name,
-                    address: {
-                        street: address.street,
-                        state: address.state,
-                        zip: address.zip_code
-                    },
-                    api
-                }
             });
         }
+        this.setState({
+            myStore:{
+                store_number,
+                name,
+                address: {
+                    street: address.street,
+                    state: address.state,
+                    zip: address.zip_code
+                },
+                api
+            }
+        });
         const { cookies } = this.props;
         cookies.set('store', store, { path: '/', maxAge: 60*60*24*30 });
     }
