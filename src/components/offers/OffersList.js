@@ -68,8 +68,9 @@ class OfferList extends Component {
   }
   
   renderCategories(){
-    if (this.props.filteredCategories.length > 0) {
-      return _.map(this.props.filteredCategories, (category) => {
+    const filtersWithoutBugs =_.filter(this.props.filteredCategories, filter => !(_.includes(this.props.omsData.Bugs, filter)));
+    if (filtersWithoutBugs.length > 0) {
+      return _.map(filtersWithoutBugs, (category) => {
         return _.map(this.props.omsData['Tier3 Cover'], (categoryOffer) => {
           if( categoryOffer.Category === category){
             const banner = _.find(this.props.omsData.Banner, {'Category': categoryOffer.Category});
@@ -121,7 +122,7 @@ class OfferList extends Component {
       <div>
         { this.props.omsData === false || this.props.offerData === false
           ? this.isPending()
-          : this.props.offerData.length === 0 //no offers to display
+          : this.props.allOffers.length === 0 //no offers to display
             ? this.noOffers()
             : this.props.searchQuery 
               ? <SearchResult toggle={this.toggle}/>
@@ -145,13 +146,14 @@ class OfferList extends Component {
   }
 }
     
-function mapStateToProps({ currentOffers, omsData, categories, filters, searchQuery}) {
+function mapStateToProps({ currentOffers, omsData, categories, filters, searchQuery, allOffers}) {
   return { 
     offerData: currentOffers,
     offerCategories: categories,
     filteredCategories: filters,
     searchQuery,
-    omsData
+    omsData,
+    allOffers
   };
 }
 

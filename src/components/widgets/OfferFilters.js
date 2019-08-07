@@ -27,12 +27,24 @@ class OfferFilters extends Component {
     onInputClick(filter){
       //if state already includes filter, remove it and update offers
       if(this.state.checkedCategories.includes(filter)){
-        const removeCategory = _.remove(this.state.checkedCategories, (category) => {
+        const removeFilter = _.remove(this.state.checkedCategories, (category) => {
           return !(category === filter);
         })
-        this.props.updateOffers(removeCategory);
+        if(removeFilter.length > 0){
+          const checkedBugs = _.filter(removeFilter, filter => {
+            return _.includes(this.props.omsData.Bugs, filter)
+          });
+          const checkedCat = _.filter(removeFilter, filter => {
+            return !(_.includes(this.props.omsData.Bugs, filter));
+          });
+          //this.props.updateOffersWithBugs(checkedBugs);
+          this.props.updateOffers(checkedCat, checkedBugs);
+        }
+        else{
+          this.props.resetOffers();
+        }
         this.setState({
-          checkedCategories : removeCategory
+          checkedCategories : removeFilter
         })
       }
       //add filter to state and update offers
@@ -42,22 +54,31 @@ class OfferFilters extends Component {
         this.setState({
           checkedCategories
         });
-        this.props.updateOffers(this.state.checkedCategories);
+        const checkedBugs = _.filter(checkedCategories, filter => {
+          return _.includes(this.props.omsData.Bugs, filter)
+        });
+        const checkedCat = _.filter(checkedCategories, filter => {
+          return !(_.includes(this.props.omsData.Bugs, filter));
+        });
+        //this.props.updateOffersWithBugs(checkedBugs);
+        this.props.updateOffers(checkedCat, checkedBugs);
       }
     }
     
     onClearClick(){
-      const emptyArr = [];
       this.setState({
         checkedCategories:[]
       });
       this.toggle();
-      this.props.updateOffers(emptyArr);
+      this.props.resetOffers();
     }
     
     renderLabels(){
-      //Get list of categories from offer 
-      return this.props.offerCategories.map((filter, index) => { 
+      const categories = _.map(this.props.omsData["Tier3 Cover"], (type) => {
+        return type.Category
+      });
+      const filters= _.concat(categories, this.props.omsData.Bugs);
+      return filters.map((filter, index) => { 
           return(
             <Col key={index} className="category__item col-12">
               <FormGroup check>
@@ -81,7 +102,7 @@ class OfferFilters extends Component {
     return(
       <div className="category-filter__handle">
         <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-          <DropdownToggle outline color="grey" block caret disabled={Boolean(this.props.searchQuery)}>
+          <DropdownToggle outline color="grey" block caret disabled={Boolean(this.props.searchQuery) || this.props.omsData === false}>
             Filter Offers
           </DropdownToggle>
           <DropdownMenu  className="container col__category-filter container"
@@ -109,11 +130,12 @@ class OfferFilters extends Component {
     
 }  
 
-function mapStateToProps({ categories, allOffers, searchQuery }) {
+function mapStateToProps({ categories, allOffers, searchQuery, omsData }) {
   return { 
     offerCategories: categories,
     allOffers,
-    searchQuery 
+    searchQuery ,
+    omsData
   };
 }
 export default connect(mapStateToProps, actions)(OfferFilters);

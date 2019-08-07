@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { STORE_MODAL, FETCH_OMS, FETCH_OMS_CATEGORY, UPDATE_FILTERED_CATEGORIES, UPDATE_OFFERS, ALL_OFFERS, SEARCH_QUERY, FETCH_OMS_PENDING, UPDATE_OFFERS_PENDING} from './types';
+import { STORE_MODAL, FETCH_OMS, UPDATE_FILTERED_CATEGORIES, UPDATE_OFFERS, ALL_OFFERS, SEARCH_QUERY, FETCH_OMS_PENDING, UPDATE_OFFERS_PENDING} from './types';
 import _ from 'lodash';
 
 export const toggleStoreModal = ( state ) => dispatch => {
@@ -13,6 +13,15 @@ export const fetchOms = ({ store_number, api }) => async dispatch => {
   
   const storeOffers = _.filter(res.data.Table, {EventId: parseInt(store_number)}
   );
+  const bugs = _
+    .chain(storeOffers)
+    .filter(offer => {return offer.Bug})
+    .map(offer => { 
+      if(offer.Bug) return offer.Bug 
+      else return null})
+    .uniq()
+    .value();
+
   const groupedData = _.groupBy(storeOffers, offer => {
     return offer.PromoType;
   });
@@ -41,37 +50,54 @@ export const fetchOms = ({ store_number, api }) => async dispatch => {
   let promoType = groupedData;
   promoType.Product = sortTier3Offers;
   promoType["Tier3 Cover"] = sortTier3Covers;
+  promoType.Bugs=bugs;
   promoType.Hero = sortHero;
   promoType.Tier2Offers = sortTier2Offers;
-
-
-  const categories = _.map(groupedData["Tier3 Cover"], (type) => {
-    return type.Category
-  });
+  
+  //console.log(promoType)
 
   dispatch({type:FETCH_OMS, payload:promoType});
   dispatch({type:ALL_OFFERS, payload: storeOffers})
   dispatch({type:UPDATE_OFFERS, payload:promoType.Product});
-  dispatch({type:FETCH_OMS_CATEGORY, payload: categories});
   dispatch({type: UPDATE_FILTERED_CATEGORIES, payload: []})
 };
 
-export const updateOffers = (checkedCategories) => (dispatch, getState) => {
+export const resetOffers = () => (dispatch, getState) => {
+  const { omsData } = getState();
+  dispatch({type: UPDATE_OFFERS, payload: omsData.Product});
+  dispatch({type: UPDATE_FILTERED_CATEGORIES, payload: []})
+}
+
+export const updateOffers = (checkedCategories, checkedBugs) => (dispatch, getState) => {
     const { omsData } = getState();
-    //if there are filters...
-    if(checkedCategories.length) {
+    if(checkedBugs.length && checkedCategories.length){
+      const bugFilter = _.mapValues(omsData.Product, category => {
+        return _.filter(category, offer => {
+          return _.includes(checkedBugs, offer.Bug)
+        })
+      });
+      const filters = _.concat(checkedCategories, checkedBugs);
+      const newState = _.pick(bugFilter, checkedCategories);
+      dispatch({type: UPDATE_OFFERS, payload: newState});
+      dispatch({type: UPDATE_FILTERED_CATEGORIES, payload: filters})
+    }
+    else if (checkedBugs.length){
+      const bugFilter = _.mapValues(omsData.Product, category => {
+        return _.filter(category, offer => {
+          return _.includes(checkedBugs, offer.Bug)
+        })
+      });
+      dispatch({type: UPDATE_OFFERS, payload: bugFilter});
+      dispatch({type: UPDATE_FILTERED_CATEGORIES, payload: checkedBugs})
+  }
+    //if there are category filters...
+    else{
       const newState = _.pick(omsData.Product, checkedCategories);
-        //return (checkedCategories.includes(offer.Category));
-      
       dispatch({type: UPDATE_OFFERS, payload: newState});
       dispatch({type: UPDATE_FILTERED_CATEGORIES, payload: checkedCategories})
     }
-    //if no filters, reset offer data and clear filteredCategories state
-    else {
-        dispatch({type: UPDATE_OFFERS, payload: omsData.Product});
-        dispatch({type: UPDATE_FILTERED_CATEGORIES, payload: []})
-    }
-  }
+}
+  
   
 export const searchOffers = (query) => (dispatch, getState) => {
   const { omsData } = getState();
