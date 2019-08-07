@@ -122,7 +122,7 @@ class OfferList extends Component {
       <div>
         { this.props.omsData === false || this.props.offerData === false
           ? this.isPending()
-          : this.props.allOffers.length === 0 //no offers to display
+          : _.isEmpty(this.props.omsData.Product)//no offers to display
             ? this.noOffers()
             : this.props.searchQuery 
               ? <SearchResult toggle={this.toggle}/>

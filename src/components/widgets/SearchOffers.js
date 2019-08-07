@@ -17,10 +17,8 @@ class SearchOffers extends Component {
     render() {
         return(
             <div className="main-search mr-lg-3">
-                <Form className="search-form" inline >
-                    <i className="btn btn-search fas fa-search"></i>
-                    <Input type="search" className="search-field" onChange={this.handleSearch} placeholder="Search Weekly Ad" value={this.props.searchQuery} disabled={this.props.omsData === false}/>
-                </Form>
+                <i className="btn btn-search fas fa-search"></i>
+                <Input type="text" className="search-field" onChange={this.handleSearch} placeholder="Search Weekly Ad" value={this.props.searchQuery} disabled={this.props.omsData === false}/>
             </div>
         );
     }
