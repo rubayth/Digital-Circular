@@ -102,7 +102,7 @@ class OfferList extends Component {
     return(
       <section id="hero" className="hero container-fluid">
         <div className="col-12 mt-5 pb-5 text-center">
-          <Spinner style={{ width: '3rem', height: '3rem' }} />
+          <Spinner className="blue" style={{ width: '3rem', height: '3rem' }} />
         </div>
       </section>
     )
