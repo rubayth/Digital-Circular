@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.e9f97430.chunk.css",
-    "main.js": "/static/js/main.69a75341.chunk.js",
-    "main.js.map": "/static/js/main.69a75341.chunk.js.map",
+    "main.js": "/static/js/main.f27a069e.chunk.js",
+    "main.js.map": "/static/js/main.f27a069e.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/js/2.620e1a5a.chunk.js": "/static/js/2.620e1a5a.chunk.js",
-    "static/js/2.620e1a5a.chunk.js.map": "/static/js/2.620e1a5a.chunk.js.map",
+    "static/js/2.76ba422b.chunk.js": "/static/js/2.76ba422b.chunk.js",
+    "static/js/2.76ba422b.chunk.js.map": "/static/js/2.76ba422b.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.68c18e93b68c35d3f545adf60e237dc2.js": "/precache-manifest.68c18e93b68c35d3f545adf60e237dc2.js",
+    "precache-manifest.5da1033dfd7dcd56abee4655749b972f.js": "/precache-manifest.5da1033dfd7dcd56abee4655749b972f.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.e9f97430.chunk.css.map": "/static/css/main.e9f97430.chunk.css.map",
     "static/media/index.scss": "/static/media/hugos-white-wood_944w.28e944c5.jpg"
