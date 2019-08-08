@@ -196,7 +196,7 @@ class StoreSelection extends Component {
         return(
             <div className="d-none d-md-block pr-0 store-info">
                 <Button color="blue" outline 
-                    disabled={this.props.omsData === false} 
+                    //disabled={this.props.omsData === false} 
                     onClick={ () => this.props.toggleStoreModal(this.props.storeModal)}
                     >
                     <i className="map-marker fas fa-map-marker-alt"></i>
