@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Form, Input} from 'reactstrap';
+import { Input } from 'reactstrap';
 
 import * as actions from '../../actions';
 import { connect } from 'react-redux';

@@ -22,14 +22,15 @@ class OfferList extends Component {
   }
 
   toggle(offer) {
-    const { Mainline1Web ,Overline1Web, Price, Image1URL, AltText }  = offer;
+    const { Mainline1Web ,Overline1Web, Price, Image1URL, AltText, Description }  = offer;
     this.setState(prevState => ({
       modal: !prevState.modal,
       modalTitle: Mainline1Web, 
-      modalDescription: AltText,
+      modalAlt: AltText,
       modalImg: Image1URL,
       modalPrice: Price,
-      modalOverline: Overline1Web
+      modalOverline: Overline1Web,
+      modalDescription: Description
     }));
   }
   
@@ -43,7 +44,7 @@ class OfferList extends Component {
             <Row>
               <Col className="promoModal__img-col" xs="6">
                 <div className="promo__img--wrap mb-3">
-                  <img src={this.state.modalImg} alt={this.state.modalDescription} className="img-fluid d-block" />
+                  <img src={this.state.modalImg} alt={this.state.modalAlt} className="img-fluid d-block" />
                 </div>
               </Col>
               <Col className="promoModal__text-col" xs="6">
@@ -56,8 +57,11 @@ class OfferList extends Component {
                     <span className="promo__price">{this.state.modalPrice}</span>
                   </div>
                   <div className="promo__description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sapien nibh, lacinia feugiat sapien quis, maximus cursus augue.</p>
-                  </div>
+                    {this.state.modalDescription
+                    ? <p>{this.state.modalDescription}</p>
+                    : <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sapien nibh, lacinia feugiat sapien quis, maximus cursus augue.</p>
+                    }
+                </div>
                 </div>
               </Col>
             </Row>
