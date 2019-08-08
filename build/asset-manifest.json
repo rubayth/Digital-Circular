@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.e9f97430.chunk.css",
-    "main.js": "/static/js/main.6d976ae0.chunk.js",
-    "main.js.map": "/static/js/main.6d976ae0.chunk.js.map",
+    "main.css": "/static/css/main.93ca61c8.chunk.css",
+    "main.js": "/static/js/main.4435cddb.chunk.js",
+    "main.js.map": "/static/js/main.4435cddb.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
     "static/js/2.5265e411.chunk.js": "/static/js/2.5265e411.chunk.js",
     "static/js/2.5265e411.chunk.js.map": "/static/js/2.5265e411.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.3d1326fc298056bb46ec47df35ad29dc.js": "/precache-manifest.3d1326fc298056bb46ec47df35ad29dc.js",
+    "precache-manifest.85c8dfe02591f30deedb2c82b8965b80.js": "/precache-manifest.85c8dfe02591f30deedb2c82b8965b80.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.e9f97430.chunk.css.map": "/static/css/main.e9f97430.chunk.css.map",
+    "static/css/main.93ca61c8.chunk.css.map": "/static/css/main.93ca61c8.chunk.css.map",
     "static/media/index.scss": "/static/media/hugos-white-wood_944w.28e944c5.jpg"
   }
 }
