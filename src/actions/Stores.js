@@ -31,6 +31,22 @@ export const storeData = {
         "name": "Kroger",
         "api":"https://promo-api-dev.azurewebsites.net/api/selectp?method=kroger_get_weekly_ad_offers",
         "store_number": "659"
+      },
+      {
+        "address": {
+          "street": "1227 Rockbridge Rd SW",
+          "city": "Stone Mountain",
+          "state": "GA",
+          "zip_code": "30087"
+        },
+        "departments": false,
+        "gps": {
+          "latitude": "44.394885",
+          "longitude": "-89.806212"
+        },
+        "name": "Kroger",
+        "api":"https://promo-api-dev.azurewebsites.net/api/selectp?method=kroger_get_weekly_ad_offers",
+        "store_number": "586"
       }
     ]
 }
