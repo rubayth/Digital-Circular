@@ -6,12 +6,11 @@ import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 
 class UnderStripe extends React.Component {
-    static propTypes = {
-        cookies: instanceOf(Cookies).isRequired
-      };
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+  };
+  
   render() {
-    const { cookies } = this.props;
-    const {name, store_number}= cookies.get('store');
     return (
       <div className="understripe container-fluid mt-2">
         <div className="row m-0">
@@ -31,7 +30,14 @@ class UnderStripe extends React.Component {
                   }
                 >
                   <i className="map-marker fas fa-map-marker-alt"></i>
-                  <span className="user-store__name"> {name} #{store_number}</span>
+                  <span className="user-store__name">
+                    {" "}
+                    {this.props.storeInfo.store_number
+                      ? this.props.storeInfo.name +
+                        "#" +
+                        this.props.storeInfo.store_number
+                      : "No Store Selected"}
+                  </span>
                   <span className="user-store__city d-none d-md-inline">
                     Stone Mountain{" "}
                   </span>
@@ -45,10 +51,16 @@ class UnderStripe extends React.Component {
   }
 }
 
-function mapStateToProps({ storeModal }) {
+function mapStateToProps({ storeModal, storeInfo }) {
   return {
-    storeModal
+    storeModal,
+    storeInfo
   };
 }
 
-export default withCookies(connect(mapStateToProps, actions)(UnderStripe));
+export default withCookies(
+  connect(
+    mapStateToProps,
+    actions
+  )(UnderStripe)
+);

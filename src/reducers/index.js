@@ -7,6 +7,7 @@ import AllOffersReducer from './AllOffersReducer';
 import filterReducer from './FilterReducer';
 import StoreModalReducer from './StoreModalReducer';
 import SearchQueryReducer from './SearchQueryReducer';
+import StoreReducer from './StoreReducer';
 
 export default combineReducers({
     omsData: omsReducer,
@@ -15,5 +16,6 @@ export default combineReducers({
     allOffers: AllOffersReducer,
     currentOffers: currentOffersReducer,
     storeModal: StoreModalReducer,
-    searchQuery: SearchQueryReducer
+    searchQuery: SearchQueryReducer,
+    storeInfo: StoreReducer
 });

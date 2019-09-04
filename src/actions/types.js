@@ -1,4 +1,5 @@
 export const STORE_MODAL = 'store_modal';
+export const STORE_INFO = 'store_info';
 export const SEARCH_QUERY = 'search_query';
 
 export const FETCH_OMS = 'fetch_oms';

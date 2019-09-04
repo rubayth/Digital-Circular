@@ -1,10 +1,15 @@
 import axios from 'axios';
-import { STORE_MODAL, FETCH_OMS, UPDATE_FILTERED_CATEGORIES, UPDATE_OFFERS, ALL_OFFERS, SEARCH_QUERY, FETCH_OMS_PENDING, UPDATE_OFFERS_PENDING} from './types';
+import { STORE_MODAL, STORE_INFO, FETCH_OMS, UPDATE_FILTERED_CATEGORIES, UPDATE_OFFERS, ALL_OFFERS, SEARCH_QUERY, FETCH_OMS_PENDING, UPDATE_OFFERS_PENDING} from './types';
 import _ from 'lodash';
 
 export const toggleStoreModal = ( state ) => dispatch => {
   dispatch({type: STORE_MODAL, payload: !state});
 }
+
+export const setStore = ( store ) => dispatch => {
+  dispatch({type: STORE_INFO, payload: store})
+}
+
 export const fetchOms = ({ store_number, api }) => async dispatch => {
   dispatch({ type: FETCH_OMS_PENDING });
   dispatch({ type: UPDATE_OFFERS_PENDING});
