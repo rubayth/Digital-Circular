@@ -14,9 +14,9 @@ export const fetchOms = ({ store_number, api }) => async dispatch => {
   dispatch({ type: FETCH_OMS_PENDING });
   dispatch({ type: UPDATE_OFFERS_PENDING});
 
-  const res = await axios.get(api);
+  const res = await axios.get("https://promo-api-dev.azurewebsites.net/api/selectp?method=kroger_get_weekly_ad_offers");
   
-  const storeOffers = _.filter(res.data.Table, {EventId: parseInt(store_number)}
+  const storeOffers = _.filter(res.data.Table, {EventId: parseInt(659)}
   );
   const bugs = _
     .chain(storeOffers)
