@@ -10,6 +10,7 @@ class PromotionalOffers extends Component {
       this.state = {
           sliderSettings: {
               dots: false,
+              lazyLoad:true,
               infinite: true,
               speed: 500,
               slidesToShow: 2,

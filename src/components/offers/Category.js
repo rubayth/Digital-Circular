@@ -11,6 +11,7 @@ class Category extends React.Component{
         this.state = {
             sliderSettings: {
                 dots: false,
+                lazyLoad:true,
                 infinite: true,
                 speed: 500,
                 slidesToShow: 3,
