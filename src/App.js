@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
-import OfferList from './components/offers/OffersList';
+import React, { Component } from "react";
+import OfferList from "./components/offers/OffersList";
 import FilterContainer from "./containers/FilterContainer";
-import { Container } from 'reactstrap';
-import Landing from './components/Landing'
+import { Container } from "reactstrap";
+import Landing from "./components/Landing";
 
-import { instanceOf } from 'prop-types';
-import { withCookies, Cookies } from 'react-cookie';
-
+import { instanceOf } from "prop-types";
+import { withCookies, Cookies } from "react-cookie";
+import UnderStripe from "./components/UnderStripe";
 
 class App extends Component {
   static propTypes = {
@@ -15,18 +15,21 @@ class App extends Component {
 
   render() {
     return (
-      <Container className="circular-container">
-        <FilterContainer/>
-        {this.props.cookies.get('store')
-          ? <div>
-              <OfferList/>
+      <>
+      <UnderStripe/>
+        <Container className="circular-container">
+          <FilterContainer />
+          {this.props.cookies.get("store") ? (
+            <div>
+              <OfferList />
             </div>
-          : <Landing/>
-        }
-      </Container>
+          ) : (
+            <Landing />
+          )}
+        </Container>
+      </>
     );
   }
 }
-
 
 export default withCookies(App);
