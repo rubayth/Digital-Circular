@@ -13,7 +13,7 @@ export const storeData = {
         "longitude": "-84.131682"
       },
       "name": "Kroger",
-      "api": "https://wag-promo-api-dev.azurewebsites.net/api/selectp?method=hugos_get_weekly_ad_offers",
+      "api": "http://localhost:5000/oms",
       "store_number": "648"
     },
     {
@@ -29,7 +29,7 @@ export const storeData = {
         "longitude": "-89.806212"
       },
       "name": "Kroger",
-      "api": "https://wag-promo-api-dev.azurewebsites.net/api/selectp?method=kroger_get_weekly_ad_offers",
+      "api": "http://localhost:5000/oms",
       "store_number": "659"
     },
     {
@@ -45,7 +45,7 @@ export const storeData = {
         "longitude": "-89.806212"
       },
       "name": "Kroger",
-      "api": "https://promo-api-dev.azurewebsites.net/api/selectp?method=kroger_get_weekly_ad_offers",
+      "api": "http://localhost:5000/oms",
       "store_number": "586"
     },
     {
@@ -61,7 +61,7 @@ export const storeData = {
         "longitude": "-89.806212"
       },
       "name": "Kroger",
-      "api": "https://promo-api-dev.azurewebsites.net/api/selectp?method=kroger_get_weekly_ad_offers",
+      "api": "http://localhost:5000/oms",
       "store_number": "482"
     }
   ]
