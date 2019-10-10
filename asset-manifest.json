@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/digital-circular/static/css/main.42554132.chunk.css",
-    "main.js": "/digital-circular/static/js/main.88d4448b.chunk.js",
-    "main.js.map": "/digital-circular/static/js/main.88d4448b.chunk.js.map",
-    "runtime~main.js": "/digital-circular/static/js/runtime~main.1326c43c.js",
-    "runtime~main.js.map": "/digital-circular/static/js/runtime~main.1326c43c.js.map",
-    "static/js/2.4d258e17.chunk.js": "/digital-circular/static/js/2.4d258e17.chunk.js",
-    "static/js/2.4d258e17.chunk.js.map": "/digital-circular/static/js/2.4d258e17.chunk.js.map",
-    "index.html": "/digital-circular/index.html",
-    "precache-manifest.73186be13c87540e9aed388902ef5b18.js": "/digital-circular/precache-manifest.73186be13c87540e9aed388902ef5b18.js",
-    "service-worker.js": "/digital-circular/service-worker.js",
-    "static/css/main.42554132.chunk.css.map": "/digital-circular/static/css/main.42554132.chunk.css.map",
-    "static/media/index.scss": "/digital-circular/static/media/hugos-white-wood_944w.28e944c5.jpg"
+    "main.css": "/Digital-Circular/static/css/main.186e1b0a.chunk.css",
+    "main.js": "/Digital-Circular/static/js/main.c867dfb2.chunk.js",
+    "main.js.map": "/Digital-Circular/static/js/main.c867dfb2.chunk.js.map",
+    "runtime~main.js": "/Digital-Circular/static/js/runtime~main.8360567b.js",
+    "runtime~main.js.map": "/Digital-Circular/static/js/runtime~main.8360567b.js.map",
+    "static/js/2.4d258e17.chunk.js": "/Digital-Circular/static/js/2.4d258e17.chunk.js",
+    "static/js/2.4d258e17.chunk.js.map": "/Digital-Circular/static/js/2.4d258e17.chunk.js.map",
+    "index.html": "/Digital-Circular/index.html",
+    "precache-manifest.907d9123b718b404d36aa2bc7eebed50.js": "/Digital-Circular/precache-manifest.907d9123b718b404d36aa2bc7eebed50.js",
+    "service-worker.js": "/Digital-Circular/service-worker.js",
+    "static/css/main.186e1b0a.chunk.css.map": "/Digital-Circular/static/css/main.186e1b0a.chunk.css.map",
+    "static/media/index.scss": "/Digital-Circular/static/media/hugos-white-wood_944w.28e944c5.jpg"
   }
 }
