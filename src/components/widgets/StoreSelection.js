@@ -76,6 +76,12 @@ class StoreSelection extends Component {
     this.props.toggleStoreModal(this.props.storeModal);
     this.props.searchOffers(""); //on store change reset search query
 
+    this.props.setStore(store);
+    this.props.cookies.set("store", store, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 30
+    });
+    
     await this.props.fetchOms(store);
     if (this.props.allOffers.length > 0) {
       //find ad dates
@@ -90,11 +96,7 @@ class StoreSelection extends Component {
         endDate
       });
     }
-    this.props.setStore(store);
-    this.props.cookies.set("store", store, {
-      path: "/",
-      maxAge: 60 * 60 * 24 * 30
-    });
+    
   }
 
   sortStores(origin) {

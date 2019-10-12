@@ -133,9 +133,7 @@ class App extends Component {
           <Container className="circular-container">
             <FilterContainer />
             {this.props.cookies.get("store") ? (
-              <div>
                 <OfferList />
-              </div>
             ) : (
               <Landing />
             )}
