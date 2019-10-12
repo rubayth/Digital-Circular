@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a15edf4ebdf85b28644ea29b1c0a4430",
+    "revision": "bbe2c5c28fc752e6225435a45e366a54",
     "url": "/digital-circular/index.html"
   },
   {
-    "revision": "16a33d439b9cf25d0a87",
-    "url": "/digital-circular/static/css/main.42554132.chunk.css"
+    "revision": "872ce1711e35a00605ef",
+    "url": "/digital-circular/static/css/main.edc38c6c.chunk.css"
   },
   {
     "revision": "ab1846a1f651755bc596",
     "url": "/digital-circular/static/js/2.4d258e17.chunk.js"
   },
   {
-    "revision": "16a33d439b9cf25d0a87",
-    "url": "/digital-circular/static/js/main.88d4448b.chunk.js"
+    "revision": "872ce1711e35a00605ef",
+    "url": "/digital-circular/static/js/main.51414c27.chunk.js"
   },
   {
     "revision": "a2fa8d81f2e2ff7aca25",
