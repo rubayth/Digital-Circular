@@ -6,7 +6,7 @@ import Landing from "./components/Landing";
 
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
-import UnderStripe from "./components/UnderStripe";
+import Header from "./components/Header";
 
 class App extends Component {
   static propTypes = {
@@ -16,15 +16,17 @@ class App extends Component {
   render() {
     return (
       <>
-      <UnderStripe/>
-        <Container className="circular-container">
-          <FilterContainer />
-          {this.props.cookies.get("store") ? (
-              <OfferList />
-          ) : (
-            <Landing />
-          )}
-        </Container>
+      <Header />
+        <main id="main" className="site-main">
+          <Container className="circular-container">
+            <FilterContainer />
+            {this.props.cookies.get("store") ? (
+                <OfferList />
+            ) : (
+              <Landing />
+            )}
+          </Container>
+        </main>
       </>
     );
   }
