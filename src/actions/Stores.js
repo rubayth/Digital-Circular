@@ -13,7 +13,7 @@ export const storeData = {
         "longitude": "-84.131682"
       },
       "name": "Kroger",
-      "api": "https://powerful-waters-14971.herokuapp.com/hugos",
+      "api": "http://api.rubayth.com/prdc/hugos",
       "store_number": "648"
     },
     {
@@ -29,7 +29,7 @@ export const storeData = {
         "longitude": "-89.806212"
       },
       "name": "Kroger",
-      "api": "https://powerful-waters-14971.herokuapp.com/kroger",
+      "api": "http://api.rubayth.com/prdc/kroger",
       "store_number": "659"
     },
     {
@@ -45,7 +45,7 @@ export const storeData = {
         "longitude": "-89.806212"
       },
       "name": "Kroger",
-      "api": "https://powerful-waters-14971.herokuapp.com/kroger",
+      "api": "http://api.rubayth.com/prdc/kroger",
       "store_number": "586"
     },
     {
@@ -61,7 +61,7 @@ export const storeData = {
         "longitude": "-89.806212"
       },
       "name": "Kroger",
-      "api": "https://powerful-waters-14971.herokuapp.com/kroger",
+      "api": "http://api.rubayth.com/prdc/kroger",
       "store_number": "482"
     }
   ]
