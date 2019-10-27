@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/digital-circular/static/css/main.edc38c6c.chunk.css",
-    "main.js": "/digital-circular/static/js/main.51414c27.chunk.js",
-    "main.js.map": "/digital-circular/static/js/main.51414c27.chunk.js.map",
+    "main.css": "/digital-circular/static/css/main.da1f4623.chunk.css",
+    "main.js": "/digital-circular/static/js/main.d6875b9f.chunk.js",
+    "main.js.map": "/digital-circular/static/js/main.d6875b9f.chunk.js.map",
     "runtime~main.js": "/digital-circular/static/js/runtime~main.1326c43c.js",
     "runtime~main.js.map": "/digital-circular/static/js/runtime~main.1326c43c.js.map",
     "static/js/2.4d258e17.chunk.js": "/digital-circular/static/js/2.4d258e17.chunk.js",
     "static/js/2.4d258e17.chunk.js.map": "/digital-circular/static/js/2.4d258e17.chunk.js.map",
     "index.html": "/digital-circular/index.html",
-    "precache-manifest.f690d2efbbb24e9685d10b5a3f30d5aa.js": "/digital-circular/precache-manifest.f690d2efbbb24e9685d10b5a3f30d5aa.js",
+    "precache-manifest.8e27a4c80147976305283191f773df8e.js": "/digital-circular/precache-manifest.8e27a4c80147976305283191f773df8e.js",
     "service-worker.js": "/digital-circular/service-worker.js",
-    "static/css/main.edc38c6c.chunk.css.map": "/digital-circular/static/css/main.edc38c6c.chunk.css.map",
+    "static/css/main.da1f4623.chunk.css.map": "/digital-circular/static/css/main.da1f4623.chunk.css.map",
     "static/media/index.scss": "/digital-circular/static/media/hugos-white-wood_944w.28e944c5.jpg"
   }
 }
