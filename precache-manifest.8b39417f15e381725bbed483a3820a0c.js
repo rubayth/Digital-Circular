@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ffc9327a488b52f90f290cbfcd9a7751",
+    "revision": "c0ad6dfc4adaaa3f1fa6fd23b6d0edb0",
     "url": "/digital-circular/index.html"
   },
   {
-    "revision": "ad51162292beec970ace",
+    "revision": "3e1e839ee2d9be7e86d4",
     "url": "/digital-circular/static/css/main.da1f4623.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/digital-circular/static/js/2.4d258e17.chunk.js"
   },
   {
-    "revision": "ad51162292beec970ace",
-    "url": "/digital-circular/static/js/main.d6875b9f.chunk.js"
+    "revision": "3e1e839ee2d9be7e86d4",
+    "url": "/digital-circular/static/js/main.864febbe.chunk.js"
   },
   {
     "revision": "a2fa8d81f2e2ff7aca25",
